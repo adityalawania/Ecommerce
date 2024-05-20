@@ -20,7 +20,7 @@ const handler=async(req,res)=>{
             }
             catch(err)
             {
-                console.log(err.message)
+                console.log("inside nodemailer err "+err.message)
             }
         }
 

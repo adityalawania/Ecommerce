@@ -169,7 +169,7 @@ function scrollFunction() {
          },
       })
   
-      dispatch(addUserWish(iden))
+      dispatch(addUserWish(iden)) 
   
       toast.success(`${name} added `, {
         autoClose: 1000

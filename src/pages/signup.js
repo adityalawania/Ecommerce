@@ -27,7 +27,7 @@ function Signup({userData}) {
     
     const router=useRouter()
     const dispatch=useDispatch()
-    dispatch(logout())
+    dispatch(logout()) 
 
     const SignupRef=useRef()
     const showRef=useRef()
@@ -64,7 +64,7 @@ function Signup({userData}) {
    }
 
 
-    dispatch(removeUser())
+    dispatch(removeUser()) 
     let base=e.target.childNodes[0]
 
 
@@ -135,7 +135,7 @@ function Signup({userData}) {
       {
   
         sendOTP();
-        dispatch(addUser(infoObj))
+        dispatch(addUser(infoObj)) 
   
           e.target.style.display="none"
           // OtpRef.current.style.display="block"
@@ -299,8 +299,8 @@ function Signup({userData}) {
 
      
 
-            dispatch(updateUser(passRef.current.value))
-            dispatch(login('active'))
+            dispatch(updateUser(passRef.current.value))        
+            dispatch(login('active'))    
            
 
             toast.success('Account Created', {

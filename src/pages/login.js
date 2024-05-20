@@ -45,10 +45,10 @@ function Login({ userData }) {
         {
           sessionflag=true;
         
-          dispatch(login('active'))
+          dispatch(login('active'))      
   
-          dispatch(removeUser())
-          dispatch(addUser(one))
+          dispatch(removeUser())            
+          dispatch(addUser(one))             
   
           // function sleep(milliseconds) {
           //   const date = Date.now();
@@ -147,9 +147,9 @@ function Login({ userData }) {
          "orders":[],
       }
 
-      dispatch(removeUser())
-      dispatch(addUser(infoObj))
-      dispatch(login('active'))
+      dispatch(removeUser())                
+      dispatch(addUser(infoObj))             
+      dispatch(login('active'))              
     
       }
 
@@ -181,8 +181,8 @@ function Login({ userData }) {
           })
           dispatch(login('active'))
 
-          dispatch(removeUser())
-          dispatch(addUser(ele))
+          dispatch(removeUser())  
+          dispatch(addUser(ele))   
 
           function sleep(milliseconds) {
             const date = Date.now();

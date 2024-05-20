@@ -2,7 +2,20 @@ import { configureStore } from "@reduxjs/toolkit";
 
 // for storing redux store in local system
 import storage from "redux-persist/lib/storage"
-import {persistReducer} from "redux-persist"
+
+// import {persistReducer} from "redux-persist"
+
+import {
+    persistStore,
+    persistReducer,
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
+  } from 'redux-persist'
+
 import { combineReducers } from "@reduxjs/toolkit";
 
 
@@ -28,6 +41,7 @@ const persistConf ={
 const reducer=combineReducers({
 
     status:loginSlice,
+   
     user:userSlice,
     search:searchSlice,
     // notify:notifySlice,
@@ -44,7 +58,14 @@ const store= configureStore({
         filterPrice:priceSlice,
         filterRating:ratingSlice,
         category:categorySlice,
-    }
+    },
+
+    middleware: (getDefaultMiddleware) =>  // to ignore non-serializable checks
+        getDefaultMiddleware({
+          serializableCheck: {
+            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+          },
+        }),
 });
 
 

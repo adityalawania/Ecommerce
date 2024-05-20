@@ -19,7 +19,7 @@ require('../models/User')
 
 import User from '../models/User'
 require('./api/getProducts')
-
+import {getDefaultMiddleware} from "@reduxjs/toolkit"
 
 
 import { useEffect, useState } from 'react'
@@ -104,19 +104,33 @@ export default function Home({ j, userData }) {
   //   }
   // }, [session.data])
 
+  useEffect(()=>{
+    const customizedMiddleware = getDefaultMiddleware({
+      serializableCheck: false
+    })
+  },[])
+
   setTimeout(() => {
     try{
      let currEmail=activity.user[0].email
      let newFlag=false;
         userData.map((u)=>{
-     
-        if(u.email==activity.user[0].email)
-        {
-          console.log("email match")
-          dispatch(updateUserId(u._id))
-          console.log(u._id)
-          newFlag=true;
+        
+        try{
+            if(u.email==activity.user[0].email)
+            {
+              console.log("email match")
+              dispatch(updateUserId(u._id))  
+              console.log(u._id)
+              newFlag=true;
+            }
         }
+
+        catch(err){
+          // console.log(err)
+          
+        }
+    
 
 
 
@@ -126,8 +140,10 @@ export default function Home({ j, userData }) {
 
   if(newFlag==false)
   {
-    dispatch(logout())
-    dispatch(removeUser())
+    dispatch(logout())  
+    dispatch(removeUser())  
+
+
     // dispatch(addMsg('Logout'))
     signOut({ callbackUrl: 'http://localhost:3000' })
   }

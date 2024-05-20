@@ -150,7 +150,7 @@ function Item({ ele }) {
             },
           })
 
-          dispatch(addUserWish(ele._id))
+          dispatch(addUserWish(ele._id))  
 
           toast.success(`${ele.title} added `, {
             autoClose: 1000
@@ -287,7 +287,7 @@ function Item({ ele }) {
           },
         })
 
-        dispatch(addUserCart(cartObj))
+        dispatch(addUserCart(cartObj))   
 
       }
 

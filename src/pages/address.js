@@ -82,8 +82,8 @@ function Address({allUser}) {
                 pin:inppostal,
             };
 
-            dispatch(removeAddress())
-            dispatch(addAddress(addressObj))
+            dispatch(removeAddress()) 
+            dispatch(addAddress(addressObj))   
             router.push({
                 pathname:'/payment',
                 query:{

@@ -8,6 +8,7 @@ import brandArray from './brandData'
 function Kids({j}) {
 
   const activeRef=useRef();
+  // const fref = React.forwardRef();
 
   while(brandArray.length>0)
   {
@@ -21,8 +22,10 @@ function Kids({j}) {
 
 
   return (
-    <>
-    <Navbar ref={activeRef}></Navbar>
+    <> 
+    {/*  i removed refs from men , kids , homeliving !! */}
+    <Navbar></Navbar>
+   
     <Card response={j}></Card>
     </>
   )

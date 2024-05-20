@@ -53,7 +53,7 @@ function Filter(props, ref) {
 
 
     if (!minValue || !maxValue) {
-      dispatch(removePriceFilter())
+      dispatch(removePriceFilter())  
     }
 
     else if (minValue < 0 || maxValue < 1) {
@@ -67,8 +67,8 @@ function Filter(props, ref) {
 
     else {
 
-      dispatch(removePriceFilter())
-      dispatch(addPriceFilter([minValue, maxValue]))
+      dispatch(removePriceFilter()) 
+      dispatch(addPriceFilter([minValue, maxValue])) 
 
       reRender();
 
@@ -79,8 +79,8 @@ function Filter(props, ref) {
 
   const setrating = (x) => {
 
-    dispatch(removeRating())
-    dispatch(addRating(x))
+    dispatch(removeRating())       
+    dispatch(addRating(x))    
 
     reRender();
   }
@@ -96,12 +96,12 @@ function Filter(props, ref) {
 
     if (brandRef.current.children[i - 1].childNodes[1].checked == true) {
 
-      dispatch(addBrand(brandRef.current.children[i - 1].childNodes[1].value))
+      dispatch(addBrand(brandRef.current.children[i - 1].childNodes[1].value))  
     }
 
     if (brandRef.current.children[i - 1].childNodes[1].checked == false) {
 
-      dispatch(removeBrand(brandRef.current.children[i - 1].childNodes[1].value))
+      dispatch(removeBrand(brandRef.current.children[i - 1].childNodes[1].value))  
     }
 
     reRender();
@@ -114,10 +114,10 @@ function Filter(props, ref) {
     {
       if(limit[j].tagName=='LI' && limit[j].children[0].checked==true)
       {
-          dispatch(addBrand(limit[j].children[0].value))
+          dispatch(addBrand(limit[j].children[0].value))  
       }
       else if(limit[j].tagName=='LI' ){
-          dispatch(removeBrand(limit[j].children[0].value))
+          dispatch(removeBrand(limit[j].children[0].value)) 
       }
     }
     
@@ -151,7 +151,9 @@ function Filter(props, ref) {
 
               if (i < 6)
                 return (
-                  <li> <input type='checkbox' value={brand.toUpperCase()} onClick={() => brandSelection(i + 1)} />{brand.toUpperCase()}</li>
+                    
+                  <li key={i} > <input type='checkbox' name='check' value={brand.toUpperCase()} onClick={() => brandSelection(i + 1)} />{brand.toUpperCase()}</li>
+                 
                 )
             })}
            { brandArray.length>6 ? <p onClick={()=>closeBrandCont("block")}>+{brandArray.length-6} more</p> :<></>}
@@ -197,15 +199,19 @@ function Filter(props, ref) {
             let letter=brand.charAt(0)
           
             return (
-              <>
+              <div key={i}>
               {(i>0 &&
                       brandArray[i].charAt(0).toLowerCase()==brandArray[i-1].charAt(0).toLowerCase()) ? 
                         <></>
                     : 
                 
-                <h4>{brand.charAt(0).toUpperCase()}</h4> }
+                
+                <h4>{brand.charAt(0).toUpperCase()}</h4> 
+                
+              }
                 <li> <input type='checkbox' value={brand} onClick={() => allBrandSelection()} />{brand.toUpperCase()}</li>
-              </>
+                
+              </div>
               )
           })}
 

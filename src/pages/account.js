@@ -43,8 +43,12 @@ function Account() {
 
 
   const logoutFunc=()=>{
-    dispatch(logout())
-    dispatch(removeUser())
+
+
+
+    dispatch(logout())      
+    dispatch(removeUser())  
+
     // dispatch(addMsg('Logout'))
     signOut({callbackUrl:'http://localhost:3000'})
     

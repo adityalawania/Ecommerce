@@ -77,7 +77,7 @@ function Wish({userData}) {
                 myWish.map((user,i)=>{
                         
                     return(
-                        <div className={styles.wishandDate}>
+                        <div className={styles.wishandDate} key={i}> 
                       { 
                         (i>0 &&
                       myWish[i].date==myWish[i-1].date) ? 

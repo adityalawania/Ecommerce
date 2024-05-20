@@ -1,7 +1,5 @@
 import { createTransport } from "nodemailer";
 
-
-
 const email=process.env.EMAIL
 const pass=process.env.EMAIL_PASS
 

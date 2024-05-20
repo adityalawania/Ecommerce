@@ -23,7 +23,7 @@ function Men({j}) {
 
   return (
     <>
-    <Navbar ref={searchRef}></Navbar>
+    <Navbar ></Navbar>
     <Card  response={j}></Card>
     </>
   )

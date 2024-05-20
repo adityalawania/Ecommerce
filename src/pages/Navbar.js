@@ -69,6 +69,7 @@ const session=useSession()
   //   dispatch(logout())
   // }
 
+  // ************************************* ERROR **************************
 
   useEffect(()=>{
      const reRender=()=>{
@@ -245,7 +246,7 @@ const SubmitIt=(e)=>{
     }    
    }
 
-   dispatch(searchIn(searchObj))
+   dispatch(searchIn(searchObj))     
 
 
   //  router.reload()
@@ -313,7 +314,7 @@ const isCategory=(x)=>{
   return (
     <>
     <div className={styles.navContainer} >
-      <Link  href={'/'}><Image id={styles.logo} src={'/30b2d015e904407aae937a4794ae064b.png'} width={80} height={55}></Image></Link>
+      <Link  href={'/'}><Image id={styles.logo} src={'/30b2d015e904407aae937a4794ae064b.png'} width={80} height={55} alt='Image unavailable'></Image></Link>
       
       <ul ref={active} className={styles.navbar}>
         <li className={router.pathname =='/kids' ? styles.active : ""}><Link href={'/kids'}>Kids</Link></li>
@@ -338,7 +339,7 @@ const isCategory=(x)=>{
           <li id='heart' className={styles.heartIcon}  onClick={() => navIcon('heart')}><img src='heart.png'></img></li>
          {  store.getState().finalPersistedReducer.status[0]=='inactive' ?
            <Link href={'./login'}> <button className={`${styles.searchbutton} ${styles.navLogin}`}>Login</button></Link>
-         
+        
           :<li id='user' className={styles.userIcon} onClick={() => navIcon('user')} ><FiUser /></li>
   }
         

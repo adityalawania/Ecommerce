@@ -169,6 +169,7 @@ font-family: 'Rajdhani', sans-serif;
 
 #logo{
   margin-left: 20px;
+ 
 }
 
 .Card{
@@ -2580,6 +2581,8 @@ width: 100px;
   padding: 40px;
   letter-spacing: 1.5rem;
  padding-left:65px ;
+ position: relative;;
+ top: 10px;
 }
 
 .OTP button{
@@ -2687,6 +2690,24 @@ right: 70vw;
   position: relative;
   top: 5px;
   margin-right: 20px;
+}
+.editFileText{
+  color: red;
+  width: 100px;
+ 
+  font-size: 10px;
+  border: 1px solid black;
+  height: 20px;
+}
+#editBtnImg{
+  position: absolute;
+  top: 86px;
+  left: 100px;
+  height: 20px;
+  width: 20px;
+}
+#editBtnImg:hover{
+  cursor: pointer;
 }
 .profileNext
 {
@@ -3167,7 +3188,7 @@ display: none;
   left: 60vw;
 }
 
-.mainProfileCont aside > p:nth-of-type(1){
+.mainProfileCont aside > div:nth-of-type(1){
 
   /* padding: 40px; */
   width: 100px;
@@ -3191,14 +3212,25 @@ display: none;
 }
 
 .noProfileImg{
-  background-color: rgb(214, 214, 214);
-  margin: auto;
+  /* background-color: rgb(214, 214, 214); */
+  /* margin: auto; */
+  position: absolute;
+left: 0px;
+  top:10px;
   /* border-radius: 50%; */
   
-  width: 20px;
-  height: 20px;
+  width: 100px;
+  height: 100px;
+ 
 }
 
+.photoInp{
+visibility: hidden;
+  /* background-color: red; */
+}
+
+#pictureForm{
+}
 .ProfileImg
 {
   background-color: rgb(214, 214, 214);
@@ -3481,6 +3513,7 @@ letter-spacing: 1.5rem;
 padding-left:65px ;
 margin-left: 35px;
 margin-top: 50px;
+
 border: none;
 }
 

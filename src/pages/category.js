@@ -19,7 +19,7 @@ function Category() {
   }
 
 const chooseCategory=(name)=>{
-dispatch(removeCategory())
+dispatch(removeCategory())    
 dispatch(addCategory(name))
 reRender();
 }

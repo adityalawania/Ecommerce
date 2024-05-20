@@ -1,6 +1,6 @@
 import Order from "@/models/Order";
 import connectDB from "@/middleware/mongoose"
-import upload from "@/middleware/upload";
+import upload from "@/pages/api/upload";
 import multer from "multer";
 
 console.log("hello")

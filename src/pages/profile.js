@@ -17,6 +17,9 @@ import { MD5 } from 'crypto-js'
 import Link from 'next/link'
 import Head from 'next/head'
 import navigator from 'navigator'
+import axios from 'axios'
+import { headers } from '../../next.config'
+
 
 
 function Profile({ userData }) {
@@ -25,6 +28,7 @@ function Profile({ userData }) {
 
 
 
+  const pictureRef = useRef()
   const countryRef = useRef()
   const sectionRef = useRef()
   const profileNavRef = useRef()
@@ -63,6 +67,8 @@ function Profile({ userData }) {
       cc = cont.code;
   })
 
+  const [pic, setPic] = useState('')
+
   const [countryCode, setCountryCode] = useState(cc);
   const [country,setCountry]= useState(myUser.country)
   const [mainAddress, setmainAdd] = useState(myUser.address)
@@ -70,6 +76,7 @@ function Profile({ userData }) {
   const [lname, setLname] = useState(myUser.lname)
   const [gender,setGender] = useState(myUser.gender)
   const [phone, setphone] = useState(myUser.fphone)
+
   const [userEmail, setUserEmail] = useState(myUser.email)
 
   const [randomCode, setRandomCode] = useState()
@@ -80,8 +87,8 @@ function Profile({ userData }) {
   console.log(myUser.img, " src in back")
 
   const logoutFunc = () => {
-    dispatch(logout())
-    dispatch(removeUser())
+    dispatch(logout())        
+    dispatch(removeUser())     
     // dispatch(addMsg('Logout'))
     signOut({ callbackUrl: 'http://localhost:3000' })
 
@@ -709,8 +716,10 @@ function Profile({ userData }) {
             autoClose: 1200
           })
 
-          dispatch(logout())
-          dispatch(removeUser())
+          dispatch(logout())          
+          dispatch(removeUser())      
+
+
           // dispatch(addMsg('Logout'))
           //  signOut({callbackUrl:'http://localhost:3000'})
           router.push('/login')
@@ -732,6 +741,53 @@ function Profile({ userData }) {
         autoClose: 1200
       })
     }
+  }
+
+  const newImg=async(e)=>{
+    e.preventDefault();
+    console.log("in fornt")
+
+    const file = e.target.files[0];
+    console.log(file)
+
+
+
+try{
+ 
+  const res =await fetch('/api/upload',{
+    method:'POST',
+    body:JSON.stringify({
+      'file':`${file}`,
+      'daad':'okok'
+    }),
+  
+    headers:{
+      'Content-Type':  'application/json',
+    
+     },
+  }).then((res)=>console.log('sucnes in f'))
+  .catch((err)=>console.log("errpr in from"))
+
+  
+
+  // if(!res.ok) throw new Error(await res.text())
+}
+
+catch(err){
+  console.log("Error from frontend "+err)
+}
+
+
+
+   
+
+   
+    
+  }
+
+  const picToBackend=(e)=>{
+    e.preventDefault();
+    console.log("form submit")
   }
 
   return (
@@ -760,9 +816,19 @@ function Profile({ userData }) {
         <div className={styles.mainProfileCont}>
           <h3>Profile</h3>
           <aside>
-            <p>
+            
+            <div>
                 <img src='male.png' className={styles.noProfileImg} />
-            </p>
+              <form id='pictureForm' ref={pictureRef} onSubmit={(e)=>newImg(e)}>
+                <label htmlFor="upload-photo" className={styles.editFileBtn}> <img src='edit.png' id={styles.editBtnImg}  width={2} height={2}></img> </label>
+                <input type='text' name='text'/>
+                <input type="file" name="file" id="upload-photo" className={styles.photoInp} onChange={(e)=>newImg(e)}/>
+                {/* <button type='submit'>Upload</button> */}
+                </form>
+             </div>
+                
+               
+         
             <form action='/api/formBack'  method='post' > 
          
               <input type="text" placeholder='First Name' name='fname' value={fname} onChange={(e) => profileDetailFunc(e, "fname")} />
@@ -776,16 +842,16 @@ function Profile({ userData }) {
 
                     
               </select>
-              <input type="text" placeholder='Email' name='email' value={userEmail} />
+              <input type="text" placeholder='Email' name='email' defaultValue={userEmail} />
               <li onClick={(e) => changeEmailPhone(e, "email")}>CHANGE</li>
               <span>{countryCode}</span> <input type="text" placeholder='Phone' name='phone' value={phone} onChange={(e) => profileDetailFunc(e, "phone")} />
              
 
               <select id="nations" defaultValue={myUser.country} name='country' onChange={(e) => changecountry(e)}>
                 <option value=''>Select Country</option>
-                {countries.map((c) => {
+                {countries.map((c,i) => {
                   return (
-                    <option value={c.name} ref={countryRef}>{c.name}</option>
+                    <option value={c.name} ref={countryRef} key={i}>{c.name}</option>
                   )
                 })}
               </select>
@@ -846,10 +912,10 @@ function Profile({ userData }) {
         <div className={styles.profileOrderCont}>
           <h3>Orders</h3>
           {/* ****************     MAP 2   ************************ */}
-          {myUser.orders.map((order) => {
+          {myUser.orders.map((order,i) => {
             let status = order.status.charAt(0).toUpperCase() + order.status.slice(1);
             return (
-              <aside className={styles.profileOrder}>
+              <aside className={styles.profileOrder} key={i}>
                 <div className={styles.OrderDetail}>
                   <img src={order.img} />
                   <ul>

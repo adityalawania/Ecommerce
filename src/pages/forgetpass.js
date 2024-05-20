@@ -28,7 +28,7 @@ export default function Login({ userData }) {
     const[otp,setOtp]=useState()
 
 
-    const verifyEmail = async (e) => {
+   const verifyEmail = async (e) => {
         e.preventDefault()
         let val = emailRef.current.childNodes[1].value;
         var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;

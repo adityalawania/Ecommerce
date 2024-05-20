@@ -23,7 +23,7 @@ function Living({j}) {
 
   return (
     <>
-    <Navbar ref={searchRef}></Navbar>
+    <Navbar></Navbar>
     <Card  response={j}></Card>
     </>
   )

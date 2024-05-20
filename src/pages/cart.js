@@ -186,8 +186,7 @@ function Cart({allUser}) {
             let sum = 0;
             let x;
             for (let i = 0; i < k; i++) {
-                console.log(allItems.current.childNodes[i].childNodes[2].childNodes[2].innerHTML)
-
+           
                 if(allItems.current.children[i].children[2].children[2].innerHTML.charAt(1)=='<')
                 {
                     x=parseInt(allItems.current.childNodes[i].childNodes[2].childNodes[2].innerHTML.slice(9))
@@ -196,7 +195,7 @@ function Cart({allUser}) {
 
                     x = parseInt(allItems.current.childNodes[i].childNodes[2].childNodes[2].innerHTML.slice(1));
                 }
-                console.log(x)
+               
                 sum = sum + x;
             }
             
@@ -242,6 +241,7 @@ function Cart({allUser}) {
     
             headers:{
               'Content-Type':  'application/json',
+            
              },
           })
 
@@ -252,7 +252,7 @@ function Cart({allUser}) {
             }
          })
           
-         dispatch(removeUserCart({
+         dispatch(removeUserCart({   
             id:item.id,
             color:item.color,
             size:item.size
@@ -319,8 +319,8 @@ function Cart({allUser}) {
         
         }
 
-        dispatch(orderOut())
-        dispatch(orderIn(myCart))
+        dispatch(orderOut())  
+        dispatch(orderIn(myCart)) 
 
 
       if(myCart.length>1)
@@ -379,7 +379,7 @@ function Cart({allUser}) {
                         if(!item.orderid)
                      {
                         return (
-                            <div className={styles.itemSummary} id={item.id+i}>
+                            <div className={styles.itemSummary} id={item.id+i} key={i}>
                                <Link passHref={true} href={{
                     pathname: '/item',
                     query: {
