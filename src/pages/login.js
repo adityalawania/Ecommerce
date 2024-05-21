@@ -6,14 +6,14 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
-import { login, logout } from './store/slices/loginSlice'
-import { addUser, updateUser, removeUser } from './store/slices/userSlice';
+import { login, logout } from '../store/slices/loginSlice'
+import { addUser, updateUser, removeUser } from '../store/slices/userSlice';
 require('../models/User')
 import User from '@/models/User';
 import Card from './card';
 import { useDispatch } from 'react-redux';
 import { useSession, signIn, signOut } from 'next-auth/react';
-import {addMsg,removeMsg} from './store/slices/notifySlice'
+import {addMsg,removeMsg} from '../store/slices/notifySlice'
 import Head from 'next/head';
 
 

@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css'
 import TracingNavbar from './tracingNavbar'
 import { toast } from 'react-toastify'
 import { ToastContainer } from 'react-toastify';
-import store from './store';
+import store from '../store';
 
 function Checkout() {
 //   const date=new Date()

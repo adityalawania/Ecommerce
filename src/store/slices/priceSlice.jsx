@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import store from "../..";
+import store from "../../pages";
 const priceSlice = createSlice({
     name:"prices",
     initialState:[],
@@ -16,5 +16,5 @@ const priceSlice = createSlice({
     }
 })
 
-export default priceSlice.reducer;
+export default  priceSlice.reducer;
 export const {addPriceFilter,removePriceFilter} = priceSlice.actions;

@@ -2,14 +2,14 @@ import React, { useRef, useState } from 'react'
 import Navbar from './Navbar'
 import styles from '../styles/Home.module.css'
 import { useDispatch } from 'react-redux'
-import store from './store'
+import store from '../store'
 
 import { ToastContainer, toast } from 'react-toastify'
-import { logout } from './store/slices/loginSlice'
-import { removeUser } from './store/slices/userSlice'
+import { logout } from '../store/slices/loginSlice'
+import { removeUser } from '../store/slices/userSlice'
 import { useRouter } from 'next/router'
 import {signIn,signOut} from 'next-auth/react'
-import { addMsg,removeMsg } from './store/slices/notifySlice'
+import { addMsg,removeMsg } from '../store/slices/notifySlice'
 
 
 function Account() {

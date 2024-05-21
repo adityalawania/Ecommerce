@@ -56,5 +56,5 @@ const userSlice = createSlice({
     }
 })
 
-export default userSlice.reducer;
+export default  userSlice.reducer;
 export const {addUser,updateUser, removeUser,addUserCart,removeUserCart,addUserWish,removeUserWish,updateUserId,addUserOrder} = userSlice.actions;

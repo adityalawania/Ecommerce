@@ -2,7 +2,7 @@ import React, { useEffect, useRef,useState } from 'react'
 import Navbar from './Navbar'
 import Card from './card'
 import Product from '@/models/Product'
-import brandArray from './brandData'
+import brandArray from '@/datas/brandArray'
 
 function Women({j}) {
   while(brandArray.length>0)

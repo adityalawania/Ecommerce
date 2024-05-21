@@ -750,4 +750,4 @@ const allProductData=[{
    
     ] 
 
-    export default allProductData;
+   export default allProductData;

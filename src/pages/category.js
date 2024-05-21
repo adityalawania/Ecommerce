@@ -1,8 +1,8 @@
 import React, { useEffect,useState } from 'react'
-import categoryArray from './categoryArray'
+import categoryArray from '@/datas/categoryArray'
 import styles from '../styles/Home.module.css'
 import { useDispatch } from 'react-redux'
-import { addCategory,removeCategory } from './store/slices/categorySlice'
+import { addCategory,removeCategory } from '../store/slices/categorySlice'
 
 function Category() {
 

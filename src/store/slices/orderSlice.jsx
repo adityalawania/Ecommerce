@@ -14,6 +14,6 @@ const orderSlice= createSlice({
     }
 })
 
-export default orderSlice.reducer;
+export default  orderSlice.reducer;
 
 export const {orderIn,orderOut} = orderSlice.actions;

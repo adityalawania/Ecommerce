@@ -6,9 +6,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
-import { addUser,updateUser, removeUser,updateUserId } from './store/slices/userSlice';
-import {login,logout} from './store/slices/loginSlice'
-import store from './store';
+import { addUser,updateUser, removeUser,updateUserId } from '../store/slices/userSlice';
+import {login,logout} from '../store/slices/loginSlice'
+import store from '../store';
 import { useDispatch } from 'react-redux';
 import User from '@/models/User';
 import Head from 'next/head';
@@ -396,7 +396,7 @@ function Signup({userData}) {
 
 
         <button>Save</button>
-        <hr />
+      
        
         <p>Already a member ? <Link href={'/login'}><span> Login</span></Link></p>
     </div>

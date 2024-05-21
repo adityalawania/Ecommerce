@@ -9,11 +9,11 @@ import { ToastContainer } from 'react-toastify';
 import Link from 'next/link';
 import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 import User from '@/models/User';
-import store from './store';
+import store from '../store';
 import ReactPlayer from 'react-player';
 import { useDispatch } from 'react-redux';
-import { removeUserCart } from './store/slices/userSlice';
-import { orderIn,orderOut } from './store/slices/orderSlice';
+import { removeUserCart } from '../store/slices/userSlice';
+import { orderIn,orderOut } from '../store/slices/orderSlice';
 import { current } from '@reduxjs/toolkit';
 import Head from 'next/head';
 

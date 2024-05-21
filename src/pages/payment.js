@@ -2,13 +2,13 @@ import React from 'react'
 import styles from '../styles/Home.module.css'
 import TracingNavbar from './tracingNavbar'
 import Link from 'next/link'
-import store from './store'
+import store from '../store'
 import Order from '@/models/Order'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
 import { ToastContainer } from 'react-toastify';
-import { orderIn } from './store/slices/orderSlice'
-import { addUserOrder } from './store/slices/userSlice'
+import { orderIn } from '../store/slices/orderSlice'
+import { addUserOrder } from '../store/slices/userSlice'
 
 
 function Payment() {

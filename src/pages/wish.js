@@ -1,11 +1,11 @@
 import React, { useRef, forwardRef, useEffect } from 'react'
 import styles from '../styles/Home.module.css'
-import store from './store';
+import store from '../store';
 import { useState } from 'react';
 import User from '@/models/User';
 import Navbar from './Navbar';
 import { useRouter } from 'next/router';
-import { removeUserWish } from './store/slices/userSlice';
+import { removeUserWish } from '../store/slices/userSlice';
 import { useDispatch } from 'react-redux';
 import Head from 'next/head';
 

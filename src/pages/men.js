@@ -1,9 +1,9 @@
 import React, { useEffect, useReducer, useRef,useState } from 'react'
 import Navbar from './Navbar'
 import Card from './card'
-import allProductData from './data'
+import allProductData from '../datas/data'
 import Product from '@/models/Product'
-import brandArray from './brandData'
+import brandArray from '@/datas/brandArray'
 
 function Men({j}) {
   const [data,setdata] = useState(allProductData)

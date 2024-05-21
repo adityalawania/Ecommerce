@@ -2,8 +2,8 @@ import React, { useEffect, useRef,useState } from 'react'
 import Navbar from './Navbar'
 import Card from './card'
 import Product from '@/models/Product'
-import allProductData from './data'
-import brandArray from './brandData'
+import allProductData from '../datas/data'
+import brandArray from '@/datas/brandArray'
 
 function Kids({j}) {
 

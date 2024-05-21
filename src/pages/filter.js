@@ -2,13 +2,13 @@ import React, { createContext, forwardRef, useEffect, useRef } from 'react'
 import styles from '../styles/Home.module.css'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addBrand, removeBrand } from './store/slices/brandSlice'
-import { addPriceFilter, removePriceFilter } from './store/slices/priceSlice'
-import { addRating, removeRating } from './store/slices/ratingSlice'
+import { addBrand, removeBrand } from '../store/slices/brandSlice'
+import { addPriceFilter, removePriceFilter } from '../store/slices/priceSlice'
+import { addRating, removeRating } from '../store/slices/ratingSlice'
 import { ToastContainer, toast } from 'react-toastify'
-import store from './store'
+import store from '@/store'
 import { useRouter } from 'next/router'
-import brandArray from './brandData'
+import brandArray from '@/datas/brandArray'
 import { RxCross1 } from "react-icons/rx";
 
 

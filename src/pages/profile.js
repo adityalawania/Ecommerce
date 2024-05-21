@@ -1,18 +1,18 @@
 import React from 'react'
 import styles from '../styles/Home.module.css'
 import Navbar from './Navbar'
-import countries from './country'
+import countries from '../datas/country'
 import { useState, useRef } from 'react'
 import User from '@/models/User'
 import { useRouter } from 'next/router'
-import userSlice from './store/slices/userSlice'
-import { removeUser } from './store/slices/userSlice'
-import { logout } from './store/slices/loginSlice'
+import userSlice from '../store/slices/userSlice'
+import { removeUser } from '../store/slices/userSlice'
+import { logout } from '../store/slices/loginSlice'
 import { signOut } from 'next-auth/react'
 import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { ToastContainer } from 'react-toastify';
-import store from './store'
+import store from '../store'
 import { MD5 } from 'crypto-js'
 import Link from 'next/link'
 import Head from 'next/head'
@@ -689,7 +689,7 @@ function Profile({ userData }) {
         })
       }
 
-      else if (passRef.current.childNodes[1].childNodes[0].value.length < 6) {
+      else if (passRef.current.childNodes[1].childNodes[0].value.length < 3) {
         toast.warn('Password is too short', {
           autoClose: 1200
         })
@@ -819,12 +819,7 @@ catch(err){
             
             <div>
                 <img src='male.png' className={styles.noProfileImg} />
-              <form id='pictureForm' ref={pictureRef} onSubmit={(e)=>newImg(e)}>
-                <label htmlFor="upload-photo" className={styles.editFileBtn}> <img src='edit.png' id={styles.editBtnImg}  width={2} height={2}></img> </label>
-                <input type='text' name='text'/>
-                <input type="file" name="file" id="upload-photo" className={styles.photoInp} onChange={(e)=>newImg(e)}/>
-                {/* <button type='submit'>Upload</button> */}
-                </form>
+             
              </div>
                 
                
@@ -844,7 +839,7 @@ catch(err){
               </select>
               <input type="text" placeholder='Email' name='email' defaultValue={userEmail} />
               <li onClick={(e) => changeEmailPhone(e, "email")}>CHANGE</li>
-              <span>{countryCode}</span> <input type="text" placeholder='Phone' name='phone' value={phone} onChange={(e) => profileDetailFunc(e, "phone")} />
+              <span>{countryCode}</span> <input type="text" placeholder='Phone' name='phone' defaultValue={phone} value={phone} onChange={(e) => profileDetailFunc(e, "phone")} />
              
 
               <select id="nations" defaultValue={myUser.country} name='country' onChange={(e) => changecountry(e)}>

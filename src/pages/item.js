@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Navbar from './Navbar'
 import Card from './card'
-import allProductData from './data'
+import allProductData from '../datas/data'
 import styles from '../styles/Home.module.css'
 import { useRouter } from 'next/router'
 import { BsStar } from "react-icons/bs";
@@ -11,11 +11,11 @@ import { toast } from 'react-toastify'
 import { ToastContainer } from 'react-toastify';
 import Product from '@/models/Product'
 import { set } from 'mongoose'
-import store from './store'
+import store from '../store'
 import User from '@/models/User'
-import { addUserCart, addUserWish } from './store/slices/userSlice'
+import { addUserCart, addUserWish } from '../store/slices/userSlice'
 import { useDispatch } from 'react-redux'
-import { login } from './store/slices/loginSlice'
+import { login } from '../store/slices/loginSlice'
 
 
 

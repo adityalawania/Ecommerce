@@ -27,12 +27,12 @@ import { Flip, ToastContainer, toast } from 'react-toastify'
 import axios from 'axios'
 import Router, { useRouter } from 'next/router'
 import Product from '../models/Product'
-import store from './store'
+import store from '../store'
 import { signIn, useSession } from 'next-auth/react'
 import { useDispatch } from 'react-redux'
-import { removeUser, addUser, updateUserId } from './store/slices/userSlice'
-import brandArray from './brandData'
-import { logout } from './store/slices/loginSlice'
+import { removeUser, addUser, updateUserId } from '../store/slices/userSlice'
+import brandArray from '@/datas/brandArray'
+import { logout } from '../store/slices/loginSlice'
 
 
 

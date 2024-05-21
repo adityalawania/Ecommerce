@@ -11,8 +11,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import store from './store';
-import allProductData from './data';
+import store from '../store';
+import allProductData from '../datas/data';
 import dynamic from 'next/dynamic';
 
 

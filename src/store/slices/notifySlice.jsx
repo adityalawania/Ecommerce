@@ -16,5 +16,5 @@ const notifySlice = createSlice({
     }
 })
 
-export default notifySlice.reducer;
+export default  notifySlice.reducer;
 export const {addMsg,removeMsg} = notifySlice.actions;

@@ -10,8 +10,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import store from './store';
-import allProductData from './data';
+import store from '../store';
+import allProductData from '../datas/data';
 import dynamic from 'next/dynamic';
 import Product from "@/models/Product"
 import connectDB from "@/middleware/mongoose"
@@ -19,9 +19,9 @@ import mongoose from 'mongoose';
 import { BsFillClipboard2MinusFill } from 'react-icons/bs';
 import { useRouter } from 'next/router';
 import { ImEqualizer} from "react-icons/im";
-import { searchIn, searchOut } from './store/slices/searchSlice';
+import { searchIn, searchOut } from '../store/slices/searchSlice';
 import { useDispatch } from 'react-redux'
-import { addUserWish,removeUserWish } from './store/slices/userSlice';
+import { addUserWish,removeUserWish } from '../store/slices/userSlice';
 import addUser from './api/addUser';
 
 
@@ -79,7 +79,7 @@ function scrollFunction() {
 
       filterRef.current.style.position="fixed";
       filterRef.current.style.top="60px";
-      cardContRef.current.style.bottom="20px"
+      cardContRef.current.style.bottom="70px"
       filterRef.current.childNodes[3].style.display="none"
       
     }
