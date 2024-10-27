@@ -24,7 +24,7 @@ function Checkout() {
     <TracingNavbar/>
       <div className={styles.paymentSection}>
 
-      <h1>Your Order will be dilevered by </h1>
+      <h1>Your Order will be delivered within 5 days </h1>
       <h2>You can track your order by mobile and email notifications..!</h2>
       </div>
     </>

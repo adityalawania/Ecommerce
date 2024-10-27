@@ -525,7 +525,7 @@ function Item({ ele }) {
             
             {ele.color.length > 0 ?
               <div className={styles.colorCont}>
-                <h4>Select Color</h4>
+                <h4>Select Color (&nbsp; {activeColor.toUpperCase()} &nbsp;)</h4>
 
                 <div className={styles.allColors} ref={colRef}>
                   {ele.color.map((col, idx) => {

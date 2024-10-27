@@ -96,10 +96,6 @@ if(store.getState().finalPersistedReducer.status[0]=='active')
   if(icon=='user')
 {
 
-    // dispatch(logout())
-    // dispatch(removeUser())
-
-    // signOut({ callbackUrl: 'http://localhost:3000' })
 
  
   router.push({ 

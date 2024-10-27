@@ -270,9 +270,9 @@ export default function Login({ userData }) {
         <input type="password" placeholder='Confirm New Password' required ref={passRef}/>
         <section  ref={showRef} ><AiOutlineEyeInvisible className={styles.passShow} onClick={(e)=>togglePassword(e,"show")}/></section>
         <section  ref={hideRef}><AiOutlineEye  className={styles.passHide}  onClick={(e)=>togglePassword(e,"hide")}/></section>
-        <button onClick={(e)=>verifyPassword(e)}>Signup</button>
-       <hr/>
-        <p>Already a member?<Link href={'/login'}><span>Login now</span></Link></p>
+        <button onClick={(e)=>verifyPassword(e)}>Save Changes</button>
+       {/* <hr/> */}
+        {/* <p>Already a member?<Link href={'/login'}><span>Login now</span></Link></p> */}
     </div>
     </form>
 

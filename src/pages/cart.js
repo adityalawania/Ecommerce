@@ -25,6 +25,7 @@ function Cart({allUser}) {
     const[state,setState]=useState(10);
         const router = useRouter();
         const data = router.query;
+        
 
     
     const allItems = useRef();
@@ -448,8 +449,6 @@ function Cart({allUser}) {
 export async function getServerSideProps(context) {
 
     let allUser = await User.find()
-
- 
 
 
     return { 
