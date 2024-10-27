@@ -272,7 +272,7 @@ const fogetPass=()=>{
           <button onClick={(e) => loginAction(e)}>Login</button>
           <p onClick={fogetPass}>Forgot Password ?</p>
           <hr />
-          <p>Or Login with</p>
+          <p>Or Login With</p>
           <div className={styles.oauthCont}>
             <div onClick={()=>signUP('google')}>
               <img src='icons8-google-logo-96.png'
