@@ -90,7 +90,7 @@ function Profile({ userData }) {
   const [newEmail, setNewEMail] = useState(userEmail)
 
   const [imgSrc, setImgSrc] = useState('');
-  console.log(myUser.img, " src in back")
+
 
   const logoutFunc = () => {
     dispatch(logout())
@@ -723,7 +723,7 @@ function Profile({ userData }) {
         }
 
         catch (err) {
-          console.log(err.message)
+  
         }
 
 
@@ -743,10 +743,9 @@ function Profile({ userData }) {
 
   const newImg = async (e) => {
     e.preventDefault();
-    console.log("in fornt")
+ 
 
     const file = e.target.files[0];
-    console.log(file)
 
 
 
@@ -763,8 +762,8 @@ function Profile({ userData }) {
           'Content-Type': 'application/json',
 
         },
-      }).then((res) => console.log('sucnes in f'))
-        .catch((err) => console.log("errpr in from"))
+      }).then((res))
+        .catch((err))
 
 
 
@@ -772,7 +771,7 @@ function Profile({ userData }) {
     }
 
     catch (err) {
-      console.log("Error from frontend " + err)
+ 
     }
 
 
@@ -821,8 +820,7 @@ function Profile({ userData }) {
     }
     
     try {
-      console.log("oakjdso")
-      // console.log(req.body)
+  
       const response = await fetch('/api/updateUser', {
         method: 'PATCH',
         body: JSON.stringify({
@@ -848,8 +846,7 @@ function Profile({ userData }) {
 
     }
     catch (err) {
-      console.log("ERROR IN FROMBACK ");
-      console.log(err.message)
+   
     }
   }
 

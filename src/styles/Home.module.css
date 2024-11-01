@@ -1,74 +1,59 @@
-
-
-.main{
+.main {
   background-color: white;
   min-height: 100vh;
-  margin: 0;padding: 0;
-
+  margin: 0;
+  padding: 0;
 }
 
-
-
-
-.navContainer{
+.navContainer {
   display: flex;
   background-color: rgb(255, 255, 255);
   color: black;
-  /* justify-content:space-between ; */
   height: 60px;
-  /* align-items: center; */
   align-items: center;
   box-shadow: 1px 1px 5px black;
-  position:fixed;
+  position: fixed;
   top: 0px;
   z-index: 4;
   min-width: 100vw;
 }
 
-.navbar{
-  
+.navbar {
   display: flex;
   list-style: none;
-  /* justify-content:space-between; */
- 
   font-size: 18px;
   align-items: center;
-  /* background-color: aqua; */
   position: relative;
   left: 34.5vw;
   width: 40vw;
 }
 
-
-
-.navbar:hover{
+.navbar:hover {
   cursor: pointer;
 }
 
-.navbar li{
+.navbar li {
   margin-left: 50px;
   display: inline-block;
-font-size: 20px;
-font-family: 'Rajdhani', sans-serif;
+  font-size: 20px;
+  font-family: 'Rajdhani', sans-serif;
 }
 
-.active{
-  color:  rgb(148, 55, 255);
-  /* text-decoration: underline; */
-  /* text-decoration-thickness:5px; */
+.active {
+  color: rgb(148, 55, 255);
   padding-bottom: 13px;
   margin-top: 17px;
-  border-bottom: 5px solid  rgb(148, 55, 255);
+  border-bottom: 5px solid rgb(148, 55, 255);
   transition: 0.5s ease;
   border-radius: 2px;
 }
 
-.navbar li:hover{
+.navbar li:hover {
   color: rgb(148, 55, 255);
   transition: 0.2s ease;
 }
 
-.searchBar{
+.searchBar {
   background-color: rgb(255, 254, 254);
   color: black;
   width: 25vw;
@@ -82,14 +67,11 @@ font-family: 'Rajdhani', sans-serif;
   outline: 1px solid grey;
 }
 
-
-
-.searchBar:focus{
+.searchBar:focus {
   outline: 2px solid rgb(148, 55, 255);
-  
 }
 
- .searchbutton{
+.searchbutton {
   background-color: rgb(95, 17, 183);
   color: white;
   position: relative;
@@ -98,20 +80,15 @@ font-family: 'Rajdhani', sans-serif;
   border: none;
   font-size: 14px;
   border-radius: 5px;
- 
-
 }
 
-
-.searchbutton:hover{
-  
-  
+.searchbutton:hover {
   opacity: 0.8;
   cursor: pointer;
   transition: 0.2s ease;
-} 
+}
 
-.mySearchbtn{
+.mySearchbtn {
   position: fixed;
   top: 12px;
   left: 37.5vw;
@@ -122,169 +99,141 @@ font-family: 'Rajdhani', sans-serif;
   border-radius: 5px;
   background-color: rgb(95, 17, 183);
   color: white;
-  
 }
 
-.mySearchbtn:hover{
+.mySearchbtn:hover {
   opacity: 0.8;
   cursor: pointer;
   transition: 0.2s ease;
 }
 
-.navIcons{
-  /* background-color: red; */
+.navIcons {
   display: flex;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
   align-items: center;
   width: 20vw;
   list-style: none;
   height: 5vh;
   position: relative;
   left: 10vw;
-  top:2px;
+  top: 2px;
 }
 
-
-.navIcons > li:hover{
+.navIcons > li:hover {
   color: rgb(148, 55, 255);
   transition: 0.2s ease;
-
 }
 
-.navIcons img{
+.navIcons img {
   height: 17px;
 }
 
-/* .cartIcon img{
-  height: 17px;
-
-} */
-
-
-.navLogin
-{
+.navLogin {
   position: relative;
   left: 1px;
 }
 
-#logo{
+#logo {
   margin-left: 20px;
- 
 }
 
-.Card{
-
+.Card {
   width: 200px;
   height: 383px;
   color: black;
   margin-bottom: 60px;
   margin-left: 8px;
   margin-right: 8px;
-  
- 
-/* border: 2px solid red; */
-
 }
-.Card:hover{
+
+.Card:hover {
   cursor: pointer;
-  box-shadow: 1px 2px 6px 2px rgb(186, 186, 186);    
-
+  box-shadow: 1px 2px 6px 2px rgb(186, 186, 186);
   transition: 0.3s ease;
-
 }
 
-.Card:hover .CardWish{
+.Card:hover .CardWish {
   display: block;
   position: relative;
   top: 24px;
   width: 200px;
   border-left: none;
   border-right: none;
-  
 }
 
-.Card img{
+.Card img {
   width: 200px;
-  /* height: ; */
 }
 
-.CardContent{
-  /* display: flex; */
+.CardContent {
   line-height: 25px;
-  /* border: 2px solid green; */
   margin-left: 10px;
   margin-top: 8px;
- }
+}
 
- .CardContent #title{
+.CardContent #title {
   font-size: 16px;
   font-weight: 700;
   font-family: 'Playfair Display', serif;
-font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: black;
   letter-spacing: 0.8px;
-
 }
 
-.CardContent> p{
+.CardContent > p {
   color: grey;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 15px;
 }
 
-#bottomNavContainer{
+#bottomNavContainer {
   box-shadow: 5px 1px 5px 1px black;
   background-color: rgb(255, 255, 255);
   position: fixed;
   width: 100%;
-  top:92vh;
+  top: 92vh;
   height: 55px;
 }
 
-
-.price{
+.price {
   font-size: 18px;
   font-weight: 700;
   margin-right: 13px;
-font-family:'Trebuchet MS';
+  font-family: 'Trebuchet MS';
 }
 
-.priceCut{
-  font-size:15px;
+.priceCut {
+  font-size: 15px;
   color: grey;
   text-decoration: line-through;
-font-family:'Trebuchet MS';
-
+  font-family: 'Trebuchet MS';
 }
 
-.CardWish{
- 
+.CardWish {
   border: 2px solid rgb(234, 234, 234);
   height: 40px;
-  /* margin-right:2px; */
   margin-top: 12px;
   display: none;
 }
-.CardWish:hover{
+
+.CardWish:hover {
   border: 2px solid rgb(103, 103, 103);
   transition: 0.2s ease;
-
 }
-.wishIcon{
+
+.wishIcon {
   margin-left: 89px;
   margin-top: 9px;
   height: 20px;
   width: 20px;
 }
 
-.cardWithfilter{
-    border: 1px solid rgb(186, 186, 186);
-
+.cardWithfilter {
+  border: 1px solid rgb(186, 186, 186);
   margin-top: 120px;
-
 }
 
-.cardWithfilter h5{
+.cardWithfilter h5 {
   font-weight: lighter;
   font-family: 'Anuphan';
   color: rgb(61, 61, 61);
@@ -295,23 +244,154 @@ font-family:'Trebuchet MS';
   margin-left: 16px;
 }
 
-#CardContainer{
- 
+#CardContainer {
   padding-top: 3vh;
   display: flex;
   flex-wrap: wrap;
-  justify-content:space-between;
+  justify-content: space-between;
   background-color: white;
   width: 80vw;
   margin-left: 17.5vw;
   border-left: none;
   position: relative;
   bottom: 737px;
-
-overscroll-behavior: contain;
-
+  overscroll-behavior: contain;
 }
 
+/* Media Queries */
+
+/* Tablet view */
+@media (max-width: 1024px) {
+  .navbar {
+    left: 20vw;
+    width: 60vw;
+  }
+
+  .searchBar,
+  .searchbutton,
+  .mySearchbtn {
+    font-size: 13px;
+    right: 30vw;
+  }
+}
+
+/* Mobile view */
+/* Base styles for larger screens remain as is */
+
+/* Tablet view adjustments */
+@media (max-width: 1024px) {
+  .navContainer {
+    height: 50px;
+  }
+
+  .navbar {
+    left: 20vw;
+    width: 60vw;
+  }
+
+  .searchBar {
+    width: 50vw;
+    right: 25vw;
+    font-size: 14px;
+  }
+
+  .searchbutton {
+    padding: 7px;
+    font-size: 13px;
+    right: 24vw;
+  }
+
+  .mySearchbtn {
+    left: 25vw;
+    font-size: 13px;
+  }
+
+  #CardContainer {
+    width: 90vw;
+    margin-left: 5vw;
+  }
+
+  .Card {
+    width: 180px;
+  }
+
+  .navIcons {
+    width: 30vw;
+  }
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+  .navContainer {
+    height: 50px;
+    padding: 0 10px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    position: static;
+    width: 100%;
+    left: 0;
+  }
+
+  .navbar li {
+    margin: 10px 0;
+    font-size: 16px;
+  }
+
+  .searchBar {
+    width: 80%;
+    right: 0;
+    margin: auto;
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .searchbutton {
+    right: 0;
+    margin-top: 8px;
+    font-size: 12px;
+    padding: 7px;
+  }
+
+  .mySearchbtn {
+    top: auto;
+    left: 0;
+    right: 0;
+    margin: auto;
+    font-size: 12px;
+    padding: 7px;
+  }
+
+  .navIcons {
+    width: 80vw;
+    margin: auto;
+  }
+
+  .Card {
+    width: 45vw;
+    margin: 10px;
+  }
+
+  #CardContainer {
+    width: 100vw;
+    margin-left: 0;
+    padding: 10px;
+    justify-content: center;
+  }
+
+  #bottomNavContainer {
+    top: 90vh;
+    height: 50px;
+  }
+
+  .wishIcon {
+    margin-left: 40%;
+  }
+}
+
+
+/****************************************************************  2 UPDATE ******************************************************************* */
 
 .accountSection{
   background-color: white;
@@ -588,6 +668,116 @@ background-color:  rgb(96, 30, 172);
   background-color:rgb(255, 255, 255) ;
 
 }
+
+/* Base styles for larger screens remain unchanged */
+
+/* Tablet adjustments (up to 1024px) */
+@media (max-width: 1024px) {
+  .accountSection .accNav {
+    width: 80vw;
+  }
+
+  .container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .userDetails {
+    max-width: 80vw;
+  }
+  
+  .wishContainer {
+    top: 5vh;
+    min-width: 100vw;
+  }
+}
+
+/* Mobile adjustments (up to 768px) */
+@media (max-width: 768px) {
+  .accountSection {
+    margin-top: 7vh;
+  }
+
+  .accNav {
+    flex-direction: column;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .accNav li {
+    padding: 15px;
+  }
+
+  .container {
+    flex-direction: column;
+    column-gap: 0;
+    padding: 20px;
+  }
+
+  .form {
+    max-width: 90vw;
+    padding: 20px;
+  }
+
+  .userDetails {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .userDetails input {
+    font-size: 16px;
+    padding: 5px;
+  }
+
+  .userDetails button {
+    width: 60px;
+    font-size: 14px;
+  }
+
+  #radio {
+    right: 0;
+    margin: auto;
+  }
+  
+  #radio span {
+    left: 12vw;
+    bottom: 25px;
+  }
+
+  .wishContainer {
+    min-width: 100vw;
+    max-height: 90vh;
+  }
+}
+
+/* Smaller mobile adjustments (up to 480px) */
+@media (max-width: 480px) {
+  .form {
+    padding: 15px 5px;
+  }
+
+  .container {
+    padding: 10px;
+    row-gap: 20px;
+  }
+
+  .userDetails {
+    padding: 0;
+  }
+
+  .userDetails input {
+    font-size: 14px;
+  }
+
+  .userDetails button {
+    width: 50px;
+    font-size: 12px;
+  }
+}
+
+
+/********************************************************************   3 UPDATE ****************************************************************************/
 
 .wishContainer h2{
   font-family: "Montserrat";
@@ -1016,6 +1206,230 @@ font-family: Poppins;
   
 
 }
+
+
+
+/* Tablet adjustments (up to 1024px) */
+@media (max-width: 1024px) {
+  .wishContainer h2 {
+    margin-left: 40vw;
+    font-size: 22px;
+  }
+
+  .wishContainer > img {
+    left: 40vw;
+  }
+
+  .wishandDate .date p {
+    margin-left: 40vw;
+  }
+
+  .wish {
+    min-width: 80vw;
+  }
+
+  .wishContent {
+    left: 5vw;
+  }
+
+  .ratingDiv {
+    left: 60vw;
+  }
+
+  .wish button {
+    left: 70vw;
+  }
+
+  .emptyWish h2 {
+    right: 250px;
+  }
+
+  .item {
+    flex-direction: column;
+    width: 90vw;
+    margin-left: 5vw;
+  }
+
+  .itemContent {
+    width: 80vw;
+    margin: auto;
+    left: 0;
+  }
+
+  .reviewCont .reviewInput {
+    width: 40vw;
+    left: 55vw;
+  }
+
+  .reviewInput button {
+    width: 10vw;
+    left: 18vw;
+  }
+
+  .reviewSection {
+    width: 100vw;
+    margin-left: 0;
+  }
+
+  .reviewSection .Onereview {
+    width: 40vw;
+  }
+}
+
+/* Mobile adjustments (up to 768px) */
+@media (max-width: 768px) {
+  .wishContainer h2 {
+    margin-left: 30vw;
+    font-size: 20px;
+  }
+
+  .wishContainer > img {
+    left: 35vw;
+  }
+
+  .wishandDate .date p {
+    margin-left: 35vw;
+  }
+
+  .wish {
+    min-width: 90vw;
+  }
+
+  .wishContent {
+    left: 2vw;
+  }
+
+  .ratingDiv {
+    left: 50vw;
+    width: 60px;
+  }
+
+  .wish button {
+    left: 65vw;
+  }
+
+  .emptyWish h2 {
+    right: 150px;
+  }
+
+  .item {
+    flex-direction: column;
+    width: 90vw;
+    margin-left: 0;
+  }
+
+  .itemContent {
+    width: 90vw;
+    left: 0;
+  }
+
+  .itemContent h2 {
+    font-size: 26px;
+  }
+
+  .itemContent h3 {
+    font-size: 20px;
+  }
+
+  .reviewCont .reviewInput {
+    width: 70vw;
+    left: 15vw;
+  }
+
+  .reviewInput button {
+    width: 20vw;
+    left: 0;
+  }
+
+  .reviewSection {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .reviewSection .Onereview {
+    width: 80vw;
+  }
+}
+
+/* Smaller mobile adjustments (up to 480px) */
+@media (max-width: 480px) {
+  .wishContainer h2 {
+    margin-left: 20vw;
+    font-size: 18px;
+  }
+
+  .wishContainer > img {
+    left: 25vw;
+  }
+
+  .wishandDate .date p {
+    margin-left: 25vw;
+  }
+
+  .wish {
+    min-width: 100vw;
+    font-size: 14px;
+  }
+
+  .wishContent {
+    left: 0;
+  }
+
+  .ratingDiv {
+    left: 40vw;
+    width: 50px;
+  }
+
+  .wish button {
+    left: 55vw;
+  }
+
+  .emptyWish h2 {
+    right: 100px;
+    font-size: 16px;
+  }
+
+  .item {
+    flex-direction: column;
+    width: 95vw;
+    margin: auto;
+  }
+
+  .itemContent {
+    width: 100vw;
+    left: 0;
+  }
+
+  .itemContent h2 {
+    font-size: 24px;
+  }
+
+  .itemContent h3 {
+    font-size: 18px;
+  }
+
+  .reviewCont h1 {
+    font-size: 20px;
+    margin-left: 10vw;
+  }
+
+  .reviewCont .reviewInput {
+    width: 80vw;
+    left: 10vw;
+  }
+
+  .reviewInput button {
+    width: 30vw;
+  }
+
+  .reviewSection .Onereview {
+    width: 90vw;
+    max-height: 50vh;
+  }
+}
+
+
+/* ***************************************************************** 4 UPDATE ***************************************************************************************** */
  .Onereview .reviewer img{
 border-radius: 50%;
 
@@ -1296,11 +1710,161 @@ border:1.6px solid rgb(109, 33, 195) ;
 }
 
 
+/* Base styles for larger screens remain unchanged */
+
+/* Tablet adjustments (up to 1024px) */
+@media (max-width: 1024px) {
+  .Onereview .reviewer img {
+    height: 45px;
+    width: 45px;
+  }
+
+  .Onereview .reviewer li {
+    font-size: 11px;
+    width: 15vw;
+  }
+
+  .Onereview .starContainer {
+    left: 12vw;
+  }
+
+  .sizeCont h4, .colorCont h4 {
+    font-size: 16px;
+    margin-left: 8px;
+  }
+
+  .allSizes p, .allColors p {
+    width: 45px;
+    height: 45px;
+    font-size: 15px;
+  }
+
+  .priceContainer li:nth-of-type(1) {
+    font-size: 36px;
+  }
+
+  .btnCont button {
+    width: 14vw;
+    height: 60px;
+    font-size: 18px;
+  }
+  
+  .btnCont button:nth-of-type(1) {
+    width: 18vw;
+  }
+}
+
+/* Mobile adjustments (up to 768px) */
+@media (max-width: 768px) {
+  .Onereview .reviewer img {
+    height: 40px;
+    width: 40px;
+  }
+
+  .Onereview .reviewer h4 {
+    font-size: 14px;
+    left: 15px;
+  }
+
+  .Onereview .reviewer li {
+    font-size: 10px;
+    width: 20vw;
+  }
+
+  .Onereview .starContainer {
+    left: 8vw;
+  }
+
+  .sizeCont h4, .colorCont h4 {
+    font-size: 15px;
+  }
+
+  .allSizes p, .allColors p {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .priceContainer li:nth-of-type(1) {
+    font-size: 30px;
+  }
+
+  .priceContainer li:nth-of-type(2), .priceContainer li:nth-of-type(3) {
+    font-size: 16px;
+  }
+
+  .btnCont button {
+    width: 20vw;
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .btnCont button:nth-of-type(1) {
+    width: 25vw;
+  }
+}
+
+/* Smaller mobile adjustments (up to 480px) */
+@media (max-width: 480px) {
+  .Onereview .reviewer img {
+    height: 35px;
+    width: 35px;
+  }
+
+  .Onereview .reviewer h4 {
+    font-size: 12px;
+    left: 10px;
+  }
+
+  .Onereview .reviewer li {
+    font-size: 9px;
+    width: 25vw;
+  }
+
+  .Onereview .starContainer {
+    left: 5vw;
+    width: 70px;
+  }
+
+  .sizeCont h4, .colorCont h4 {
+    font-size: 14px;
+  }
+
+  .allSizes p, .allColors p {
+    width: 35px;
+    height: 35px;
+    font-size: 13px;
+  }
+
+  .priceContainer li:nth-of-type(1) {
+    font-size: 24px;
+  }
+
+  .priceContainer li:nth-of-type(2), .priceContainer li:nth-of-type(3) {
+    font-size: 14px;
+  }
+
+  .btnCont button {
+    width: 25vw;
+    height: 45px;
+    font-size: 14px;
+  }
+
+  .btnCont button:nth-of-type(1) {
+    width: 30vw;
+  }
+  
+  .btnCont button:nth-of-type(3) {
+    width: 10vw;
+    height: 45px;
+  }
+}
 
 
 
-/* ************************************************************** */
+/* **************************************************************  5 UPDATE  **************************************************************************************** */
 
+@media (min-width: 1025px) {
 
 .filterContainer{
 
@@ -2433,6 +2997,144 @@ position: relative;
 left: 65px;
 background-color: transparent;
 }
+
+}
+
+/* Mobile Phones and Smaller Tablets (up to 600px) */
+@media (max-width: 600px) {
+
+  .filterContainer {
+    width: 100%;
+    margin-right: 0;
+    position: relative;
+    top: 0;
+    height: auto;
+    margin-top: 20px;
+  }
+
+  .filter {
+    width: 90vw;
+  }
+
+  .categoryContainer {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .categoryContainer div, .categoryContainer img {
+    margin: 10px 0;
+  }
+
+  .cartNav ul {
+    flex-direction: column;
+    align-items: center;
+    max-width: 90vw;
+  }
+
+  .cartRight {
+    width: 90vw;
+    left: 0;
+    bottom: 0;
+    position: static;
+    margin-top: 20px;
+  }
+
+  .CheckoutCont {
+    width: 90vw;
+    padding: 20px;
+    margin-top: 5vh;
+  }
+
+  .emptyCart {
+    width: 90vw;
+    margin-left: 0;
+  }
+
+  .tracingBox {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .tracingBox div, .tracingBox span {
+    padding: 10px;
+  }
+
+  .LoginSignupCont {
+    height: auto;
+    padding: 10px;
+  }
+
+  .loginContainer, .SignupContainer {
+    width: 90%;
+  }
+}
+
+/* Tablets and Smaller Desktops (601px to 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+
+  .filterContainer {
+    width: 20vw;
+    margin-right: 10vw;
+    top: 10px;
+  }
+
+  .filter {
+    width: 80%;
+  }
+
+  .categoryContainer {
+    width: 90vw;
+    margin-left: 5vw;
+  }
+
+  .cartNav ul {
+    flex-direction: row;
+    max-width: 90vw;
+    justify-content: space-evenly;
+  }
+
+  .cartRight {
+    width: 30vw;
+    left: auto;
+    right: 5vw;
+    bottom: 0;
+  }
+
+  .CheckoutCont {
+    width: 80vw;
+    padding: 30px;
+    margin-top: 5vh;
+  }
+
+  .emptyCart {
+    width: 80vw;
+    margin-left: 10vw;
+  }
+
+  .tracingBox div, .tracingBox span {
+    padding: 15px;
+  }
+
+  .LoginSignupCont {
+    padding-top: 20px;
+  }
+
+  .loginContainer, .SignupContainer {
+    width: 60%;
+  }
+}
+
+/* Large Desktops and Monitors (1025px and above) */
+@media (min-width: 1025px) {
+  /* Keep the base styling for larger screens as defined */
+}
+
+
+/*********************************************************************** 5 UDPATE **************************************************************************************/
 .mainLogin p:nth-of-type(1):hover{
   cursor: pointer;
   color: rgb(166, 88, 255);
@@ -3216,23 +3918,13 @@ display: none;
  
 }
 
-.mainProfileCont aside > p:nth-of-type(1) img:nth-of-type(1){
 
-  /* background-color: rgb(214, 214, 214);
-  margin: auto;
-  border-radius: 50%; */
-  /* border: 1px solid red; */
-  /* width: 100px;
-  height: 100px; */
-}
 
 .noProfileImg{
-  /* background-color: rgb(214, 214, 214); */
-  /* margin: auto; */
+
   position: absolute;
 left: 0px;
   top:10px;
-  /* border-radius: 50%; */
   
   width: 100px;
   height: 100px;
@@ -3241,7 +3933,7 @@ left: 0px;
 
 .photoInp{
 visibility: hidden;
-  /* background-color: red; */
+
 }
 
 #pictureForm{

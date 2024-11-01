@@ -31,7 +31,7 @@ import mongoose from 'mongoose'
 
 export default function Navbar(response) {
 
-  console.log(response)
+
   const[state,setState]=useState(10);
   const [plural,setPlural]=useState(null)
 

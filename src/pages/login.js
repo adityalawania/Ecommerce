@@ -41,32 +41,18 @@ function Login({ userData }) {
     if(session.data!=null)
     {
       const sessionEmail=session.data.user.email;
-      console.log("MY SESSION DETAILS: "+session.data)
+      
      
       let sessionflag=false;
       userData.map((one)=>{
         if(one.email==sessionEmail)
         {
-          alert("Session found  ")
-          sessionflag=true;
+            sessionflag=true;
         
           dispatch(login('active'))      
   
           dispatch(removeUser())            
           dispatch(addUser(one))             
-  
-          // function sleep(milliseconds) {
-          //   const date = Date.now();
-          //   let currentDate = null;
-  
-          //   do {
-          //     currentDate = Date.now();
-          //   } while (currentDate - date < milliseconds);
-          // }
-  
-          // sleep(3000);
-  
-  
   
   
           router.push('/')
@@ -76,7 +62,7 @@ function Login({ userData }) {
   
       if(sessionflag==false)
       {
-        alert("Session NOT FOUND")
+      
       dispatch(login('inactive'))              
 
              const response=await fetch('/api/emailSender',{
@@ -124,12 +110,12 @@ function Login({ userData }) {
              },
           })
 
-          console.log("success adding user")
+        
         }
 
         catch(err)
         {
-          console.log("ERROR hai Bhai " +err.message)
+          
         }
         
 
@@ -156,7 +142,7 @@ function Login({ userData }) {
       dispatch(removeUser())                
       dispatch(addUser(infoObj))             
       dispatch(login('active')) 
-      console.log("user added")           
+ 
     
       }
 

@@ -46,8 +46,7 @@ const confirmOrder=async()=>{
   })
 
   try{
-    console.log(myorder.slice(0,myorder.length-1))
-    console.log(typeof(myorder.slice(0,myorder.length-1)))
+   
   const userOrder=await fetch('/api/updateUser',{
    
     method:'PATCH',
@@ -66,7 +65,7 @@ addUserOrder((myorder.slice(0,myorder.length-1)))
 }
 catch(err)
 {
-  console.log(err.message)
+
   toast.error(`Can't Order... Please try again`,{
     autoClose:1500
   })
