@@ -15,6 +15,8 @@ import { useDispatch } from 'react-redux';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import {addMsg,removeMsg} from '../store/slices/notifySlice'
 import Head from 'next/head';
+import { Sedgwick_Ave_Display } from 'next/font/google';
+import UserData from '@/models/UserData';
 
 
 
@@ -39,10 +41,13 @@ function Login({ userData }) {
     if(session.data!=null)
     {
       const sessionEmail=session.data.user.email;
+      console.log("MY SESSION DETAILS: "+session.data)
+     
       let sessionflag=false;
       userData.map((one)=>{
         if(one.email==sessionEmail)
         {
+          alert("Session found  ")
           sessionflag=true;
         
           dispatch(login('active'))      
@@ -71,9 +76,9 @@ function Login({ userData }) {
   
       if(sessionflag==false)
       {
-        
-        
-   
+        alert("Session NOT FOUND")
+      dispatch(login('inactive'))              
+
              const response=await fetch('/api/emailSender',{
                method:'POST',
                body:JSON.stringify({
@@ -97,6 +102,7 @@ function Login({ userData }) {
             "img":session.data.user.image,
             "fname":sessionName[0],
            "lname":sessionName[1],
+           "gender":"Male",
            "address":" ",
            "alladdress":[],
            "country":" ",
@@ -104,7 +110,7 @@ function Login({ userData }) {
            "city":" ",
            "postal":" ",
            "email":session.data.user.email,
-           "fphone":" ",
+           "fphone":"",
            "password":"1",
            "cart":[],
            "wish":[],
@@ -123,7 +129,7 @@ function Login({ userData }) {
 
         catch(err)
         {
-          console.log(err.message)
+          console.log("ERROR hai Bhai " +err.message)
         }
         
 
@@ -149,7 +155,8 @@ function Login({ userData }) {
 
       dispatch(removeUser())                
       dispatch(addUser(infoObj))             
-      dispatch(login('active'))              
+      dispatch(login('active')) 
+      console.log("user added")           
     
       }
 
@@ -243,7 +250,7 @@ function Login({ userData }) {
   }
 
  const signUP=async(provider)=>{
-// signIn(provider,{callbackUrl:'http://localhost:3000'})
+signIn(provider,{callbackUrl:'http://localhost:3000'})
 signIn(provider)
 
 
@@ -298,7 +305,8 @@ const fogetPass=()=>{
 
 export async function getServerSideProps(context) {
 
-  let userData = await User.find();
+  let userData = await UserData.find();
+
 
 
   return {

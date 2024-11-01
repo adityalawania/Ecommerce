@@ -1,7 +1,6 @@
-const mongoose=require('mongoose')
+const mongoose = require('mongoose');
 
-
-const UserSchema= new mongoose.Schema({
+const accountSchema = new mongoose.Schema({
     img:{
         type:String
     },
@@ -73,5 +72,4 @@ const UserSchema= new mongoose.Schema({
 
 mongoose.models = {}
 
-
-export default mongoose.model("Account",UserSchema)
+export default mongoose.model("Accounts",accountSchema)

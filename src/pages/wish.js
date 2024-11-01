@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { removeUserWish } from '../store/slices/userSlice';
 import { useDispatch } from 'react-redux';
 import Head from 'next/head';
+import UserData from '@/models/UserData';
 
 function Wish({userData}) {
  
@@ -133,7 +134,7 @@ function Wish({userData}) {
 
 export async function getServerSideProps(context) {
 
-    let userData = await User.find()
+    let userData = await UserData.find()
 
  
 

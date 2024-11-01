@@ -22,8 +22,8 @@ require('./api/getProducts')
 import {getDefaultMiddleware} from "@reduxjs/toolkit"
 
 
-import { useEffect, useState } from 'react'
-import { Flip, ToastContainer, toast } from 'react-toastify'
+import { useEffect } from 'react'
+import {  ToastContainer} from 'react-toastify'
 import axios from 'axios'
 import Router, { useRouter } from 'next/router'
 import Product from '../models/Product'
@@ -33,6 +33,7 @@ import { useDispatch } from 'react-redux'
 import { removeUser, addUser, updateUserId } from '../store/slices/userSlice'
 import brandArray from '@/datas/brandArray'
 import { logout } from '../store/slices/loginSlice'
+import UserData from '@/models/UserData'
 
 
 
@@ -42,10 +43,12 @@ export default function Home({ j, userData }) {
   const session = useSession()
   const dispatch = useDispatch()
 
-  console.log(session.status)
+  console.log(session.status +" is the status")
 
-  if(session.status=='authiorized')
-  console.log(session.data.user)
+  if(session.status=='authenticated'){
+
+    console.log(session.data)
+  }
 
 
   const router = useRouter();
@@ -190,12 +193,22 @@ export async function getServerSideProps(context) {
 
 
   if (!mongoose.connections[0].readyState) {
-    await mongoose.connect("mongodb://localhost:27017/Ecommerce")
+
+    // await mongoose.connect("mongodb://localhost:27017/Ecommerce")
+    // await mongoose.connect("mongodb+srv://adityalawania899:<adiEcommerce>@cluster0.gudo8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+    mongoose.connect("mongodb+srv://adityalawania899:adiEcommerce@ecomcluster.l29l1.mongodb.net/?retryWrites=true&w=majority&appName=EcomCluster", {
+ 
+    }).then(() => {
+      console.log("Database Connected"); 
+    }).catch((err) => {
+      console.log("ERROR while connecting to DB ", err.message);
+    })
   }
 
 
   j = await Product.find();
-  let userData = await User.find()
+  let userData = await UserData.find()
+  
 
 
   return {

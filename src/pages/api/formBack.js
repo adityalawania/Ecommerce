@@ -7,12 +7,8 @@ console.log("hello")
 
 const handler= async (req,res)=>{
 
-    console.log(req.file)
-
    
-    // upload.single('file')(req, res, function (err) {
-
-    //     console.log(req.body.file)
+    
         res.status(200).send("ok")
 
     // })

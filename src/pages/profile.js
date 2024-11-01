@@ -19,6 +19,7 @@ import Head from 'next/head'
 import navigator from 'navigator'
 import axios from 'axios'
 import { headers } from '../../next.config'
+import UserData from '@/models/UserData'
 
 
 
@@ -36,14 +37,14 @@ function Profile({ userData }) {
   const passRef = useRef()
   const newAddRef = useRef()
   const OtpRef = useRef()
-  const emailRef=useRef()
-  const reviewRef=useRef()
-  const coupenRef=useRef();
+  const emailRef = useRef()
+  const reviewRef = useRef()
+  const coupenRef = useRef();
 
 
   const router = useRouter()
   const dispatch = useDispatch();
-  
+
 
   let myUser = []
 
@@ -63,41 +64,47 @@ function Profile({ userData }) {
 
   let cc = "+91"
   countries.map((cont) => {
-    if (myUser.country == cont.name)
+    if (myUser.country == cont.name){
       cc = cont.code;
+   
+
+    }
   })
 
-  const [pic, setPic] = useState('')
+  const [pic, setPic] = useState('');
+
+  let defCountry = 'Select Country'
 
   const [countryCode, setCountryCode] = useState(cc);
-  const [country,setCountry]= useState(myUser.country)
+  const [country, setCountry] = useState(myUser.country)
   const [mainAddress, setmainAdd] = useState(myUser.address)
   const [fname, setFname] = useState(myUser.fname)
   const [lname, setLname] = useState(myUser.lname)
-  const [gender,setGender] = useState(myUser.gender)
+  const [gender, setGender] = useState(myUser.gender)
   const [phone, setphone] = useState(myUser.fphone)
 
   const [userEmail, setUserEmail] = useState(myUser.email)
 
   const [randomCode, setRandomCode] = useState()
   const [otp, setOtp] = useState()
-  const [newEmail,setNewEMail]=useState(userEmail)
+  const [newEmail, setNewEMail] = useState(userEmail)
 
   const [imgSrc, setImgSrc] = useState('');
   console.log(myUser.img, " src in back")
 
   const logoutFunc = () => {
-    dispatch(logout())        
-    dispatch(removeUser())     
+    dispatch(logout())
+    dispatch(removeUser())
     // dispatch(addMsg('Logout'))
     signOut({ callbackUrl: 'http://localhost:3000' })
 
 
   }
-  
-  
+
+
 
   const profileNav = (id) => {
+
 
     let navItems = profileNavRef.current.children;
     for (let j = 0; j < navItems.length - 1; j++) {
@@ -136,7 +143,7 @@ function Profile({ userData }) {
       console.log(e.target.value)
       console.log("src in frontend", srcOfImg)
 
-      
+
 
 
       // try {
@@ -170,24 +177,24 @@ function Profile({ userData }) {
     }
 
     if (field == "phone") {
-      if ((e.target.value >= 0 && e.target.value <= 9999999999 )|| e.target.value=='')
-      {
+      if ((e.target.value >= 0 && e.target.value <= 9999999999) || e.target.value == '') {
         setphone(e.target.value)
-      
+
       }
     }
 
     // sectionRef.current.childNodes[0].childNodes[1].childNodes[1].style.display="none"
   }
 
-  const changeGender=(e)=>{
-    console.log(e.target.value)
+  const changeGender = (e) => {
+    console.log(e.target.value);
+    setGender(e.target.value)
   }
 
   const changeEmailPhone = async (e, type) => {
     OtpRef.current.style.display = "block"
-    sectionRef.current.childNodes[0].childNodes[1].style.display="none"
-    sectionRef.current.childNodes[0].childNodes[0].style.display="none"
+    sectionRef.current.childNodes[0].childNodes[1].style.display = "none"
+    sectionRef.current.childNodes[0].childNodes[0].style.display = "none"
 
     sendOTP(myUser.email);
   }
@@ -203,40 +210,37 @@ function Profile({ userData }) {
     }
   }
 
-  const sendOTP = async(reqEmail)=>
-    {
-   
-      let something=Math.round(Math.random()*1000000) 
-      something=something.toString();
-      if(something.length<6)
-      {
-       while(something.length<6)
-       {
-         something=something+(Math.round(Math.random()*10)).toString()
-       }
-      }
-      
-       setRandomCode(something)
-   
-         const response=await fetch('/api/emailSender',{
-           method:'POST',
-           body:JSON.stringify({
-            "type":"OTP",
-           "email":reqEmail,
-           "random":something
-           }),
-   
-           headers:{
-             'Content-Type':  'application/json',
-            },
-         })
+  const sendOTP = async (reqEmail) => {
 
-         console.log("done")
-  
-         return;
+    let something = Math.round(Math.random() * 1000000)
+    something = something.toString();
+    if (something.length < 6) {
+      while (something.length < 6) {
+        something = something + (Math.round(Math.random() * 10)).toString()
+      }
     }
 
-  const verifyOtp =async (e) => {
+    setRandomCode(something)
+
+    const response = await fetch('/api/emailSender', {
+      method: 'POST',
+      body: JSON.stringify({
+        "type": "OTP",
+        "email": reqEmail,
+        "random": something
+      }),
+
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    console.log("done")
+
+    return;
+  }
+
+  const verifyOtp = async (e) => {
     e.preventDefault();
 
     if (otp == randomCode) {
@@ -244,14 +248,12 @@ function Profile({ userData }) {
         autoClose: 1200
       })
 
-      if(userEmail==newEmail)
-      {
+      if (userEmail == newEmail) {
         OtpRef.current.style.display = "none"
-        emailRef.current.style.display="block"
+        emailRef.current.style.display = "block"
       }
 
-      else
-      {
+      else {
         try {
           const response = await fetch('/api/updateUser', {
             method: 'PATCH',
@@ -260,18 +262,18 @@ function Profile({ userData }) {
               'email': userEmail,
               'newEmail': newEmail
             }),
-    
+
             headers: {
               'Content-Type': 'application/json',
             },
           })
-    
+
           router.reload()
         }
         catch (err) {
           console.log(err.message)
         }
-        
+
 
       }
 
@@ -290,63 +292,60 @@ function Profile({ userData }) {
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (val.match(mailformat)) {
 
-        let flag=false
-        userData.map((user)=>{
-            if(user.email==val)
-            {
-                flag=true;
-                return
-            }
+      let flag = false
+      userData.map((user) => {
+        if (user.email == val) {
+          flag = true;
+          return
+        }
+      })
+
+      if (flag) {
+
+        toast.error('Email already exist', {
+          autoClose: 1200
         })
 
-        if(flag)
-        {
+        emailRef.current.childNodes[1].childNodes[2].style.display = "block"
+      }
 
-            toast.error('Email already exist',{
-                autoClose:1200
-            })
-
-            emailRef.current.childNodes[1].childNodes[2].style.display="block"
-        }
-
-        else{
+      else {
 
         setNewEMail(emailRef.current.childNodes[1].childNodes[1].value)
-         console.log(emailRef.current.childNodes[1].childNodes[1].value)
-        
+        console.log(emailRef.current.childNodes[1].childNodes[1].value)
+
         sendOTP(emailRef.current.childNodes[1].childNodes[1].value);
 
-        toast.success('OTP sent',{
-            autoClose:1200
+        toast.success('OTP sent', {
+          autoClose: 1200
         })
 
-        emailRef.current.style.display="none"
-        OtpRef.current.style.display="block"
+        emailRef.current.style.display = "none"
+        OtpRef.current.style.display = "block"
         setOtp('');
- 
 
-        }
-        
 
-        
+      }
+
+
+
     }
     else {
-        toast.error('Invalid Email Address', {
-            autoClose: 1200
-        })
-        emailRef.current.childNodes[1].childNodes[1].style.border = "2px solid red";
+      toast.error('Invalid Email Address', {
+        autoClose: 1200
+      })
+      emailRef.current.childNodes[1].childNodes[1].style.border = "2px solid red";
 
 
-        setTimeout(() => {
-            emailRef.current.childNodes[1].childNodes[1].style.border = "none";
-        }, 3000);
+      setTimeout(() => {
+        emailRef.current.childNodes[1].childNodes[1].style.border = "none";
+      }, 3000);
     }
-}
+  }
 
   const changecountry = (e) => {
     countries.map((c) => {
-      if (c.name == e.target.value)
-      {
+      if (c.name == e.target.value) {
         setCountryCode(c.code)
         setCountry(c.name)
       }
@@ -355,9 +354,9 @@ function Profile({ userData }) {
 
 
 
-  const savePersonalInfo=async(e)=>{
+  const savePersonalInfo = async (e) => {
     e.preventDefault();
-    let basic=sectionRef.current.childNodes[0].childNodes[1].childNodes[2].childNodes[0].childNodes[1]
+    let basic = sectionRef.current.childNodes[0].childNodes[1].childNodes[2].childNodes[0].childNodes[1]
 
 
     console.log(basic.files[0])
@@ -366,18 +365,18 @@ function Profile({ userData }) {
     formData.append('file', sectionRef.current.childNodes[0].childNodes[1].childNodes[2].childNodes[0].childNodes[1].files[0]);
 
     console.log(formData)
-    
+
 
     try {
       console.log("ghusa")
       const response = await fetch('/api/updateUserPersonal', {
         method: 'POST',
-        body:JSON.stringify(basic.files[0]),
-            headers: {
-                'Content-Type': 'application/json',
-              },
-            })
-      
+        body: JSON.stringify(basic.files[0]),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
 
       console.log("hogya")
 
@@ -397,8 +396,8 @@ function Profile({ userData }) {
     //       'lname':lname,
     //       'fphone':phone,
     //       'country':country,
-          
-        
+
+
     //     }),
 
     //     headers: {
@@ -413,14 +412,13 @@ function Profile({ userData }) {
     // }
   }
 
-  const exploreCoupen=()=>{
-    
-    if(coupenRef.current.style.display=="none")
-    {
-      toast.success('New Coupen unlocked',{
-        autoClose:1500
+  const exploreCoupen = () => {
+
+    if (coupenRef.current.style.display == "none") {
+      toast.success('New Coupen unlocked', {
+        autoClose: 1500
       })
-      coupenRef.current.style.display="block"
+      coupenRef.current.style.display = "block"
 
     }
 
@@ -526,8 +524,7 @@ function Profile({ userData }) {
 
 
     let newAddress = newAddRef.current.value
-    if(newAddress.length>10)
-    {
+    if (newAddress.length > 10) {
       try {
         const response = await fetch('/api/updateUser', {
           method: 'PATCH',
@@ -536,31 +533,31 @@ function Profile({ userData }) {
             'email': `${store.getState().finalPersistedReducer.user[0].email}`,
             'content': newAddress
           }),
-  
+
           headers: {
             'Content-Type': 'application/json',
           },
         })
-  
+
         toast.success('New Address added', {
           autoClose: 1200
         })
-  
+
         router.reload()
       }
-  
+
       catch (err) {
         toast.error(`${err.message}`, {
           autoClose: 10000
         })
       }
     }
-    else{
-      toast.error('Address is too short',{
-        autoClose:1200
+    else {
+      toast.error('Address is too short', {
+        autoClose: 1200
       })
     }
-  
+
 
 
   }
@@ -626,39 +623,38 @@ function Profile({ userData }) {
 
   }
 
-  const removeReview=async(e,i)=>{
-      console.log("enter fubc")
-      console.log(myUser.reviews[i].id)
-    try{
-      const response=await fetch('/api/updateUser',{
-        method:'PATCH',
-        body:JSON.stringify({
-          'type':'removeReview',
-          'email':`${store.getState().finalPersistedReducer.user[0].email}`,
-          'reviewId':myUser.reviews[i].id
+  const removeReview = async (e, i) => {
+    console.log("enter fubc")
+    console.log(myUser.reviews[i].id)
+    try {
+      const response = await fetch('/api/updateUser', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          'type': 'removeReview',
+          'email': `${store.getState().finalPersistedReducer.user[0].email}`,
+          'reviewId': myUser.reviews[i].id
         }),
 
-        headers:{
-          'Content-Type':  'application/json',
-         },
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
 
       console.log("done remove review")
-      reviewRef.current.childNodes[1].childNodes[i].style.display="none"
-      toast.success('Review Deleted',{
-        autoClose:1200
+      reviewRef.current.childNodes[1].childNodes[i].style.display = "none"
+      toast.success('Review Deleted', {
+        autoClose: 1200
       })
     }
-    catch(err)
-    {
+    catch (err) {
       console.log(err.message)
-      toast.error('Some Error Occur',{
-        autoClose:1200
+      toast.error('Some Error Occur', {
+        autoClose: 1200
       })
     }
 
-    
-      
+
+
   }
 
   const passEye = (type, i) => {
@@ -716,8 +712,8 @@ function Profile({ userData }) {
             autoClose: 1200
           })
 
-          dispatch(logout())          
-          dispatch(removeUser())      
+          dispatch(logout())
+          dispatch(removeUser())
 
 
           // dispatch(addMsg('Logout'))
@@ -730,7 +726,7 @@ function Profile({ userData }) {
           console.log(err.message)
         }
 
-       
+
 
       }
 
@@ -743,7 +739,9 @@ function Profile({ userData }) {
     }
   }
 
-  const newImg=async(e)=>{
+
+
+  const newImg = async (e) => {
     e.preventDefault();
     console.log("in fornt")
 
@@ -752,48 +750,115 @@ function Profile({ userData }) {
 
 
 
-try{
- 
-  const res =await fetch('/api/upload',{
-    method:'POST',
-    body:JSON.stringify({
-      'file':`${file}`,
-      'daad':'okok'
-    }),
-  
-    headers:{
-      'Content-Type':  'application/json',
-    
-     },
-  }).then((res)=>console.log('sucnes in f'))
-  .catch((err)=>console.log("errpr in from"))
+    try {
 
-  
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: JSON.stringify({
+          'file': `${file}`,
+          'daad': 'okok'
+        }),
 
-  // if(!res.ok) throw new Error(await res.text())
-}
+        headers: {
+          'Content-Type': 'application/json',
 
-catch(err){
-  console.log("Error from frontend "+err)
-}
+        },
+      }).then((res) => console.log('sucnes in f'))
+        .catch((err) => console.log("errpr in from"))
 
 
 
-   
+      // if(!res.ok) throw new Error(await res.text())
+    }
 
-   
-    
+    catch (err) {
+      console.log("Error from frontend " + err)
+    }
+
+
+
+
+
+
+
   }
 
-  const picToBackend=(e)=>{
+  const updateDetails = async (e) => {
+  
     e.preventDefault();
-    console.log("form submit")
+    var phoneFormat = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/
+    
+    if(phone.match(phoneFormat)){
+
+    }
+    else{
+
+      if(phone.length==0)
+        toast.error('Please enter Phone Number', {
+          autoClose: 1200
+        })
+
+      else
+        toast.error('Invalid Phone Number', {
+          autoClose: 1200
+        })
+
+        return;
+    }
+
+    if(fname.length==0 || lname.length==0){
+      toast.error(`Names Field can't be empty `,{
+        autoClose:1200
+      })
+      return;
+    }
+
+    if(country==''){
+      toast.error(`Please choose one country `,{
+        autoClose:1200
+      })
+      return;
+    }
+    
+    try {
+      console.log("oakjdso")
+      // console.log(req.body)
+      const response = await fetch('/api/updateUser', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          'type': 'updatePersonalDetails',
+          'country':country,
+          'email': userEmail,
+          'fname':fname,
+          'lname':lname,
+          'gender':gender,
+          'fphone':phone
+        }),
+
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
+      router.reload();
+
+      toast.success('Profile Updated',{
+        autoClose:1200
+      })
+
+    }
+    catch (err) {
+      console.log("ERROR IN FROMBACK ");
+      console.log(err.message)
+    }
   }
+
+
 
   return (
 
     <div className={styles.accountContainer}>
-            <Head>
+      <Head>
         <title>Account</title>
       </Head>
       <Navbar></Navbar>
@@ -816,35 +881,36 @@ catch(err){
         <div className={styles.mainProfileCont}>
           <h3>Profile</h3>
           <aside>
-            
+
             <div>
-                <img src='male.png' className={styles.noProfileImg} />
-             
-             </div>
-                
-               
-         
-            <form action='/api/formBack'  method='post' > 
-         
+              <img src='male.png' className={styles.noProfileImg} />
+
+            </div>
+
+
+
+            <form onSubmit={(e) => updateDetails(e)} method='post' >
+
               <input type="text" placeholder='First Name' name='fname' value={fname} onChange={(e) => profileDetailFunc(e, "fname")} />
               <input type="text" placeholder='Last Name' name='lname' value={lname} onChange={(e) => profileDetailFunc(e, "lname")} />
-              <select id="gender" defaultValue={myUser.gender} name='gender' onChange={(e) => changeGender(e)}>
+              <select id="gender" value={gender} name='gender' onChange={(e)=>setGender(e.target.value)}>
                 <option defaultValue={myUser.gender}>Select Gender</option>
-                
-                    <option value="Male" ref={countryRef}>Male</option>
-                    <option value="Female" ref={countryRef}>Female</option>
-                    <option value="Others" ref={countryRef}>Others</option>
 
-                    
+                <option value="Male" ref={countryRef}>Male</option>
+                <option value="Female" ref={countryRef}>Female</option>
+                <option value="Others" ref={countryRef}>Others</option>
+
+
               </select>
-              <input type="text" placeholder='Email' name='email' defaultValue={userEmail} />
+              <input type="text" placeholder='Email' name='email' value={userEmail} />
               <li onClick={(e) => changeEmailPhone(e, "email")}>CHANGE</li>
-              <span>{countryCode}</span> <input type="text" placeholder='Phone' name='phone' defaultValue={phone} value={phone} onChange={(e) => profileDetailFunc(e, "phone")} />
-             
+              <span>{countryCode}</span> <input type="text" placeholder='Phone' name='phone' value={phone} onChange={(e) => profileDetailFunc(e, "phone")} />
+
 
               <select id="nations" defaultValue={myUser.country} name='country' onChange={(e) => changecountry(e)}>
-                <option value=''>Select Country</option>
-                {countries.map((c,i) => {
+                
+                <option value=''>{country.length>0 ? country : defCountry}</option>
+                {countries.map((c, i) => {
                   return (
                     <option value={c.name} ref={countryRef} key={i}>{c.name}</option>
                   )
@@ -865,34 +931,34 @@ catch(err){
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur labore illum laboriosam blanditiis obcaecati cum officiis repellendus. Omnis, corrupti atque quia quas possimus ut </p>
               </article>
 
-              
+
             </div>
           </aside>
           <form className={`${styles.loginContainer} ${styles.OTPform} ${styles.profileOTPCont}`} ref={OtpRef} onSubmit={(e) => verifyOtp(e)} >
-                <h2> Change Email Address</h2>
-                <div className={` ${styles.OTP}`} id='myForm' >
+            <h2> Change Email Address</h2>
+            <div className={` ${styles.OTP}`} id='myForm' >
 
-                  <h2>Enter 6-digit OTP</h2>
-                  <p>OTP has been send to {newEmail}</p>
-                  <input type="tel" placeholder='______' required value={otp ? otp : ""} onChange={(e) => toggleOtp(e)} />
-                  <button>Submit</button>
-                  <p onClick={() => sendOTP()}>Resend OTP</p>
-                </div>
-              </form>
+              <h2>Enter 6-digit OTP</h2>
+              <p>OTP has been send to {newEmail}</p>
+              <input type="tel" placeholder='______' required value={otp ? otp : ""} onChange={(e) => toggleOtp(e)} />
+              <button>Submit</button>
+              <p onClick={() => sendOTP()}>Resend OTP</p>
+            </div>
+          </form>
 
-              <form  ref={emailRef}>
-              <h2> Change Email Address</h2>
-                <div className={styles.forgotContainer} id='myForm'>
-                    <h2>Enter your new Email</h2>
-                    <input type="text" placeholder='Email' required onChange={(e)=>emailRef.current.childNodes[1].childNodes[2].style.display="none"}/>
-                    <p>This email is already in use, try another</p>
-                    <button onClick={(e) => verifyEmail(e)}>Send OTP</button>
-                
+          <form ref={emailRef}>
+            <h2> Change Email Address</h2>
+            <div className={styles.forgotContainer} id='myForm'>
+              <h2>Enter your new Email</h2>
+              <input type="text" placeholder='Email' required onChange={(e) => emailRef.current.childNodes[1].childNodes[2].style.display = "none"} />
+              <p>This email is already in use, try another</p>
+              <button onClick={(e) => verifyEmail(e)}>Send OTP</button>
 
-                </div>
-            </form>
 
-          
+            </div>
+          </form>
+
+
         </div>
 
 
@@ -907,7 +973,7 @@ catch(err){
         <div className={styles.profileOrderCont}>
           <h3>Orders</h3>
           {/* ****************     MAP 2   ************************ */}
-          {myUser.orders.map((order,i) => {
+          {myUser.orders.map((order, i) => {
             let status = order.status.charAt(0).toUpperCase() + order.status.slice(1);
             return (
               <aside className={styles.profileOrder} key={i}>
@@ -1015,58 +1081,58 @@ catch(err){
         <div className={styles.profileReviewCont} ref={reviewRef}>
           <h3>Reviews</h3>
           {/* ****************     MAP 2   ************************ */}
-        <div>
-          {myUser.reviews.map((item,i) => {
+          <div>
+            {myUser.reviews.map((item, i) => {
 
-            let arr = [1, 2, 3, 4, 5];
-            let ratePoints = item.rating;
+              let arr = [1, 2, 3, 4, 5];
+              let ratePoints = item.rating;
 
-            if (item.review)
-              return (
-                <aside className={styles.profileReview}>
+              if (item.review)
+                return (
+                  <aside className={styles.profileReview}>
 
-                  <img src='delete.png' onClick={(e)=>removeReview(e,i)}/>
-                  <div>
-                    <img src={item.img} />
-                    <h5>{item.title}</h5>
-                    <h5>|</h5>
-                    <h5>{item.brand}</h5>
-                  </div>
-
-
-                  <p>Posted on {item.date}</p>
-                  <div className={styles.starContainer}>
-
-                    {arr.map(() => {
-                      ratePoints--;
-                      if (ratePoints > -1)
-                        return (
-                          <img src="starFill.png" alt="" height={16} width={16} />
-                        )
-
-                      else
-                        return (
-                          <img src="starBlank.png" alt="" height={14.6} width={14.6} />
-                        )
+                    <img src='delete.png' onClick={(e) => removeReview(e, i)} />
+                    <div>
+                      <img src={item.img} />
+                      <h5>{item.title}</h5>
+                      <h5>|</h5>
+                      <h5>{item.brand}</h5>
+                    </div>
 
 
-                    })}
-                    {/*           
+                    <p>Posted on {item.date}</p>
+                    <div className={styles.starContainer}>
+
+                      {arr.map(() => {
+                        ratePoints--;
+                        if (ratePoints > -1)
+                          return (
+                            <img src="starFill.png" alt="" height={16} width={16} />
+                          )
+
+                        else
+                          return (
+                            <img src="starBlank.png" alt="" height={14.6} width={14.6} />
+                          )
+
+
+                      })}
+                      {/*           
               <img src="starFill.png" alt="" height={16} width={16} />
               <img src="starFill.png" alt="" height={16} width={16} />
               <img src="starBlank.png" alt="" height={14.6} width={14.6} /> */}
-                  </div>
+                    </div>
 
-                  <div>
-                    <p>{item.review}</p>
-                  </div>
+                    <div>
+                      <p>{item.review}</p>
+                    </div>
 
-                </aside>
+                  </aside>
 
-              )
-          })}
+                )
+            })}
 
-</div>  
+          </div>
         </div>
 
 
@@ -1094,7 +1160,7 @@ catch(err){
             <p>By saving you will be redirected to login page and login with new password</p>
             <button onClick={(e) => verifyPassword(e)}>Save</button>
           </form>
-          <p onClick={()=>router.push('/forgetpass')}>Forgot Password? Try using Email</p>
+          <p onClick={() => router.push('/forgetpass')}>Forgot Password? Try using Email</p>
         </div>
       </section>
     </div>
@@ -1103,7 +1169,7 @@ catch(err){
 }
 export async function getServerSideProps(context) {
 
-  let userData = await User.find()
+  let userData = await UserData.find()
 
   return {
     props: { userData: JSON.parse(JSON.stringify(userData)) }, // will be passed to the page component as props

@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { AiOutlineEye,AiOutlineEyeInvisible } from "react-icons/ai";
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import UserData from '@/models/UserData';
 
 
 export default function Login({ userData }) {
@@ -285,7 +286,7 @@ export default function Login({ userData }) {
 
 export async function getServerSideProps(context) {
 
-    let userData = await User.find();
+    let userData = await UserData.find();
 
 
     return {

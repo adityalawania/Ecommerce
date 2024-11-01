@@ -12,6 +12,7 @@ import store from '../store';
 import { useDispatch } from 'react-redux';
 import User from '@/models/User';
 import Head from 'next/head';
+import UserData from '@/models/UserData';
 
 
 function Signup({userData}) {
@@ -435,7 +436,7 @@ function Signup({userData}) {
 
 export async function getServerSideProps(context) {
 
-  let userData = await User.find();
+  let userData = await UserData.find();
 
 
   return {

@@ -31,7 +31,7 @@ import mongoose from 'mongoose'
 
 export default function Navbar(response) {
 
-
+  console.log(response)
   const[state,setState]=useState(10);
   const [plural,setPlural]=useState(null)
 
@@ -333,7 +333,7 @@ const isCategory=(x)=>{
         <li id='cart' className={styles.cartIcon} onClick={() =>navIcon('cart')}><img src='shopping-cart2.png'></img></li> }
        
           <li id='heart' className={styles.heartIcon}  onClick={() => navIcon('heart')}><img src='heart.png'></img></li>
-         {  store.getState().finalPersistedReducer.status[0]=='inactive' ?
+         {  store.getState().finalPersistedReducer.status[0]=='inactive' || store.getState().finalPersistedReducer.user.length==0 ?
            <Link href={'./login'}> <button className={`${styles.searchbutton} ${styles.navLogin}`}>Login</button></Link>
         
           :<li id='user' className={styles.userIcon} onClick={() => navIcon('user')} ><FiUser /></li>

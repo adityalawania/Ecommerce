@@ -1,9 +1,9 @@
 
-import User from "@/models/User";
 import connectDB from "@/middleware/mongoose"
+import UserData from "@/models/UserData";
 let users=[];
 const handler= async (req,res)=>{
-     users=await User.find()
+     users=await UserData.find()
     res.status(200).send(users)
 }
 

@@ -16,6 +16,7 @@ import { removeUserCart } from '../store/slices/userSlice';
 import { orderIn,orderOut } from '../store/slices/orderSlice';
 import { current } from '@reduxjs/toolkit';
 import Head from 'next/head';
+import UserData from '@/models/UserData';
 
 
 
@@ -448,7 +449,7 @@ function Cart({allUser}) {
 
 export async function getServerSideProps(context) {
 
-    let allUser = await User.find()
+    let allUser = await UserData.find()
 
 
     return { 

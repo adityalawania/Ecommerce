@@ -8,6 +8,7 @@ import User from '@/models/User'
 import { addAddress,removeAddress } from '../store/slices/addressStore'
 import { useDispatch } from 'react-redux'
 import { InsightsUserRolesContextImpl } from 'twilio/lib/rest/flexApi/v1/insightsUserRoles'
+import UserData from '@/models/UserData'
 
 function Address({allUser}) {
 
@@ -105,6 +106,8 @@ function Address({allUser}) {
         })
       }
 
+
+
   
     return (
         <>
@@ -134,7 +137,7 @@ function Address({allUser}) {
                         <input type="text" name="" id="" placeholder='State' value={inpstate} onChange={(e)=>setstate(e.target.value)} required/>
                         <input type="text" name="" id="" placeholder='Zip Code' value={inppostal} onChange={(e)=>setpostal(e.target.value)} required/>
                     </div>
-                    <button >Proceed</button>
+                    <button>Proceed</button>
                     {/* <input type='submit' name='Proceed'/> */}
                 </div>
             </div>
@@ -147,8 +150,8 @@ function Address({allUser}) {
 
 export async function getServerSideProps(context) {
 
-    let allUser = await User.find()
-
+    let allUser = await UserData.find()
+    
  
 
 

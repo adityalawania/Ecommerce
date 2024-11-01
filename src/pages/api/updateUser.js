@@ -1,5 +1,5 @@
 
-import User from "@/models/User";
+import UserData from "@/models/UserData"
 import connectDB from "@/middleware/mongoose"
 import multer from 'multer'
 const path=require('path')
@@ -19,16 +19,36 @@ const handler =async(req, res)=> {
 
         if (req.body.type == 'updatePersonalDetails')
         {
-            console.log("ghuss gaye")
+            console.log("ghuss gaye");
+            console.log(req.body);
+            try {
+                p = await UserData.findOneAndUpdate(
+                    {email:req.body.email},
+                    { fname : req.body.fname ,
+                     lname:req.body.lname,
+                     fphone:req.body.fphone,
+                     gender:req.body.gender,
+                     country:req.body.country
+
+                    }
+                )
+                
+                console.log('Cart updated')
+
+            }
+
+            catch (err) { 
+                console.log(err.message)
+            }
            
         }
 
     
 
-        if (req.body.type == 'addCart') {
+        else if (req.body.type == 'addCart') {
             
             try {
-                p = await User.findOneAndUpdate(
+                p = await UserData.findOneAndUpdate(
                     {email:req.body.email},
                     { $push: { cart: req.body.content } }
                 )
@@ -43,7 +63,7 @@ const handler =async(req, res)=> {
         }
         else if (req.body.type == 'removeCart') {
 
-            p = await User.findOneAndUpdate(
+            p = await UserData.findOneAndUpdate(
                 {email: req.body.email},
                 { $pull: { cart: { id: req.body.productId ,size:req.body.size,color :req.body.color } } }
             )
@@ -52,7 +72,7 @@ const handler =async(req, res)=> {
         else if(req.body.type=='addWish')
         {
             try {
-                p = await User.findOneAndUpdate(
+                p = await UserData.findOneAndUpdate(
                     {email: req.body.email},
                     { $push: { wish: req.body.content } }
                 )
@@ -68,7 +88,7 @@ const handler =async(req, res)=> {
         else if(req.body.type=='removeWish')
         {
             try {
-                p = await User.findOneAndUpdate(
+                p = await UserData.findOneAndUpdate(
                     {email: req.body.email},
                     { $pull: { wish: { id: req.body.productId}}}
                 )
@@ -87,7 +107,7 @@ const handler =async(req, res)=> {
             let update = { password: req.body.pass};
             try {
 
-                p = await User.findOneAndUpdate(filter,update);
+                p = await UserData.findOneAndUpdate(filter,update);
 
                 console.log("pass is set to ",req.body.pass)
         
@@ -104,7 +124,7 @@ const handler =async(req, res)=> {
                 let i=0; 
                 while(i<req.body.content.length)
             {
-                p = await User.findOneAndUpdate(
+                p = await UserData.findOneAndUpdate(
                     {email:req.body.email},
                     
                     { 
@@ -129,7 +149,7 @@ const handler =async(req, res)=> {
         else if(req.body.type=='addAddress')
         {
             try {
-                p = await User.findOneAndUpdate(
+                p = await UserData.findOneAndUpdate(
                     {email: req.body.email},
                     { $push: { alladdress: req.body.content } }
                 )
@@ -145,7 +165,7 @@ const handler =async(req, res)=> {
         else if(req.body.type=='mainAddress')
         {
             try {
-                p = await User.findOneAndUpdate(
+                p = await UserData.findOneAndUpdate(
                     {email: req.body.email},
                     { address: req.body.content } 
                 )
@@ -161,7 +181,7 @@ const handler =async(req, res)=> {
         else if(req.body.type=='updateAddType')
         {
             try {
-                p = await User.findOneAndUpdate(
+                p = await UserData.findOneAndUpdate(
                     {email: req.body.email},
                     { addtype: req.body.content, $position: req.body.id} 
                 )
@@ -177,7 +197,7 @@ const handler =async(req, res)=> {
         else if(req.body.type=='deleteAdd')
         {
             try {
-                p = await User.findOneAndUpdate(
+                p = await UserData.findOneAndUpdate(
                     {email: req.body.email},
                     { $pull: { alladdress: req.body.content } }
                 )
@@ -193,7 +213,7 @@ const handler =async(req, res)=> {
         else if(req.body.type=="addReview")
         {
             try{
-                p= await User.findOneAndUpdate(
+                p= await UserData.findOneAndUpdate(
                     {email: req.body.email},
                     { $push: { reviews: req.body.content } }
                 )
@@ -210,7 +230,7 @@ const handler =async(req, res)=> {
         else if(req.body.type=='removeReview')
         {
             try {
-                p = await User.findOneAndUpdate(
+                p = await UserData.findOneAndUpdate(
                     {email: req.body.email},
                     { $pull: { reviews: { id: req.body.reviewId}}}
                 )
@@ -226,7 +246,7 @@ const handler =async(req, res)=> {
         else if(req.body.type =='changeProfilePic')
         {
             try {
-                p = await User.findOneAndUpdate(
+                p = await UserData.findOneAndUpdate(
                     {email:req.body.email},
                     {img:req.body.pic}
                 )
@@ -244,7 +264,7 @@ const handler =async(req, res)=> {
         else if(req.body.type=="changeEmail")
         {
             try{
-                p= await User.findOneAndUpdate(
+                p= await UserData.findOneAndUpdate(
                     {email: req.body.email},
                     {email:req.body.newEmail}
                 )

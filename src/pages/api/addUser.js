@@ -1,5 +1,5 @@
 
-import User from "@/models/User";
+import UserData from "@/models/UserData";
 import connectDB from "@/middleware/mongoose"
 
 const handler= async (req,res)=>{
@@ -8,11 +8,12 @@ const handler= async (req,res)=>{
         let p;
         
         try{
-            p =new User({
+            p =new UserData({
                 img:req.body.img,
                 fname: req.body.fname,
                 lname: req.body.lname,
                 address: req.body.address,
+                gender:req.body.gender,
                 alladdress:req.body.address,
                 country: req.body.country,
                 state:req.body.state,
