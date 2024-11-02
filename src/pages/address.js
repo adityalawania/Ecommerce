@@ -1,4 +1,4 @@
-import React, { useDebugValue, useRef, useState } from 'react'
+import React, { useDebugValue, useRef, useState ,useEffect} from 'react'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import TracingNavbar from './tracingNavbar'

@@ -253,6 +253,7 @@ function Profile({ userData }) {
         emailRef.current.style.display = "block"
       }
 
+      
       else {
         try {
           const response = await fetch('/api/updateUser', {
@@ -1070,6 +1071,7 @@ function Profile({ userData }) {
             }
 
           })}
+
 
           <div className={styles.addAddress} >
             <img src='plus.png' height={15} width={15} />

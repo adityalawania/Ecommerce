@@ -14,6 +14,7 @@ import connectDB from "@/middleware/mongoose"
 require('../middleware/mongoose')
 import mongoose from 'mongoose'
 
+
 require('../models/Product')
 require('../models/User')
 

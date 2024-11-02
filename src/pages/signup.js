@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState,useEffect } from 'react'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import { AiOutlineEye,AiOutlineEyeInvisible } from "react-icons/ai";

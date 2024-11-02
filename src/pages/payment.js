@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 import TracingNavbar from './tracingNavbar'
 import Link from 'next/link'

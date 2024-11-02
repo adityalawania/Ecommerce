@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState ,useEffect} from 'react'
 
 import styles from '../styles/Home.module.css'
 import TracingNavbar from './tracingNavbar'
@@ -8,15 +8,7 @@ import store from '../store';
 import Loading from './loading';
 
 function Checkout() {
-//   const date=new Date()
 
-//   Date.prototype.addDays = function(days) {
-//     var date = new Date(this.valueOf());
-//     date.setDate(date.getDate() + days);
-//     return date;
-// }
-
-// let deliveryDate=date.addDays(5);
 
 const [loader,setLoader] = useState(true)
     
@@ -26,6 +18,8 @@ useEffect(()=>{
     
   }, 2000);
 },[])
+
+
 
 
 if(loader)
