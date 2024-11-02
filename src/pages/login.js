@@ -236,7 +236,7 @@ function Login({ userData }) {
   }
 
  const signUP=async(provider)=>{
-signIn(provider,{callbackUrl:'http://localhost:3000'})
+signIn(provider,{callbackUrl:'https://ecommerce-6uejr8ln3-adityalawanias-projects.vercel.app/'})
 signIn(provider)
 
 
