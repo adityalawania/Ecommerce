@@ -236,7 +236,7 @@ function Login({ userData }) {
   }
 
  const signUP=async(provider)=>{
-signIn(provider,{callbackUrl:'https://ecommerce-6uejr8ln3-adityalawanias-projects.vercel.app/'})
+signIn(provider,{callbackUrl:'https://ecommerce-bd8kqkvk6-adityalawanias-projects.vercel.app/'})
 signIn(provider)
 
 
