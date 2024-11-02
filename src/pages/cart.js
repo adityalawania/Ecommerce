@@ -17,6 +17,7 @@ import { orderIn,orderOut } from '../store/slices/orderSlice';
 import { current } from '@reduxjs/toolkit';
 import Head from 'next/head';
 import UserData from '@/models/UserData';
+import Loading from './loading';
 
 
 
@@ -26,6 +27,14 @@ function Cart({allUser}) {
     const[state,setState]=useState(10);
         const router = useRouter();
         const data = router.query;
+        const [loader,setLoader] = useState(true);
+
+        useEffect(()=>{
+            setTimeout(() => {
+              setLoader(false)
+              
+            }, 2000);
+          },[])
         
 
     
@@ -343,7 +352,12 @@ function Cart({allUser}) {
     }
 
 
-
+    if(loader)
+        return(
+         <Loading/>
+        )
+       
+        else
     return (
         <>
               <Head>

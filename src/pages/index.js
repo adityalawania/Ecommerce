@@ -22,7 +22,7 @@ require('./api/getProducts')
 import {getDefaultMiddleware} from "@reduxjs/toolkit"
 
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {  ToastContainer} from 'react-toastify'
 import axios from 'axios'
 import Router, { useRouter } from 'next/router'
@@ -34,6 +34,7 @@ import { removeUser, addUser, updateUserId } from '../store/slices/userSlice'
 import brandArray from '@/datas/brandArray'
 import { logout } from '../store/slices/loginSlice'
 import UserData from '@/models/UserData'
+import Loading from './loading'
 
 
 
@@ -107,10 +108,18 @@ export default function Home({ j, userData }) {
   //   }
   // }, [session.data])
 
+  const [loader,setLoader] = useState(true)
+
   useEffect(()=>{
     const customizedMiddleware = getDefaultMiddleware({
       serializableCheck: false
     })
+
+    setTimeout(() => {
+      setLoader(false)
+      
+    }, 3000);
+
   },[])
 
   setTimeout(() => {
@@ -158,8 +167,12 @@ export default function Home({ j, userData }) {
     
   }, 10000);
     
+if(loader)
+ return(
+  <Loading/>
+ )
 
-
+ else
   return (
     <>
       <Head>

@@ -9,6 +9,7 @@ import { AiOutlineEye,AiOutlineEyeInvisible } from "react-icons/ai";
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import UserData from '@/models/UserData';
+import Loading from './loading';
 
 
 export default function Login({ userData }) {
@@ -26,7 +27,15 @@ export default function Login({ userData }) {
 
     const[userEmail,setuserEmail]=useState()
     const [randomCode, setRandomCode] = useState()
-    const[otp,setOtp]=useState()
+    const[otp,setOtp]=useState();
+    const [loader,setLoader] = useState(true)
+
+    useEffect(()=>{
+      setTimeout(() => {
+        setLoader(false)
+        
+      }, 2000);
+    },[])
 
 
    const verifyEmail = async (e) => {
@@ -231,7 +240,12 @@ export default function Login({ userData }) {
       }
 
 
-
+    if(loader)
+        return(
+         <Loading/>
+        )
+       
+      else
     return (
       <>
             <Head>

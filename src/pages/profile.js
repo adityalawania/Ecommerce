@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '../styles/Home.module.css'
 import Navbar from './Navbar'
 import countries from '../datas/country'
-import { useState, useRef } from 'react'
+import { useState, useRef,useEffect } from 'react'
 import User from '@/models/User'
 import { useRouter } from 'next/router'
 import userSlice from '../store/slices/userSlice'
@@ -20,14 +20,11 @@ import navigator from 'navigator'
 import axios from 'axios'
 import { headers } from '../../next.config'
 import UserData from '@/models/UserData'
-
-
+import Loading from './loading'
 
 function Profile({ userData }) {
 
-
-
-
+  const [loader,setLoader] = useState(true)
 
   const pictureRef = useRef()
   const countryRef = useRef()
@@ -45,11 +42,14 @@ function Profile({ userData }) {
   const router = useRouter()
   const dispatch = useDispatch();
 
+  useEffect(()=>{
+    setTimeout(() => {
+      setLoader(false)
+      
+    }, 2000);
+  },[])
 
   let myUser = []
-
-
-
 
   userData.map((user) => {
     if (user._id == router.query.slug) {
@@ -851,7 +851,12 @@ function Profile({ userData }) {
   }
 
 
-
+  if(loader)
+    return(
+     <Loading/>
+    )
+   
+  else
   return (
 
     <div className={styles.accountContainer}>

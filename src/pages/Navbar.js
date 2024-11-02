@@ -33,7 +33,7 @@ export default function Navbar(response) {
 
 
   const[state,setState]=useState(10);
-  const [plural,setPlural]=useState(null)
+  const [plural,setPlural]=useState(null);
 
 
   
@@ -130,11 +130,11 @@ if(store.getState().finalPersistedReducer.status[0]=='active')
   {
   if(navIconControl.current.childNodes[i].id==icon)
   {
-    if(navIconControl.current.childNodes[i].style.color=="purple")
+    if(navIconControl.current.childNodes[i].style.color=="rgb(96, 33, 242)")
     navIconControl.current.childNodes[i].style.color="black";
 
     else
-    navIconControl.current.childNodes[i].style.color="purple";
+    navIconControl.current.childNodes[i].style.color="rgb(96, 33, 242)";
   }
     else
     navIconControl.current.childNodes[i].style.color="black"
@@ -155,7 +155,7 @@ router.push('/login')
   {
     if(active.current.childNodes[i].innerHTML==type)
     {
-      active.current.childNodes[i].style.color="purple"
+      active.current.childNodes[i].style.color="rgb(96, 33, 242)"
     }
     else{
       active.current.childNodes[i].style.color="black"

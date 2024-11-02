@@ -4,10 +4,20 @@ import Card from './card'
 import allProductData from '../datas/data'
 import Product from '@/models/Product'
 import brandArray from '@/datas/brandArray'
+import Loading from './loading'
 
 function Men({j}) {
-  const [data,setdata] = useState(allProductData)
+  const [data,setdata] = useState(allProductData);
+  const [loader,setLoader] = useState(true)
+
   const searchRef=useRef(null);
+
+  useEffect(()=>{
+    setTimeout(() => {
+      setLoader(false)
+      
+    }, 2000);
+  },[])
   
   while(brandArray.length>0)
   {
@@ -20,7 +30,12 @@ function Men({j}) {
   })
 
 
-
+  if(loader)
+    return(
+     <Loading/>
+    )
+   
+  else
   return (
     <>
     <Navbar ></Navbar>

@@ -4,10 +4,19 @@ import Card from './card'
 import allProductData from '../datas/data'
 import Product from '@/models/Product'
 import brandArray from '@/datas/brandArray'
+import Loading from './loading'
 
 function Living({j}) {
   const [data,setdata] = useState(allProductData)
   const searchRef=useRef(null);
+  const [loader,setLoader] = useState(true)
+
+  useEffect(()=>{
+    setTimeout(() => {
+      setLoader(false)
+      
+    }, 2000);
+  },[])
   
   while(brandArray.length>0)
   {
@@ -20,7 +29,12 @@ function Living({j}) {
   })
 
 
-
+  if(loader)
+    return(
+     <Loading/>
+    )
+   
+  else
   return (
     <>
     <Navbar></Navbar>

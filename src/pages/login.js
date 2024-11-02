@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from '../styles/Home.module.css'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -17,6 +17,7 @@ import {addMsg,removeMsg} from '../store/slices/notifySlice'
 import Head from 'next/head';
 import { Sedgwick_Ave_Display } from 'next/font/google';
 import UserData from '@/models/UserData';
+import Loading from './loading';
 
 
 
@@ -24,7 +25,7 @@ import UserData from '@/models/UserData';
 
 function Login({ userData }) {
 
-
+  const [loader,setLoader] = useState(true)
 
   const loginContRef = useRef()
   const showRef = useRef()
@@ -36,6 +37,13 @@ function Login({ userData }) {
   const dispatch = useDispatch()
   const router = useRouter()
   const session = useSession();
+
+  useEffect(()=>{
+    setTimeout(() => {
+      setLoader(false)
+      
+    }, 2000);
+  },[])
 
   const SessionloginFunc=async()=>{
     if(session.data!=null)
@@ -247,6 +255,12 @@ const fogetPass=()=>{
 }
  
 
+if(loader)
+  return(
+   <Loading/>
+  )
+ 
+  else
   return (
     <section className={styles.LoginSignupCont}>
       <Head>

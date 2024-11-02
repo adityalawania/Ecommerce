@@ -34,6 +34,7 @@ function Filter(props, ref) {
   const filterRef = useRef()
 
   const [state, setState] = useState(10);
+  
   const reRender = () => {
 
     setState(prev => {

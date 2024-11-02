@@ -4,10 +4,13 @@ import Card from './card'
 import Product from '@/models/Product'
 import allProductData from '../datas/data'
 import brandArray from '@/datas/brandArray'
+import Loading from './loading'
+
 
 function Kids({j}) {
 
   const activeRef=useRef();
+  const [loader,setLoader] = useState(true);
   // const fref = React.forwardRef();
 
   while(brandArray.length>0)
@@ -21,6 +24,19 @@ function Kids({j}) {
   })
 
 
+  useEffect(()=>{
+    setTimeout(() => {
+      setLoader(false)
+      
+    }, 2000);
+  },[])
+
+  if(loader)
+    return(
+     <Loading/>
+    )
+   
+    else
   return (
     <> 
     {/*  i removed refs from men , kids , homeliving !! */}

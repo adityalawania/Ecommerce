@@ -16,6 +16,7 @@ import User from '@/models/User'
 import { addUserCart, addUserWish } from '../store/slices/userSlice'
 import { useDispatch } from 'react-redux'
 import { login } from '../store/slices/loginSlice'
+import Loading from './loading'
 
 
 
@@ -40,7 +41,9 @@ function Item({ ele }) {
   const [reviewVal, setReviewVal] = useState('')
   const [reviewLength, setReviewLength] = useState(0)
   const [ItemRating, setItemRating] = useState(0)
-  const [ratingBool, setRatringBool] = useState(false)
+  const [ratingBool, setRatringBool] = useState(false);
+
+  const [loader,setLoader] = useState(true)
 
 
   useEffect(() => {
@@ -48,6 +51,12 @@ function Item({ ele }) {
     if (ele.size.length == 0) {
       setActiveSize('')
     }
+
+      setTimeout(() => {
+        setLoader(false)
+        
+      }, 2000);
+    
 
   }, [])
 
@@ -468,10 +477,14 @@ function Item({ ele }) {
   }
 
 
+  if(loader)
+    return(
+     <Loading/>
+    )
+   
+    else
   return (
-
     <>
-
       <Navbar></Navbar>
       <ToastContainer className={styles.toastContainer} />
 

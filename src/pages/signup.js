@@ -13,6 +13,8 @@ import { useDispatch } from 'react-redux';
 import User from '@/models/User';
 import Head from 'next/head';
 import UserData from '@/models/UserData';
+import Loading from './loading';
+
 
 
 function Signup({userData}) {
@@ -41,6 +43,15 @@ function Signup({userData}) {
     const[otp,setOtp]=useState()
     const[password,setPassword]=useState('');
     const[fphone,setfPhone]=useState('');
+
+    const [loader,setLoader] = useState(true);
+
+    useEffect(()=>{
+      setTimeout(() => {
+        setLoader(false)
+        
+      }, 2000);
+    },[])
 
     const SignupAction=async(e)=>{
 
@@ -364,6 +375,12 @@ function Signup({userData}) {
     
   }
 
+  if(loader)
+    return(
+     <Loading/>
+    )
+   
+    else
   return (
     <section className={styles.LoginSignupCont}>
             <Head>

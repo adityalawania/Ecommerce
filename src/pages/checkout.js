@@ -5,6 +5,7 @@ import TracingNavbar from './tracingNavbar'
 import { toast } from 'react-toastify'
 import { ToastContainer } from 'react-toastify';
 import store from '../store';
+import Loading from './loading';
 
 function Checkout() {
 //   const date=new Date()
@@ -15,9 +16,24 @@ function Checkout() {
 //     return date;
 // }
 
-
-
 // let deliveryDate=date.addDays(5);
+
+const [loader,setLoader] = useState(true)
+    
+useEffect(()=>{
+  setTimeout(() => {
+    setLoader(false)
+    
+  }, 2000);
+},[])
+
+
+if(loader)
+  return(
+   <Loading/>
+  )
+ 
+  else
   return (
     <>
     {/* <ToastContainer/> */}

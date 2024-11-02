@@ -23,6 +23,7 @@ import { searchIn, searchOut } from '../store/slices/searchSlice';
 import { useDispatch } from 'react-redux'
 import { addUserWish,removeUserWish } from '../store/slices/userSlice';
 import addUser from './api/addUser';
+import Loading from './loading';
 
 
 
@@ -42,7 +43,8 @@ const date=new Date();
 
   const[state,setState]=useState(10);
   const[result,setResult]=useState(response);
-  const[finalResult,setFinalResult]=useState(result)
+  const[finalResult,setFinalResult]=useState(result);
+  const[loader,setloader]=useState(false);
 
 
   const reRender=()=>{
@@ -79,7 +81,7 @@ function scrollFunction() {
 
       filterRef.current.style.position="fixed";
       filterRef.current.style.top="60px";
-      cardContRef.current.style.bottom="70px"
+      cardContRef.current.style.bottom="40px"
       filterRef.current.childNodes[3].style.display="none"
       
     }
@@ -257,10 +259,14 @@ function scrollFunction() {
     
   }
 
-  const searchclick=()=>{
+  const searchclick=(e)=>{
   
 
     let searchState=store.getState().finalPersistedReducer.search;
+    setloader(true);
+    setTimeout(() => {
+      setloader(false)
+    }, 1300);
     // console.log(searchState)
     if(searchState.length>0)
     {
@@ -350,11 +356,16 @@ function scrollFunction() {
   }
 
 
- 
+  if(loader)
+    return(
+     <Loading/>
+    )
+   
+  else
   if (result) {
 
     return (
-      <>
+      <div className={styles.cardFilterParent}>
 
 
         <ToastContainer className={styles.toastContainer}
@@ -418,7 +429,7 @@ function scrollFunction() {
 
           </div>
         </section>
-      </>
+      </div>
     )
 
   }

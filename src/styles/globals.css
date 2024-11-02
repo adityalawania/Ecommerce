@@ -6,6 +6,8 @@ margin: 0;
 /* background: rgb(0,150,136); */
 /* background: linear-gradient(180deg, rgba(0,150,136,1) 0%, rgba(0,150,136,1) 15%, rgba(215,219,214,1) 15%, rgba(215,219,214,1) 130%); */
 background-repeat: no-repeat;
+overflow-x: hidden;
+
 }
 
 :root {
@@ -94,7 +96,7 @@ background-repeat: no-repeat;
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+ 
 
 }
 

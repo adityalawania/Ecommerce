@@ -9,16 +9,26 @@ import { toast } from 'react-toastify'
 import { ToastContainer } from 'react-toastify';
 import { orderIn } from '../store/slices/orderSlice'
 import { addUserOrder } from '../store/slices/userSlice'
+import Loading from './loading'
 
 
 function Payment() {
 
-  const router=useRouter()
+  const router=useRouter();
+  const [loader,setLoader] = useState(true);
+  
 
 const confirmOrder=async()=>{
   let myorder=store.getState().finalPersistedReducer.order[0];
   
-  let myaddress=store.getState().finalPersistedReducer.address[0]
+  let myaddress=store.getState().finalPersistedReducer.address[0];
+
+  useEffect(()=>{
+    setTimeout(() => {
+      setLoader(false)
+      
+    }, 2000);
+  },[])
 
   const response=await fetch('/api/addOrder',{
     method:'POST',
@@ -77,6 +87,12 @@ catch(err)
   router.push('/checkout')
 }
 
+if(loader)
+  return(
+   <Loading/>
+  )
+ 
+  else
   return (
     <>
 <TracingNavbar></TracingNavbar>

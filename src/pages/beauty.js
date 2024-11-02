@@ -1,12 +1,13 @@
 import React, { useEffect, useReducer, useRef,useState } from 'react'
 import Navbar from './Navbar'
 import Card from './card'
-import allProductData from '../datas/data'
 import Product from '@/models/Product'
 import brandArray from '@/datas/brandArray'
+import Loading from './loading'
 
 function Beauty({j}) {
-  const [data,setdata] = useState(allProductData)
+ 
+  const [loader,setLoader] = useState(true)
   const searchRef=useRef(null);
 
   while(brandArray.length>0)
@@ -19,8 +20,20 @@ function Beauty({j}) {
     brandArray.push(item.brand.toLowerCase())
   })
 
+  useEffect(()=>{
+    setTimeout(() => {
+      setLoader(false)
+      
+    }, 2000);
+  },[])
 
 
+  if(loader)
+    return(
+     <Loading/>
+    )
+   
+  else
   return (
     <>
     <Navbar ref={searchRef}></Navbar>

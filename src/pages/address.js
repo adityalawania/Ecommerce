@@ -9,6 +9,7 @@ import { addAddress,removeAddress } from '../store/slices/addressStore'
 import { useDispatch } from 'react-redux'
 import { InsightsUserRolesContextImpl } from 'twilio/lib/rest/flexApi/v1/insightsUserRoles'
 import UserData from '@/models/UserData'
+import Loading from './loading'
 
 function Address({allUser}) {
 
@@ -35,6 +36,8 @@ function Address({allUser}) {
     const[inpcountry,setcountry]=useState(myUser.country);
     const[inppostal,setpostal]=useState(myUser.postal);
     const[inpphone,setphone]=useState(myUser.fphone);
+
+    const [loader,setLoader] = useState(true)
    let x;
     
     countries.map((c)=>{
@@ -106,9 +109,21 @@ function Address({allUser}) {
         })
       }
 
+      useEffect(()=>{
+        setTimeout(() => {
+          setLoader(false)
+          
+        }, 2000);
+      },[])
 
 
-  
+
+      if(loader)
+        return(
+         <Loading/>
+        )
+       
+        else
     return (
         <>
             <TracingNavbar></TracingNavbar>

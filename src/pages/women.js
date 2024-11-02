@@ -3,8 +3,19 @@ import Navbar from './Navbar'
 import Card from './card'
 import Product from '@/models/Product'
 import brandArray from '@/datas/brandArray'
+import Loading from './loading'
 
 function Women({j}) {
+
+  const [loader,setLoader] = useState(true)
+
+  useEffect(()=>{
+    setTimeout(() => {
+      setLoader(false)
+      
+    }, 2000);
+  },[])
+
   while(brandArray.length>0)
   {
     brandArray.pop()
@@ -15,10 +26,16 @@ function Women({j}) {
     brandArray.push(item.brand.toLowerCase())
   })
 
+  if(loader)
+    return(
+     <Loading/>
+    )
+   
+  else
   return (
     <>
     <Navbar></Navbar>
-    <Card  response={j}></Card>
+    <Card response={j}></Card>
     </>
   )
 }
