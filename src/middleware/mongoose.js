@@ -9,7 +9,7 @@ const connectDB = handler=> async (req,res)=>{
         
     }
 
-    await mongoose.connect("mongodb://localhost:27017/Ecommerce")
+    await mongoose.connect(process.env.MONGO_URI)
     console.log("product db connected..!")
     return handler(req,res)
 }

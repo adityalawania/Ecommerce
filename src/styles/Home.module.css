@@ -255,6 +255,7 @@
   border-left: none;
   position: relative;
   bottom: 737px;
+ 
   overscroll-behavior: contain;
 }
 
@@ -306,11 +307,6 @@
     font-size: 13px;
   }
 
-  #CardContainer {
-    width: 90vw;
-    margin-left: 5vw;
-  }
-
   .Card {
     width: 180px;
   }
@@ -325,6 +321,7 @@
   .navContainer {
     height: 50px;
     padding: 0 10px;
+    /* background-color: red; */
   }
 
   .navbar {
@@ -332,35 +329,47 @@
     position: static;
     width: 100%;
     left: 0;
+    /* background-color: green; */
+    position: absolute;
+    width: 27vw;
+    top: 6vh;
+    border: 1px solid grey;
+    border-radius: 7px;
+    padding: 3px;
+    display: none;
   }
 
   .navbar li {
     margin: 10px 0;
     font-size: 16px;
+    /* background-color: white; */
   }
 
   .searchBar {
-    width: 80%;
+    width: 115px;
     right: 0;
     margin: auto;
     font-size: 13px;
     padding: 10px;
   }
 
-  .searchbutton {
-    right: 0;
-    margin-top: 8px;
+  /* .searchbutton {
+
     font-size: 12px;
-    padding: 7px;
-  }
+
+    width: 20px;
+  } */
 
   .mySearchbtn {
-    top: auto;
-    left: 0;
-    right: 0;
-    margin: auto;
+    
+   margin: auto;
+   left: 212px;
+    height: 30px;
+   top: 10px;
     font-size: 12px;
     padding: 7px;
+    width: 60px;
+
   }
 
   .navIcons {
@@ -371,13 +380,6 @@
   .Card {
     width: 45vw;
     margin: 10px;
-  }
-
-  #CardContainer {
-    width: 100vw;
-    margin-left: 0;
-    padding: 10px;
-    justify-content: center;
   }
 
   #bottomNavContainer {

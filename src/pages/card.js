@@ -359,8 +359,7 @@ function scrollFunction() {
 
         <ToastContainer className={styles.toastContainer}
           limit={2} />
-        {/* <Category></Category> */}
-
+      
       <button className={styles.mySearchbtn} onClick={(e) => searchclick(e)}>Search</button>
         <section className={styles.cardWithfilter}>
           

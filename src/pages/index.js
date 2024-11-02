@@ -120,7 +120,7 @@ export default function Home({ j, userData }) {
         userData.map((u)=>{
         
         try{
-            if(u.email==activity.user[0].email)
+            if(u.email==currEmail)
             {
               console.log("email match")
               dispatch(updateUserId(u._id))  
@@ -196,7 +196,7 @@ export async function getServerSideProps(context) {
 
     // await mongoose.connect("mongodb://localhost:27017/Ecommerce")
     // await mongoose.connect("mongodb+srv://adityalawania899:<adiEcommerce>@cluster0.gudo8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-    mongoose.connect("mongodb+srv://adityalawania899:adiEcommerce@ecomcluster.l29l1.mongodb.net/?retryWrites=true&w=majority&appName=EcomCluster", {
+    mongoose.connect(process.env.MONGO_URI, {
  
     }).then(() => {
       console.log("Database Connected"); 
