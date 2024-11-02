@@ -1,6 +1,5 @@
 import React, { createContext, forwardRef, useEffect, useRef,useState } from 'react'
 import styles from '../styles/Home.module.css'
-import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addBrand, removeBrand } from '../store/slices/brandSlice'
 import { addPriceFilter, removePriceFilter } from '../store/slices/priceSlice'
