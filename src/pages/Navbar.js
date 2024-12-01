@@ -91,7 +91,7 @@ if(store.getState().finalPersistedReducer.status[0]=='active')
   
 
 
- 
+ console.log("navIcon")
 
   if(icon=='user')
 {
