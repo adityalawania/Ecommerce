@@ -40,7 +40,7 @@ function Women({j}) {
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
     
   let j=await Product.find({ $or: [ { gender: "Women" }, { gender:"Womens" }, { gender:"Female" } ] })
 

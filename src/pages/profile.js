@@ -715,7 +715,7 @@ function Profile({ userData }) {
 
 
           // dispatch(addMsg('Logout'))
-          //  signOut({callbackUrl:'http://localhost:3000'})
+          //  signOut({callbackUrl:'http://localho st:3000'})
           router.push('/login')
           console.log("changed")
         }

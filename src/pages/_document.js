@@ -6,7 +6,7 @@ export default function Document() {
       <Head />
 
       <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
 
 {/* ************************* Montserrat   ********************* */}
 <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300&family=Montserrat:wght@300&family=Playfair+Display&family=Poppins:wght@200&family=Rajdhani:wght@500&display=swap" rel="stylesheet"></link>
