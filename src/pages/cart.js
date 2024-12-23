@@ -461,7 +461,7 @@ function Cart({allUser}) {
     )
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
 
     let allUser = await UserData.find()
 
