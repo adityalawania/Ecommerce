@@ -125,7 +125,11 @@
 .navIcons > li:hover {
   color: rgb(148, 55, 255);
   transition: 0.2s ease;
+
   cursor: pointer;
+
+  cursor:pointer;
+
 }
 
 .navIcons img {
