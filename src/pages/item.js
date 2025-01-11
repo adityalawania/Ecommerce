@@ -133,7 +133,7 @@ function Item({ ele }) {
         rating: rate
       }
 
-      let reduxWish = store.getState().finalPersistedReducer.user[0].wish;
+      // let reduxWish = store.getState().finalPersistedReducer.user[0].wish;
       let bool = true;
       reduxWish.map((thing) => {
         if (thing == ele._id) {
