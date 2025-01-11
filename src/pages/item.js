@@ -112,8 +112,6 @@ function Item({ ele }) {
         "July", "August", "September", "October", "November", "December"
       ];
 
-
-
       let longDate = date.addDays(0);
       let wishDate = `${longDate.getDate() + " " + allmonth[longDate.getMonth()] + "," + longDate.getFullYear()}`
       let rate;
@@ -133,7 +131,7 @@ function Item({ ele }) {
         rating: rate
       }
 
-      let reduxWish = store.getState().finalPersistedReducer.user[0].wish;
+      // let reduxWish = store.getState().finalPersistedReducer.user[0].wish;
       let bool = true;
       reduxWish.map((thing) => {
         if (thing == ele._id) {

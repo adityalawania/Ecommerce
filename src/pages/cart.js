@@ -14,7 +14,7 @@ import ReactPlayer from 'react-player';
 import { useDispatch } from 'react-redux';
 import { removeUserCart } from '../store/slices/userSlice';
 import { orderIn,orderOut } from '../store/slices/orderSlice';
-import { current } from '@reduxjs/toolkit';
+
 import Head from 'next/head';
 import UserData from '@/models/UserData';
 import Loading from './loading';
@@ -28,6 +28,8 @@ function Cart({allUser}) {
         const router = useRouter();
         const data = router.query;
         const [loader,setLoader] = useState(true);
+        
+        let isToastRunning = false;
 
         useEffect(()=>{
             setTimeout(() => {
@@ -175,9 +177,23 @@ function Cart({allUser}) {
 
                 }
                 else {
-                    toast.warning(`Can't add more items`, {
-                        autoClose: 1000
-                    })
+
+                    if(!isToastRunning){
+                        toast.warning(`Can't add more itemss`, {
+                            autoClose: 1000,
+                            
+                        })
+
+                        isToastRunning=true;
+
+                        setTimeout(() => {
+                            isToastRunning=false;
+                        }, 2000);
+
+                    }
+                  
+
+                    
                 }
 
             }
@@ -461,10 +477,10 @@ function Cart({allUser}) {
     )
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
 
     let allUser = await UserData.find()
-
+ 
 
     return { 
         props: { allUser: JSON.parse(JSON.stringify(allUser)) }, // will be passed to the page component as props

@@ -23,6 +23,7 @@ import User from '@/models/User';
 
 require('../middleware/mongoose')
 import mongoose from 'mongoose'
+import Loading from './loading'
 //***************  DB  **************** */
 
 
@@ -139,6 +140,8 @@ if(store.getState().finalPersistedReducer.status[0]=='active')
     else
     navIconControl.current.childNodes[i].style.color="black"
   }
+
+  return <Loading/>
 }
 
 
