@@ -135,14 +135,14 @@ function Item({ ele }) {
 
       // let reduxWish = store.getState().finalPersistedReducer.user[0].wish;
       let bool = true;
-      reduxWish.map((thing) => {
-        if (thing == ele._id) {
-          bool = false;
-          toast.warn('Item already added', {
-            autoClose: 1200
-          })
-        }
-      })
+      // reduxWish.map((thing) => {
+      //   if (thing == ele._id) {
+      //     bool = false;
+      //     toast.warn('Item already added', {
+      //       autoClose: 1200
+      //     })
+      //   }
+      // })
 
       if (bool) {
         try {
