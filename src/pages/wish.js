@@ -26,6 +26,20 @@ function Wish({ userData }) {
         }, 2000);
       },[])
 
+      useEffect(() => {
+        const handleRouteError = (err, url) => {
+          console.error("Route change failed:", err);
+          alert("Failed to load the page. Please try again.");
+        };
+    
+        router.events.on("routeChangeError", handleRouteError);
+    
+        // Cleanup the event listener when the component unmounts
+        return () => {
+          router.events.off("routeChangeError", handleRouteError);
+        };
+      }, [router.events]);
+
 
     let myWish = [];
     userData.map((ele) => {
@@ -82,7 +96,7 @@ function Wish({ userData }) {
                 <Head>
                     <title>Whishlist</title>
                 </Head>
-                <Navbar></Navbar>
+                <Navbar search={false}></Navbar>
                 <div className={styles.wishContainer} >
                     <img src='heart.png'></img>
                     <h2>WishList</h2>

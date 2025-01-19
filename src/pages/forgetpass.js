@@ -37,6 +37,20 @@ export default function Login({ userData }) {
       }, 2000);
     },[])
 
+    useEffect(() => {
+      const handleRouteError = (err, url) => {
+        console.error("Route change failed:", err);
+        alert("Failed to load the page. Please try again.");
+      };
+  
+      router.events.on("routeChangeError", handleRouteError);
+  
+      // Cleanup the event listener when the component unmounts
+      return () => {
+        router.events.off("routeChangeError", handleRouteError);
+      };
+    }, [router.events]);
+
 
    const verifyEmail = async (e) => {
         e.preventDefault()

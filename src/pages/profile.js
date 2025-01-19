@@ -98,6 +98,20 @@ function Profile({ userData }) {
 
   }
 
+  useEffect(() => {
+    const handleRouteError = (err, url) => {
+      console.error("Route change failed:", err);
+      alert("Failed to load the page. Please try again.");
+    };
+
+    router.events.on("routeChangeError", handleRouteError);
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      router.events.off("routeChangeError", handleRouteError);
+    };
+  }, [router.events]);
+
 
 
   const profileNav = (id) => {
@@ -861,7 +875,7 @@ function Profile({ userData }) {
       <Head>
         <title>Account</title>
       </Head>
-      <Navbar></Navbar>
+      <Navbar search={false}></Navbar>
       <ToastContainer className={styles.toastContainer} limit={2} />
       <h2>My Account</h2>
 

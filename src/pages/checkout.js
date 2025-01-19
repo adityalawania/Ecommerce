@@ -6,11 +6,13 @@ import { toast } from 'react-toastify'
 import { ToastContainer } from 'react-toastify';
 import store from '../store';
 import Loading from './loading';
+import { useRouter } from 'next/router';
 
 function Checkout() {
 
 
 const [loader,setLoader] = useState(true)
+const router = useRouter()
     
 useEffect(()=>{
   setTimeout(() => {
@@ -18,6 +20,20 @@ useEffect(()=>{
     
   }, 2000);
 },[])
+
+useEffect(() => {
+  const handleRouteError = (err, url) => {
+    console.error("Route change failed:", err);
+    alert("Failed to load the page. Please try again.");
+  };
+
+  router.events.on("routeChangeError", handleRouteError);
+
+  // Cleanup the event listener when the component unmounts
+  return () => {
+    router.events.off("routeChangeError", handleRouteError);
+  };
+}, [router.events]);
 
 
 

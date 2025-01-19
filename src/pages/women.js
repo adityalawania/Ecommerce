@@ -4,10 +4,27 @@ import Card from './card'
 import Product from '@/models/Product'
 import brandArray from '@/datas/brandArray'
 import Loading from './loading'
+import { useRouter } from 'next/router'
 
 function Women({j}) {
 
   const [loader,setLoader] = useState(true)
+
+  const router = useRouter()
+
+  useEffect(() => {
+    const handleRouteError = (err, url) => {
+      console.error("Route change failed:", err);
+      alert("Failed to load the page. Please try again.");
+    };
+
+    router.events.on("routeChangeError", handleRouteError);
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      router.events.off("routeChangeError", handleRouteError);
+    };
+  }, [router.events]);
 
   useEffect(()=>{
     setTimeout(() => {
@@ -34,7 +51,7 @@ function Women({j}) {
   else
   return (
     <>
-    <Navbar></Navbar>
+    <Navbar search={true}></Navbar>
     <Card response={j}></Card>
     </>
   )

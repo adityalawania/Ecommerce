@@ -5,12 +5,14 @@ import Product from '@/models/Product'
 import allProductData from '../datas/data'
 import brandArray from '@/datas/brandArray'
 import Loading from './loading'
+import { useRouter } from 'next/router'
 
 
 function Kids({j}) {
 
   const activeRef=useRef();
   const [loader,setLoader] = useState(true);
+  const router = useRouter()
   // const fref = React.forwardRef();
 
   while(brandArray.length>0)
@@ -31,6 +33,20 @@ function Kids({j}) {
     }, 2000);
   },[])
 
+  useEffect(() => {
+    const handleRouteError = (err, url) => {
+      console.error("Route change failed:", err);
+      alert("Failed to load the page. Please try again.");
+    };
+
+    router.events.on("routeChangeError", handleRouteError);
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      router.events.off("routeChangeError", handleRouteError);
+    };
+  }, [router.events]);
+
   if(loader)
     return(
      <Loading/>
@@ -40,7 +56,7 @@ function Kids({j}) {
   return (
     <> 
     {/*  i removed refs from men , kids , homeliving !! */}
-    <Navbar></Navbar>
+    <Navbar search={true}></Navbar>
    
     <Card response={j}></Card>
     </>

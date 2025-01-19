@@ -39,6 +39,20 @@ function Account() {
 //   setState(x.state) 
   
 
+useEffect(() => {
+  const handleRouteError = (err, url) => {
+    console.error("Route change failed:", err);
+    alert("Failed to load the page. Please try again.");
+  };
+
+  router.events.on("routeChangeError", handleRouteError);
+
+  // Cleanup the event listener when the component unmounts
+  return () => {
+    router.events.off("routeChangeError", handleRouteError);
+  };
+}, [router.events]);
+
 
 
 

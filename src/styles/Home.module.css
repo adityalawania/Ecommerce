@@ -117,9 +117,10 @@
   width: 20vw;
   list-style: none;
   height: 5vh;
-  position: relative;
-  left: 10vw;
-  top: 2px;
+  position: absolute;
+  right: 0px;
+  top: 13px;
+  /* background-color: red; */
 }
 
 .navIcons > li:hover {
@@ -236,7 +237,9 @@
   width: 20px;
 }
 
-
+.filterinCard{
+  position: fixed;
+}
 
 .cardWithfilter {
   border: 1px solid rgb(186, 186, 186);
@@ -272,6 +275,7 @@
   bottom: 737px;
  
   overscroll-behavior: contain;
+
  
 }
 

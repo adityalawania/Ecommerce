@@ -4,11 +4,13 @@ import Card from './card'
 import Product from '@/models/Product'
 import brandArray from '@/datas/brandArray'
 import Loading from './loading'
+import { useRouter } from 'next/router'
 
 function Beauty({j}) {
  
   const [loader,setLoader] = useState(true)
   const searchRef=useRef(null);
+  const router = useRouter()
 
   while(brandArray.length>0)
   {
@@ -27,6 +29,20 @@ function Beauty({j}) {
     }, 2000);
   },[])
 
+  useEffect(() => {
+    const handleRouteError = (err, url) => {
+      console.error("Route change failed:", err);
+      alert("Failed to load the page. Please try again.");
+    };
+
+    router.events.on("routeChangeError", handleRouteError);
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      router.events.off("routeChangeError", handleRouteError);
+    };
+  }, [router.events]);
+
 
   if(loader)
     return(
@@ -36,7 +52,7 @@ function Beauty({j}) {
   else
   return (
     <>
-    <Navbar ref={searchRef}></Navbar>
+    <Navbar search={true} ref={searchRef}></Navbar>
     <Card  response={j}></Card>
     </>
   )

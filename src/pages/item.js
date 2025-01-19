@@ -56,9 +56,21 @@ function Item({ ele }) {
         setLoader(false)
         
       }, 2000);
-    
-
   }, [])
+
+  useEffect(() => {
+    const handleRouteError = (err, url) => {
+      console.error("Route change failed:", err);
+      alert("Failed to load the page. Please try again.");
+    };
+
+    router.events.on("routeChangeError", handleRouteError);
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      router.events.off("routeChangeError", handleRouteError);
+    };
+  }, [router.events]);
 
 
 
@@ -131,7 +143,7 @@ function Item({ ele }) {
         rating: rate
       }
 
-      // let reduxWish = store.getState().finalPersistedReducer.user[0].wish;
+      let reduxWish = store.getState().finalPersistedReducer.user[0].wish;
       let bool = true;
       reduxWish.map((thing) => {
         if (thing == ele._id) {
@@ -483,7 +495,7 @@ function Item({ ele }) {
     else
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar search={false}></Navbar>
       <ToastContainer className={styles.toastContainer} />
 
       <div className={styles.itemPage}>

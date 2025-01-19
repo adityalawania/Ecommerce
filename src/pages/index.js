@@ -55,6 +55,20 @@ export default function Home({ j, userData }) {
 
   const router = useRouter();
 
+  useEffect(() => {
+    const handleRouteError = (err, url) => {
+      console.error("Route change failed:", err);
+      alert("Failed to load the page. Please try again.");
+    };
+
+    router.events.on("routeChangeError", handleRouteError);
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      router.events.off("routeChangeError", handleRouteError);
+    };
+  }, [router.events]);
+
   
     j.map((item)=>{
       if(!brandArray.includes(item.brand.toLowerCase()) && item.brand.length>0)
@@ -62,52 +76,6 @@ export default function Home({ j, userData }) {
     })
 
 
-
-
-  // useEffect(() => {
-  //   if (session.data != null) {
-  //     userData.map((user) => {
-  //       if (user.email == session.data.user.email) {
-  //         dispatch(addUser(user))
-  //         return;
-  //         // dispatch(removeUser())
-  //       }
-
-  //     })
-  //     if (activity.notify.length > 0) {
-  //       if (activity.notify[0] = 'Welcome') {
-  //         toast.success(`Welcome ${store.getState().finalPersistedReducer.user[0].fname}`, {
-  //           autoClose: 1200,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //         })
-
-  //         //  dispatch(removeMsg())
-
-  //       }
-  //     }
-
-  //   }
-
-  //   else {
-
-  //     if (activity.notify.length > 0) {
-  //       if (activity.notify[0] = 'Logout') {
-  //         toast.success(`Logout Sucessfully`, {
-  //           autoClose: 1200,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //         })
-
-  //         //  dispatch(removeMsg())
-
-  //       }
-  //     }
-
-  //   }
-  // }, [session.data])
 
   const [loader,setLoader] = useState(true)
 
@@ -192,7 +160,7 @@ if(loader)
           limit={1}
           className={styles.indexToast}
         />
-        <Navbar props={userData}></Navbar>
+        <Navbar search={true}></Navbar>
         <Card response={j}> </Card>
       </section>
 

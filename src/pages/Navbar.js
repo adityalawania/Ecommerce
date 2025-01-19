@@ -14,7 +14,7 @@ import { useDispatch } from 'react-redux'
 import store from '../store'
 import { searchIn,searchOut } from '../store/slices/searchSlice'
 import {  useSession ,signIn,signOut} from 'next-auth/react'
-import { searchclick } from './card'
+import { outerFunction, searchclick } from './card'
 import addUser from './api/addUser'
 
 //***************  DB  **************** */
@@ -29,13 +29,14 @@ import Loading from './loading'
 
 
 
-
-export default function Navbar(response) {
+export default function Navbar(props) {
 
 
   const[state,setState]=useState(10);
   const [plural,setPlural]=useState(null);
+  const [loading,setloading]=useState(false);
 
+  let isSearch = props.search
 
   
 
@@ -86,10 +87,39 @@ const session=useSession()
  
 
  const navIcon=(icon)=>{
-if(store.getState().finalPersistedReducer.status[0]=='active')
+
+  if(icon=='kids'){
+    router.push({pathname:'/kids'})
+  }
+
+  else if(icon=='men'){
+    router.push({pathname:'/men'})
+
+  }
+
+  else if(icon=='women'){
+    router.push({pathname:'/women'})
+
+  }
+
+  else if(icon=='beauty'){
+    router.push({pathname:'/beauty'})
+
+  }
+
+
+  else if(icon=='homeliving'){
+    router.push({pathname:'/homeliving'})
+
+  }
+
+else if(store.getState().finalPersistedReducer.status[0]=='active')
 {
  
-  
+  setloading(true);
+  setTimeout(() => {
+    setloading(false);
+  }, 2000);
 
 
  console.log("navIcon")
@@ -97,8 +127,6 @@ if(store.getState().finalPersistedReducer.status[0]=='active')
   if(icon=='user')
 {
 
-
- 
   router.push({ 
     pathname:'/profile',
     query:{
@@ -166,6 +194,11 @@ router.push('/login')
     }
   }
 
+  setloading(true);
+  setTimeout(() => {
+    setloading(false);
+  }, 2000);
+
  }
 
 const searchkeyDown=(e)=>{
@@ -177,21 +210,25 @@ if(e.key=="Enter")
 
 const SubmitIt=(e)=>{
   e.preventDefault()
-
+  console.log("ok")
+  
 }
 
 
 
  const searchclick =(e)=>{
 
+
+
   e.preventDefault();
+
   
   let searchObj={
-    title:"",
+    title:[],
     brand:"",
-    color:"",
+    color:[],
     gender:"",
-    category:"",
+    category:[],
   }
 
    let toSerach=myRef.current.childNodes[0].value
@@ -212,12 +249,12 @@ const SubmitIt=(e)=>{
       }
 
       if(isColor(searchList[i])){
-        if(searchList[i].charAt(searchList[i].length-1).toLowerCase( )=="s")
+        if(searchList[i].charAt(searchList[i].length-1).toLowerCase( )=="s")  // converting blacks to black (excluding last s char)
         {
           searchList[i]=searchList[i].slice(0,searchList[i].length-1);
 
         }
-        searchObj.color=searchList[i].toLowerCase()
+        searchObj.color.push(searchList[i].toLowerCase());
         continue;
       }
       
@@ -236,11 +273,13 @@ const SubmitIt=(e)=>{
             
           }
 
-          searchObj.category=searchList[i].toLowerCase()
+          searchObj.category.push(searchList[i].toLowerCase())
           continue;
         }
-
-        searchObj.title=searchList[i].toLowerCase();
+        
+        let mytitle = searchList[i].toLowerCase().trim();
+        searchObj.title.push(mytitle)
+        // searchObj.title=searchObj.title.trim()
       
     }    
    }
@@ -249,7 +288,7 @@ const SubmitIt=(e)=>{
 
 
   //  router.reload()
- 
+ outerFunction()
 
 }
 
@@ -297,7 +336,7 @@ const isGender=(x)=>{
 }
 
 const isCategory=(x)=>{
-  let cat=["tshirt","pant","shirt","jeans","jacket","hoodie","accessory","accessories","top","kutra","kurti","pajama","pajami","traditional","shoes","sneakers","beauty","foootwear","lower","shorts","sweater","watch","watches"];
+  let cat=["tshirt","pant","shirt","jeans","kurti","salvar","salwar","kurta","jacket","hoodie","accessory","accessories","top","kutra","kurti","pajama","pajami","traditional","shoes","sneakers","beauty","foootwear","lower","shorts","sweater","watch","watches"];
 
   for(let i=0;i<cat.length;i++)
   {
@@ -308,25 +347,32 @@ const isCategory=(x)=>{
   return false;
 }
 
+  if(loading) return <Loading/>
 
-  
+
   return (
     <>
     <div className={styles.navContainer} >
       <Link  href={'/'}><Image id={styles.logo} src={'/30b2d015e904407aae937a4794ae064b.png'} width={80} height={55} alt='Image unavailable'></Image></Link>
       
       <ul ref={active} className={styles.navbar}>
-        <li className={router.pathname =='/kids' ? styles.active : ""}><Link href={'/kids'}>Kids</Link></li>
-        <li className={router.pathname=='/men' ? styles.active : ""}><Link href={'/men'}>Men</Link></li>
-        <li className={router.pathname=='/women' ? styles.active : ""} onClick={()=>filterItem('Women')}><Link href={'/women'}>Women</Link></li>
-        <li className={router.pathname=='/beauty' ? styles.active : ""} onClick={()=>filterItem('Beauty')}><Link href={'/beauty'}>Beauty</Link></li>
-        <li className={router.pathname=='/homeliving' ? styles.active : ""} onClick={()=>filterItem('Home & Living')}><Link href={'/homeliving'}>Home & Living</Link></li>
+        <li className={router.pathname =='/kids' ? styles.active : ""} onClick={()=>navIcon('kids')}>Kids</li>
+        <li className={router.pathname=='/men' ? styles.active : ""} onClick={()=>navIcon('men')}>Men</li>
+        <li className={router.pathname=='/women' ? styles.active : ""} onClick={()=>navIcon('women')}>Women</li>
+        <li className={router.pathname=='/beauty' ? styles.active : ""} onClick={()=>navIcon('beauty')}>Beauty</li>
+        <li className={router.pathname=='/homeliving' ? styles.active : ""} onClick={()=>navIcon('homeliving')}>Home & Living</li>
         
       </ul>
+      
+      {
+        isSearch ?
       <form ref={myRef} onSubmit={(e)=>SubmitIt(e)}>
         <input type={'search'} onChange={(e)=>searchclick(e)} placeholder='Search Here' id='searched' className={styles.searchBar} onKeyDown={(e)=>searchkeyDown(e)}/>
-        {/* <button  className={styles.searchbutton}  onClick={(e) => searchclick(e)}>Search</button> */}
+       
         </form>
+        
+         : <></>
+      }
 
       <ul className={styles.navIcons} ref={navIconControl}>
       { router.pathname=='/cart' ? 

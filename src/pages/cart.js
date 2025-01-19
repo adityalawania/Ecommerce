@@ -13,7 +13,7 @@ import store from '../store';
 import ReactPlayer from 'react-player';
 import { useDispatch } from 'react-redux';
 import { removeUserCart } from '../store/slices/userSlice';
-import { orderIn,orderOut } from '../store/slices/orderSlice';
+import { orderIn, orderOut } from '../store/slices/orderSlice';
 
 import Head from 'next/head';
 import UserData from '@/models/UserData';
@@ -22,60 +22,87 @@ import Loading from './loading';
 
 
 // ***************************************    HOLAAAAAAAAA          ********************************************
-function Cart({allUser}) {
-    
-    const[state,setState]=useState(10);
-        const router = useRouter();
-        const data = router.query;
-        const [loader,setLoader] = useState(true);
-        
-        let isToastRunning = false;
+function Cart({ allUser }) {
 
-        useEffect(()=>{
-            setTimeout(() => {
-              setLoader(false)
-              
-            }, 2000);
-          },[])
-        
+    const [state, setState] = useState(10);
+    const router = useRouter();
+    const data = router.query;
+    const [loader, setLoader] = useState(true);
 
+    let isToastRunning = false;
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoader(false)
+
+        }, 2000);
+    }, [])
+
+    useEffect(() => {
+        const handleRouteError = (err, url) => {
+          console.error("Route change failed:", err);
+          alert("Failed to load the page. Please try again.");
+        };
     
+        router.events.on("routeChangeError", handleRouteError);
+    
+        // Cleanup the event listener when the component unmounts
+        return () => {
+          router.events.off("routeChangeError", handleRouteError);
+        };
+      }, [router.events]);
+
+
+    useEffect(() => {
+        const handleRouteError = (err, url) => {
+          console.error("Route change failed:", err);
+          alert("Failed to load the page. Please try again.");
+        };
+    
+        router.events.on("routeChangeError", handleRouteError);
+    
+        // Cleanup the event listener when the component unmounts
+        return () => {
+          router.events.off("routeChangeError", handleRouteError);
+        };
+      }, [router.events]);
+
+
     const allItems = useRef();
-    const dispatch=useDispatch()
-    const date=new Date();
+    const dispatch = useDispatch()
+    const date = new Date();
 
-    let myCart=[]
-    Object.keys(allUser).map((ind)=>{
-            if(allUser[ind]._id==router.query.slug)
-            {
-                myCart=allUser[ind].cart
-                return;
-            }
-            
-        
+    let myCart = []
+    Object.keys(allUser).map((ind) => {
+        if (allUser[ind]._id == router.query.slug) {
+            myCart = allUser[ind].cart
+            return;
+        }
+
+
     })
 
-   
 
-    const reRender=()=>{
-      
-      setState(prev=>{
-        return {...prev}
-      })
-     
+
+    const reRender = () => {
+
+        setState(prev => {
+            return { ...prev }
+        })
+
     }
 
     const [qty, setQty] = useState(1)
 
-    let val=0;
-    myCart.map((j)=>{
-        val+=j.price;
+    let val = 0;
+    myCart.map((j) => {
+        val += j.price;
     })
     const [subTotal, setSubTotal] = useState(val)
-   
-    
 
-    const handleDec = (x,item) => {
+
+
+    const handleDec = (x, item) => {
 
         var z = document.getElementById('main')
         let initial;
@@ -84,35 +111,33 @@ function Cart({allUser}) {
                 var qty = parseInt(z.children[i].children[2].children[1].children[1].innerHTML) - 1;
 
 
-                if(item.qty>0)
-                item.qty=item.qty-1;
+                if (item.qty > 0)
+                    item.qty = item.qty - 1;
 
-                let gg=z.children[i].children[2].children[0].innerHTML;
+                let gg = z.children[i].children[2].children[0].innerHTML;
 
-                if(gg.charAt(1)=='<')
-                initial=z.children[i].children[2].children[0].innerHTML.slice(9)
+                if (gg.charAt(1) == '<')
+                    initial = z.children[i].children[2].children[0].innerHTML.slice(9)
 
-               else{
+                else {
 
-                   initial = parseInt(z.children[i].children[2].children[0].innerHTML.slice(1))
-               }
-               initial=parseInt(initial)
-                
+                    initial = parseInt(z.children[i].children[2].children[0].innerHTML.slice(1))
+                }
+                initial = parseInt(initial)
+
                 if (qty >= 1) {
-                    let total=0; ;
+                    let total = 0;;
 
-                    if(z.children[i].children[2].children[2].innerHTML.charAt(1)=='<')
-                    {
-                       
-                        total=parseInt(z.children[i].children[2].children[2].innerHTML.slice(9)) - initial
+                    if (z.children[i].children[2].children[2].innerHTML.charAt(1) == '<') {
+
+                        total = parseInt(z.children[i].children[2].children[2].innerHTML.slice(9)) - initial
                     }
 
-                    else
-                    {
-                        
-                    total= parseInt(z.children[i].children[2].children[2].innerHTML.slice(1)) - initial
+                    else {
+
+                        total = parseInt(z.children[i].children[2].children[2].innerHTML.slice(1)) - initial
                     }
-              
+
 
                     var rupee = z.children[i].children[2].children[2].innerHTML.slice(0, 1)
                     z.children[i].children[2].children[2].innerHTML = rupee + total
@@ -131,45 +156,43 @@ function Cart({allUser}) {
 
     }
 
-    const handleInc = (x,item) => {
+    const handleInc = (x, item) => {
 
         var z = document.getElementById('main')
         for (let i = 0; i < z.children.length; i++) {
             if (x == z.children[i].id) {
                 var qty = parseInt(z.children[i].children[2].children[1].children[1].innerHTML) + 1
                 let initial;
-                if(item.qty<9)
-                item.qty=item.qty+1;
-               
-                let gg=z.children[i].children[2].children[0].innerHTML;
+                if (item.qty < 9)
+                    item.qty = item.qty + 1;
 
-                if(gg.charAt(1)=='<')
-                initial=z.children[i].children[2].children[0].innerHTML.slice(9)
+                let gg = z.children[i].children[2].children[0].innerHTML;
 
-               else{
+                if (gg.charAt(1) == '<')
+                    initial = z.children[i].children[2].children[0].innerHTML.slice(9)
 
-                   initial = parseInt(z.children[i].children[2].children[0].innerHTML.slice(1))
-               }
-               initial=parseInt(initial)
-              
+                else {
+
+                    initial = parseInt(z.children[i].children[2].children[0].innerHTML.slice(1))
+                }
+                initial = parseInt(initial)
+
                 if (qty <= 9) {
-                    let total=0; ;
+                    let total = 0;;
 
-                    if(z.children[i].children[2].children[2].innerHTML.charAt(1)=='<')
-                    {
-                        total=parseInt(z.children[i].children[2].children[2].innerHTML.slice(9)) + initial
-                  
+                    if (z.children[i].children[2].children[2].innerHTML.charAt(1) == '<') {
+                        total = parseInt(z.children[i].children[2].children[2].innerHTML.slice(9)) + initial
+
 
                     }
 
-                    else
-                    {
-                    total= parseInt(z.children[i].children[2].children[2].innerHTML.slice(1)) + initial
+                    else {
+                        total = parseInt(z.children[i].children[2].children[2].innerHTML.slice(1)) + initial
                     }
 
-                    
+
                     var rupee = z.children[i].children[2].children[2].innerHTML.slice(0, 1)
-                    
+
                     z.children[i].children[2].children[2].innerHTML = rupee + total
 
                     z.children[i].children[2].children[1].children[1].innerHTML = qty
@@ -178,22 +201,22 @@ function Cart({allUser}) {
                 }
                 else {
 
-                    if(!isToastRunning){
+                    if (!isToastRunning) {
                         toast.warning(`Can't add more itemss`, {
                             autoClose: 1000,
-                            
+
                         })
 
-                        isToastRunning=true;
+                        isToastRunning = true;
 
                         setTimeout(() => {
-                            isToastRunning=false;
+                            isToastRunning = false;
                         }, 2000);
 
                     }
-                  
 
-                    
+
+
                 }
 
             }
@@ -201,7 +224,7 @@ function Cart({allUser}) {
         }
 
         SubtotalCount('add', 0);
-     
+
     }
 
     const SubtotalCount = (op, val) => {
@@ -213,20 +236,19 @@ function Cart({allUser}) {
             let sum = 0;
             let x;
             for (let i = 0; i < k; i++) {
-           
-                if(allItems.current.children[i].children[2].children[2].innerHTML.charAt(1)=='<')
-                {
-                    x=parseInt(allItems.current.childNodes[i].childNodes[2].childNodes[2].innerHTML.slice(9))
+
+                if (allItems.current.children[i].children[2].children[2].innerHTML.charAt(1) == '<') {
+                    x = parseInt(allItems.current.childNodes[i].childNodes[2].childNodes[2].innerHTML.slice(9))
                 }
-                else{
+                else {
 
                     x = parseInt(allItems.current.childNodes[i].childNodes[2].childNodes[2].innerHTML.slice(1));
                 }
-               
+
                 sum = sum + x;
             }
-            
-          
+
+
             setSubTotal(sum);
             // console.log(sum)
             // console.log(subTotal)
@@ -241,248 +263,250 @@ function Cart({allUser}) {
 
     }
 
-    const removeItem=async(item,i)=>
-    {
-        try{
-        if(!item.color)
-        {
-            item.color='';
-        }
-        if(!item.size)
-        {
-            item.size='';
-        }
-        let z=document.getElementById('main')
-        let newtotal=subTotal-(item.price * parseInt(z.children[i].children[2].children[1].children[1].innerHTML) )
-        setSubTotal(newtotal)
-      
-        const response=await fetch('/api/updateUser',{
-            method:'PATCH',
-            body:JSON.stringify({
-              'type':'removeCart',
-              'email':`${store.getState().finalPersistedReducer.user[0].email}`,
-              'color':item.color,
-              'size':item.size,
-              'productId':item.id
-            }),
-    
-            headers:{
-              'Content-Type':  'application/json',
-            
-             },
-          })
-
-         router.push({
-            pathname:'/cart',
-            query:{
-                slug:store.getState().finalPersistedReducer.user[0]._id
+    const removeItem = async (item, i) => {
+        try {
+            if (!item.color) {
+                item.color = '';
             }
-         })
-          
-         dispatch(removeUserCart({   
-            id:item.id,
-            color:item.color,
-            size:item.size
+            if (!item.size) {
+                item.size = '';
+            }
+            let z = document.getElementById('main')
+            setLoader(true);
+            setTimeout(() => {
+                setLoader(false)
+            }, 1500);
+            let newtotal = subTotal - (item.price * parseInt(z.children[i].children[2].children[1].children[1].innerHTML))
+            setSubTotal(newtotal)
 
-         }))
+
+            const response = await fetch('/api/updateUser', {
+                method: 'PATCH',
+                body: JSON.stringify({
+                    'type': 'removeCart',
+                    'email': `${store.getState().finalPersistedReducer.user[0].email}`,
+                    'color': item.color,
+                    'size': item.size,
+                    'productId': item.id
+                }),
+
+                headers: {
+                    'Content-Type': 'application/json',
+
+                },
+            })
+
+            router.push({
+                pathname: '/cart',
+                query: {
+                    slug: store.getState().finalPersistedReducer.user[0]._id
+                }
+            })
+
+            dispatch(removeUserCart({
+                id: item.id,
+                color: item.color,
+                size: item.size
+
+            }))
 
         }
 
-        catch(err)
-        {
+        catch (err) {
             router.reload()
         }
     }
 
 
-    let quan=0;
+    let quan = 0;
 
-    const finalCheckout=()=>{
-        
-        Date.prototype.addDays = function(days) {
+    const finalCheckout = () => {
+
+        Date.prototype.addDays = function (days) {
             var date = new Date(this.valueOf());
             date.setDate(date.getDate() + days);
             return date;
         }
-        
+
         const allmonth = ["Jan", "Feb", "March", "April", "May", "June",
-        "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+            "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
-      const alldays=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-        
-        let longDate=date.addDays(6);
-        let deliveryDate=`${alldays[longDate.getDay()]+" "+longDate.getDate()+" "+allmonth[longDate.getMonth()]+","+longDate.getFullYear()}`
+        const alldays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
-        
- 
+        let longDate = date.addDays(6);
+        let deliveryDate = `${alldays[longDate.getDay()] + " " + longDate.getDate() + " " + allmonth[longDate.getMonth()] + "," + longDate.getFullYear()}`
 
-        myCart.map((item)=>{
-            if(!item.status)
-            {
-                quan=quan+item.qty;
-                item.status="pending"
+
+
+
+        myCart.map((item) => {
+            if (!item.status) {
+                quan = quan + item.qty;
+                item.status = "pending"
 
             }
         })
         let a = Math.round(Math.random() * 1000000)
         let b = Math.round(Math.random() * 1000000)
         let iden = Date.now() + a + b;
-       
 
-      const  overall={
-            orderid:iden,
-            status:"pending",
-            qty:quan,
-            total:subTotal,
-            delivery:deliveryDate
+
+        const overall = {
+            orderid: iden,
+            status: "pending",
+            qty: quan,
+            total: subTotal,
+            delivery: deliveryDate
         }
 
-        try{
+        try {
 
             myCart.push(overall)
         }
-        catch(err)
-        {
-        
+        catch (err) {
+
         }
 
-        dispatch(orderOut())  
-        dispatch(orderIn(myCart)) 
+        dispatch(orderOut())
+        dispatch(orderIn(myCart))
 
 
-      if(myCart.length>1)
-      {
-        
+        if (myCart.length > 1) {
+            setLoader(true);
+            setTimeout(() => {
+                setLoader(false)
+            }, 1200);
 
-          router.push({
-              pathname:'/address',
-              query:{
-                  slug:router.query.slug
-              }
-              
-          })
-      }
+            router.push({
+                pathname: '/address',
+                query: {
+                    slug: router.query.slug
+                }
+
+            })
+        }
 
 
-        
+
     }
 
+    if (loader) return (<Loading />)
 
-    if(loader)
-        return(
-         <Loading/>
-        )
-       
-        else
-    return (
-        <>
-              <Head>
-        <title>Cart</title>
-      </Head>
-            <div>
+    else
+        return (
 
-                <ToastContainer className={styles.toastContainer}
-                    limit={5} />
+            <>
+                <Navbar search={false} />
+                <Head>
+                    <title>Cart</title>
+                </Head>
+                <div>
 
-                <Navbar></Navbar>
-
-                <h4 style={{ "font-family": `Poppins`, fontSize: "40px", marginBottom: "3vh", marginTop: "8vh" }}>Cart</h4>
-
-                <div className={styles.cartNav}>
-                    <ul>
-                        <li>Product</li>
-                        <li>Price</li>
-                        <li>Quantity</li>
-                        <li>Total</li>
-                    </ul>
-                </div>
-
-     { myCart.length==0 ? 
-     <div className={styles.emptyCart}>
-<a href="https://www.flaticon.com/free-icons/shopper" title="shopper icons"></a>
-<img src='empty-cart.png' height={220} width={220}></img>
-<h2>Ahh.. Your cart is Empty</h2>
-<h3>Go and add few Products</h3>
-     </div>
-     :
-                <div className={styles.cartItemContainer} id='main' ref={allItems}>
-                     {myCart.map((item,i) =>
-                      {  
-                        if(!item.orderid)
-                     {
-                        return (
-                            <div className={styles.itemSummary} id={item.id+i} key={i}>
-                               <Link passHref={true} href={{
-                    pathname: '/item',
-                    query: {
-                            d: JSON.stringify(item.brand, "/", item.title),
-                            slug: item.id
-                        }
-
-                  }} ><img src={item.img} alt='' height={110} width={100} /></Link> 
-                                <div className={styles.itemSummary_Specs}>
-                                    <p>{item.title}</p>
-                                    <p>{item.brand} </p>
-                                   { item.size ? <p>{item.size}</p> :<></>}
-                                   { item.color ? <p style={{ "backgroundColor": `${item.color}` }} ></p> :<></>}
-                                </div>
-                                <div>
-                                    <p className={styles.itemValue}>&#8377;{item.price}</p>
-
-                                    <div className={styles.Itemqty} >
-                                        <GrSubtract className={styles.icon} onClick={() => handleDec(item.id+i,item)}></GrSubtract>
-                                        <p>{qty}</p>
-                                        <GrAdd className={styles.icon} onClick={() => handleInc(item.id+i,item)}></GrAdd>
-                                    </div>
-
-                                    <p className={styles.itemTotal}>&#8377;{item.price}</p>
-
-                                </div>
-                                <RxCross1 className={styles.cartRemove} onClick={() => removeItem(item,i)} />
-                            </div>
+                    <ToastContainer className={styles.toastContainer}
+                        limit={5} />
 
 
 
-                        )
-            }
-                     }
-                 
-                     )}  
-                </div>
+                    <h4 style={{ "font-family": `Poppins`, fontSize: "40px", marginBottom: "3vh", marginTop: "8vh" }}>Cart</h4>
+
+                    <div className={styles.cartNav}>
+                        <ul>
+                            <li>Product</li>
+                            <li>Price</li>
+                            <li>Quantity</li>
+                            <li>Total</li>
+                        </ul>
+                    </div>
+
+                    {myCart.length == 0 ?
+                        <div className={styles.emptyCart}>
+                            <a href="https://www.flaticon.com/free-icons/shopper" title="shopper icons"></a>
+                            <img src='empty-cart.png' height={220} width={220}></img>
+                            <h2>Ahh.. Your cart is Empty</h2>
+                            <h3>Go and add few Products</h3>
+                        </div>
+                        :
+                        <div className={styles.cartItemContainer} id='main' ref={allItems}>
+                            {myCart.map((item, i) => {
+                                if (!item.orderid) {
+                                    return (
+                                        <div className={styles.itemSummary} id={item.id + i} key={i}>
+                                            <Link passHref={true} href={{
+                                                pathname: '/item',
+                                                query: {
+                                                    d: JSON.stringify(item.brand, "/", item.title),
+                                                    slug: item.id
+                                                }
+
+                                            }} ><img src={item.img} alt='' height={110} width={100} /></Link>
+                                            <div className={styles.itemSummary_Specs}>
+                                                <p>{item.title}</p>
+                                                <p>{item.brand} </p>
+                                                {item.size ? <p>{item.size}</p> : <></>}
+                                                {item.color ? <p style={{ "backgroundColor": `${item.color}` }} ></p> : <></>}
+                                            </div>
+                                            <div>
+                                                <p className={styles.itemValue}>&#8377;{item.price}</p>
+
+                                                <div className={styles.Itemqty} >
+                                                    <GrSubtract className={styles.icon} onClick={() => handleDec(item.id + i, item)}></GrSubtract>
+                                                    <p>{qty}</p>
+                                                    <GrAdd className={styles.icon} onClick={() => handleInc(item.id + i, item)}></GrAdd>
+                                                </div>
+
+                                                <p className={styles.itemTotal}>&#8377;{item.price}</p>
+
+                                            </div>
+                                            <RxCross1 className={styles.cartRemove} onClick={() => removeItem(item, i)} />
+                                        </div>
+
+
+
+                                    )
+                                }
+                            }
+
+                            )}
+                        </div>
 
                     }
-             
-            </div>
 
-            <div className={styles.cartRight}>
-                <h4 >Order Summary</h4>
-                <hr />
-                <div >
-                    <p>Subtotal</p>
-
-                    <span>&#8377;{subTotal}</span>
                 </div>
 
-                <div>
-                    <p>Coupon Code</p>
-                    <input type="text" name="" placeholder='Enter Coupon Code' />
-                    <h5>Coupon will be applied at Checkout Page</h5>
+                <div className={styles.cartRight}>
+                    <h4 >Order Summary</h4>
+                    <hr />
+                    <div >
+                        <p>Subtotal</p>
+
+                        <span>&#8377;{subTotal}</span>
+                    </div>
+
+                    <div>
+                        <p>Coupon Code</p>
+                        <input type="text" name="" placeholder='Enter Coupon Code' />
+                        <h5>Coupon will be applied at Checkout Page</h5>
+                    </div>
+
+                    <button onClick={() => finalCheckout()}>Proceed</button>
+
+
                 </div>
+            </>
 
-                <button onClick={()=>finalCheckout()}>Proceed</button>
+
+        )
 
 
-            </div>
-        </>
-    )
+
 }
 
 export async function getStaticProps(context) {
 
     let allUser = await UserData.find()
- 
 
-    return { 
+
+    return {
         props: { allUser: JSON.parse(JSON.stringify(allUser)) }, // will be passed to the page component as props
     }
 }

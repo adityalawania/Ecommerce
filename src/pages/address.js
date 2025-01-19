@@ -10,8 +10,11 @@ import { useDispatch } from 'react-redux'
 import { InsightsUserRolesContextImpl } from 'twilio/lib/rest/flexApi/v1/insightsUserRoles'
 import UserData from '@/models/UserData'
 import Loading from './loading'
+import Card from './card'
 
 function Address({allUser}) {
+
+    
 
     const router=useRouter();
     const formRef=useRef()
@@ -49,7 +52,19 @@ function Address({allUser}) {
         })
         
 
-
+        useEffect(() => {
+            const handleRouteError = (err, url) => {
+              console.error("Route change failed:", err);
+              alert("Failed to load the page. Please try again.");
+            };
+        
+            router.events.on("routeChangeError", handleRouteError);
+        
+            // Cleanup the event listener when the component unmounts
+            return () => {
+              router.events.off("routeChangeError", handleRouteError);
+            };
+          }, [router.events]);
 
 
    const checkDetails = (e,y)=> {

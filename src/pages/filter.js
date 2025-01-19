@@ -85,6 +85,19 @@ function Filter(props, ref) {
     reRender();
   }
 
+  useEffect(() => {
+    const handleRouteError = (err, url) => {
+      console.error("Route change failed:", err);
+      alert("Failed to load the page. Please try again.");
+    };
+
+    router.events.on("routeChangeError", handleRouteError);
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      router.events.off("routeChangeError", handleRouteError);
+    };
+  }, [router.events]);
  
 
 
@@ -97,9 +110,11 @@ function Filter(props, ref) {
     if (brandRef.current.children[i - 1].childNodes[1].checked == true) {
 
       dispatch(addBrand(brandRef.current.children[i - 1].childNodes[1].value))  
+      allbrandRef.current.children[i-2].children[0].children[0].checked=true
     }
 
-    if (brandRef.current.children[i - 1].childNodes[1].checked == false) {
+    else{
+      allbrandRef.current.children[i-2].children[0].children[0].checked=false
 
       dispatch(removeBrand(brandRef.current.children[i - 1].childNodes[1].value))  
     }
@@ -108,20 +123,34 @@ function Filter(props, ref) {
   }
 
   const allBrandSelection=()=>{
+    console.log(allbrandRef.current.childNodes)
     let limit=allbrandRef.current.childNodes;
    
     for(let j=0;j<limit.length;j++)
     {
-      if(limit[j].tagName=='LI' && limit[j].children[0].checked==true)
+      if(limit[j].children[0].tagName=='LI' && limit[j].children[0].children[0].checked==true)
       {
-          dispatch(addBrand(limit[j].children[0].value))  
+          dispatch(addBrand(limit[j].children[0].children[0].value)) 
+          if(j<6){
+            brandRef.current.children[j+1].children[0].checked=true;
+          }
+          
       }
-      else if(limit[j].tagName=='LI' ){
-          dispatch(removeBrand(limit[j].children[0].value)) 
+      else if(limit[j].children[0].tagName=='LI' ){
+          dispatch(removeBrand(limit[j].children[0].children[0].value)) 
+          if(j<6){
+            brandRef.current.children[j+1].children[0].checked=false;
+          }
+
       }
+      else{
+        console.log(limit[j].tagName)
+      }
+
+   
     }
     
-    // console.log(i)
+    // console.log(limit)
   
     
   
@@ -199,19 +228,10 @@ function Filter(props, ref) {
             let letter=brand.charAt(0)
           
             return (
-              <div key={i}>
-              {(i>0 &&
-                      brandArray[i].charAt(0).toLowerCase()==brandArray[i-1].charAt(0).toLowerCase()) ? 
-                        <></>
-                    : 
-                
-                
-                <h4>{brand.charAt(0).toUpperCase()}</h4> 
-                
-              }
+                <div>
                 <li> <input type='checkbox' value={brand} onClick={() => allBrandSelection()} />{brand.toUpperCase()}</li>
-                
-              </div>
+                </div>
+              
               )
           })}
 

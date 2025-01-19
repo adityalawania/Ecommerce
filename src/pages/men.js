@@ -5,12 +5,14 @@ import allProductData from '../datas/data'
 import Product from '@/models/Product'
 import brandArray from '@/datas/brandArray'
 import Loading from './loading'
+import { useRouter } from 'next/router'
 
 function Men({j}) {
   const [data,setdata] = useState(allProductData);
   const [loader,setLoader] = useState(true)
 
   const searchRef=useRef(null);
+  const router = useRouter()
 
   useEffect(()=>{
     setTimeout(() => {
@@ -18,6 +20,20 @@ function Men({j}) {
       
     }, 2000);
   },[])
+
+  useEffect(() => {
+    const handleRouteError = (err, url) => {
+      console.error("Route change failed:", err);
+      alert("Failed to load the page. Please try again.");
+    };
+
+    router.events.on("routeChangeError", handleRouteError);
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      router.events.off("routeChangeError", handleRouteError);
+    };
+  }, [router.events]);
   
   while(brandArray.length>0)
   {
@@ -38,7 +54,7 @@ function Men({j}) {
   else
   return (
     <>
-    <Navbar ></Navbar>
+    <Navbar search={true}></Navbar>
     <Card  response={j}></Card>
     </>
   )
