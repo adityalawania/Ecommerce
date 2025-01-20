@@ -24,6 +24,7 @@ import User from '@/models/User';
 require('../middleware/mongoose')
 import mongoose from 'mongoose'
 import Loading from './loading'
+import { toast, ToastContainer } from 'react-toastify'
 //***************  DB  **************** */
 
 
@@ -52,24 +53,29 @@ const session=useSession()
  const router=useRouter();
 
 
-//   // const reRender=()=>{
-   
-//   //   setState(prev=>{
-//   //     return {...prev}
-//   //   })
-   
-//   }
-
-  // reRender()
 
   if(session.data!=null)
   {
     dispatch(login())
 
   }
-  // else{
-  //   dispatch(logout())
-  // }
+
+  useEffect(() => {
+              const handleRouteError = (err, url) => {
+                console.error("Route change failed:", err);
+                toast.error("Failed to load the page. Please try again.",{
+                  autoClose:1200
+                })
+             
+              };
+          
+              router.events.on("routeChangeError", handleRouteError);
+          
+              // Cleanup the event listener when the component unmounts
+              return () => {
+                router.events.off("routeChangeError", handleRouteError);
+              };
+            }, [router.events]);
 
   // ************************************* ERROR **************************
 
@@ -353,6 +359,7 @@ const isCategory=(x)=>{
   return (
     <>
     <div className={styles.navContainer} >
+    <ToastContainer className={styles.toastContainer} />
       <Link  href={'/'}><Image id={styles.logo} src={'/30b2d015e904407aae937a4794ae064b.png'} width={80} height={55} alt='Image unavailable'></Image></Link>
       
       <ul ref={active} className={styles.navbar}>

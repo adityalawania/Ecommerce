@@ -178,7 +178,7 @@ export async function getServerSideProps(context) {
 
     // await mongoose.connect("mongodb://localhost:27017/Ecommerce")
     // await mongoose.connect("mongodb+srv://adityalawania899:<adiEcommerce>@cluster0.gudo8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-    mongoose.connect("mongodb+srv://adityalawania899:adiEcommerce@ecomcluster.l29l1.mongodb.net/?retryWrites=true&w=majority&appName=EcomCluster", {
+    mongoose.connect(`${process.env.MONGO_URI}`, {
  
     }).then(() => {
       console.log("Database Connected"); 

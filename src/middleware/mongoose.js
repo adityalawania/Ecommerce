@@ -9,8 +9,10 @@ const connectDB = handler=> async (req,res)=>{
         
     }
 
-    await mongoose.connect("mongodb+srv://adityalawania899:adiEcommerce@ecomcluster.l29l1.mongodb.net/?retryWrites=true&w=majority&appName=EcomCluster")
-    console.log("product db connected..!")
+    await mongoose.connect(`${process.env.MONGO_URI}`,{
+        keepAlive: true,    
+    })
+    console.log("product db connected..!") 
     return handler(req,res)
 }
 
