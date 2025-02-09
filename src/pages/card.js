@@ -26,19 +26,19 @@ import addUser from './api/addUser';
 import Loading from './loading';
 
 
-export let outerFunction ;
+export let outerFunction;
 const wishlistArray = [];
 
 function Card({ response }) {
 
-  
+
   // function utilitySearch() {
   //   searchclick();
   // }
 
-  useEffect(()=>{
+  useEffect(() => {
     outerFunction = searchclick;
-  },[])
+  }, [])
 
   const router = useRouter();
   const dispatch = useDispatch()
@@ -52,6 +52,8 @@ function Card({ response }) {
   const [finalResult, setFinalResult] = useState(result);
   const [loader, setloader] = useState(false);
   const [smallloader, setSmallLoader] = useState(false);
+  const [lastIdenWish, setlastIdenWish] = useState(1);
+
 
 
 
@@ -128,13 +130,28 @@ function Card({ response }) {
 
   //**************************************************** */
 
-
+  let canShowToast=true;
   const addToWish = async (iden, amount, name, company, picture, rate) => {
 
     if (store.getState().finalPersistedReducer.status[0] == 'inactive') {
       router.push('/login')
       return;
     }
+  
+    if(iden==lastIdenWish) {
+      if(!canShowToast){
+        return;
+      }
+      else{
+        canShowToast=false;
+        setTimeout(() => {
+          canShowToast=true;
+        }, 2600);
+      }
+    }
+
+
+    setlastIdenWish(iden);
 
     Date.prototype.addDays = function (days) {
       var date = new Date(this.valueOf());
@@ -164,14 +181,14 @@ function Card({ response }) {
 
     let reduxWish = store.getState().finalPersistedReducer.user[0].wish;
     let bool = true;
-    reduxWish.map((thing) => {
-      if (thing == iden) {
-        bool = false;
-        toast.warn('Item already added', {
-          autoClose: 1200
-        })
-      }
-    })
+
+    if (reduxWish.includes(iden)) {
+      bool = false;
+      toast.warn('Item already added', {
+
+        autoClose: 1200
+      })
+    }
 
     if (bool) {
       const response = await fetch('/api/updateUser', {
@@ -224,13 +241,13 @@ function Card({ response }) {
           newResponse = newResponse.filter(PricefilteringFunction)
           setResult(newResponse)
 
-          if(a.filterRating.length > 0){
+          if (a.filterRating.length > 0) {
             newResponse = newResponse.filter(RatingfilteringFunction)
             setResult(newResponse)
           }
         }
 
-        else if(a.filterRating.length > 0){
+        else if (a.filterRating.length > 0) {
           newResponse = newResponse.filter(RatingfilteringFunction)
           setResult(newResponse)
         }
@@ -242,13 +259,13 @@ function Card({ response }) {
         newResponse = response.filter(PricefilteringFunction)
         setResult(newResponse)
 
-        if(a.filterRating.length > 0){
+        if (a.filterRating.length > 0) {
           newResponse = newResponse.filter(RatingfilteringFunction)
           setResult(newResponse)
         }
       }
 
-      else if(a.filterRating.length > 0){
+      else if (a.filterRating.length > 0) {
         newResponse = response.filter(RatingfilteringFunction)
         setResult(newResponse)
       }
@@ -297,16 +314,16 @@ function Card({ response }) {
 
     let a = store.getState();
     let totalRating = 0;
-    ele.rating.map((r)=>{
-      totalRating+=r;
+    ele.rating.map((r) => {
+      totalRating += r;
     })
 
-    totalRating=totalRating / ele.rating.length;
-    
-    if(a.filterRating[0] <= totalRating ){
+    totalRating = totalRating / ele.rating.length;
+
+    if (a.filterRating[0] <= totalRating) {
       return ele
-    } 
-      
+    }
+
 
   }
 
@@ -325,13 +342,13 @@ function Card({ response }) {
 
       setResult(newResponse)
       newResponse = newResponse.filter(searchFilterGender)
-  
+
       setResult(newResponse)
       newResponse = newResponse.filter(searchFilterCategory)
       setResult(newResponse)
-     
+
       if (newResponse.length == 13 && searchState[0].title) {
-       
+
         setResult([])
       }
 
@@ -340,13 +357,13 @@ function Card({ response }) {
     // dispatch(searchOut())
   }
 
-  const searchFilterTitle = (ele) =>{
+  const searchFilterTitle = (ele) => {
     let searchState = store.getState().finalPersistedReducer.search[0];
     let f = false;
     if (searchState.title != "") {
-      
+
       if (ele.title.toLowerCase() == searchState.title) {
-       
+
         return ele;
       }
     }
@@ -365,7 +382,7 @@ function Card({ response }) {
     if (searchState.color.length > 0) {
       for (let i = 0; i < ele.color.length; i++) {
         let col = ele.color[i].toLowerCase();
-        if(searchState.color.includes(col)){
+        if (searchState.color.includes(col)) {
           flag = true;
           break;
 
@@ -377,7 +394,7 @@ function Card({ response }) {
 
     }
 
-    else{
+    else {
       // alert("n")
       return ele;
     }
@@ -409,31 +426,31 @@ function Card({ response }) {
     let f = false;
 
     if (searchState.category.length) {
-    
+
       if (searchState.category.includes(cat)) {
-     
+
         return ele;
       }
 
 
-  
-      for(let i=0;i<searchState.category.length;i++){
+
+      for (let i = 0; i < searchState.category.length; i++) {
         let it = searchState.category[i];
-        if(moreCat.includes(it)){
+        if (moreCat.includes(it)) {
 
           return ele
         }
       }
 
-    
-      for(let i=0;i<searchState.title.length;i++){
+
+      for (let i = 0; i < searchState.title.length; i++) {
         let it = searchState.title[i];
 
-        if(moreCat.includes(it)){
-           return ele
+        if (moreCat.includes(it)) {
+          return ele
         }
       }
-    
+
     }
 
 
@@ -469,53 +486,53 @@ function Card({ response }) {
             </div>
             <Filter ref={filterRef} className={styles.filterinCard}></Filter>
 
-            {smallloader ? <div style={{position:'fixed',left:800,top:290,width:100}}> <Loading/> </div> : 
-            <div id={styles.CardContainer} ref={cardContRef}>
+            {smallloader ? <div style={{ position: 'fixed', left: 800, top: 290, width: 100 }}> <Loading /> </div> :
+              <div id={styles.CardContainer} ref={cardContRef}>
 
-              {Object.keys(result).map((i) => {
-
-
-
-                return (
-
-                  <div className={styles.Card} key={result[i]._id}>
-
-                    <Link passHref={true} href={{
-                      pathname: '/item',
-                      query: {
-                        d: JSON.stringify(result[i].brand, "/", result[i].title),
-                        slug: result[i]._id
-                      }
+                {Object.keys(result).map((i) => {
 
 
-                    }}>
+
+                  return (
+
+                    <div className={styles.Card} key={result[i]._id}>
+
+                      <Link passHref={true} href={{
+                        pathname: '/item',
+                        query: {
+                          d: JSON.stringify(result[i].brand, "/", result[i].title),
+                          slug: result[i]._id
+                        }
 
 
-                      <img className={styles.img} src={result[i].img[0]} height={220} width={230}></img>
-                      <div className={styles.CardContent}>
-                        <p id={styles.title} >{(result[i].brand).toUpperCase()}</p>
-                        <p>{(result[i].title).charAt(0).toUpperCase() + (result[i].title.slice(1))}</p>
+                      }}>
 
-                        <span className={styles.price}>&#8377;{result[i].price[0]}</span>
-                        <span className={styles.priceCut}>&#8377;{result[i].price[1]}</span>
 
+                        <img className={styles.img} src={result[i].img[0]} height={220} width={230}></img>
+                        <div className={styles.CardContent}>
+                          <p id={styles.title} >{(result[i].brand).toUpperCase()}</p>
+                          <p>{(result[i].title).charAt(0).toUpperCase() + (result[i].title.slice(1))}</p>
+
+                          <span className={styles.price}>&#8377;{result[i].price[0]}</span>
+                          <span className={styles.priceCut}>&#8377;{result[i].price[1]}</span>
+
+
+                        </div>
+
+                      </Link>
+
+                      <div className={styles.CardWish} onClick={() => addToWish(result[i]._id, result[i].price[0], result[i].title, result[i].brand, result[i].img[0], result[i].rating ? result[i].rating : 4.5)}>
+                        <FiHeart className={styles.wishIcon} />
 
                       </div>
-
-                    </Link>
-
-                    <div className={styles.CardWish} onClick={() => addToWish(result[i]._id, result[i].price[0], result[i].title, result[i].brand, result[i].img[0], result[i].rating ? result[i].rating : 4.5)}>
-                      <FiHeart className={styles.wishIcon} />
-
                     </div>
-                  </div>
 
-                )
-              })}
+                  )
+                })}
 
-            </div>
+              </div>
 
-    }
+            }
           </section>
         </div>
       )

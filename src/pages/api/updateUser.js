@@ -69,6 +69,15 @@ const handler =async(req, res)=> {
             )
         }
 
+        else if (req.body.type == 'clearCart') {
+
+            p = await UserData.findOneAndUpdate(
+                {email: req.body.email},
+                {$set:{cart:[]}}
+            )
+        }
+
+
         else if(req.body.type=='addWish')
         {
             try {
@@ -124,12 +133,14 @@ const handler =async(req, res)=> {
                 let i=0; 
                 while(i<req.body.content.length)
             {
+                let currContent = req.body.content[i];
+                currContent.delivery = req.body.delivery
                 p = await UserData.findOneAndUpdate(
                     {email:req.body.email},
                     
                     { 
                         
-                            $push: { orders: req.body.content[i] } 
+                            $push: { orders: currContent} 
                         }
                         
                 )

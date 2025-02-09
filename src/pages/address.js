@@ -141,7 +141,7 @@ function Address({allUser}) {
         else
     return (
         <>
-            <TracingNavbar></TracingNavbar>
+            <TracingNavbar id={2}></TracingNavbar>
 
 <form name='detailForm' onSubmit={(e)=>checkDetails(e)}>
             <div className={styles.CheckoutCont} id='myForm' ref={formRef}>

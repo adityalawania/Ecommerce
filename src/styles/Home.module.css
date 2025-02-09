@@ -420,6 +420,7 @@
   min-height: 100vh;
   color :black;
   margin-top: 8.3vh;
+
 }
 
 .accountSection .accNav{
@@ -2690,12 +2691,53 @@ margin-top: 10vh;
   }
 
   .paymentSection{
-    margin-top: 20vh;
-    background-color: #5911de;
-    font-family: 'Anuphan';
+   
+    background-color:rgba(175, 175, 175, 0.193);
+    font-family: 'Montserrat';
+    font-size: 24px;
     padding: 50px;
+    width: 34vw;
+    margin:10vh auto;
+    border-radius: 14px;
   
   }
+  .paymentSection p{
+    background-color: transparent;
+    margin-left: 80px;
+    margin-bottom: 40px;
+  }
+
+  .paymentSection button{
+    padding: 12px;
+    border-radius: 5px;
+  }
+  
+  .paymentSection .payNow{
+    margin-left: 11vw;
+    background-color: #5911deb0;
+    margin-bottom: 13px;
+  width: 100px;
+  
+
+  }
+
+  .paymentSection .payNow:hover{
+    background-color: #5911de;
+  }
+
+  .paymentSection .cod{
+    background-color: rgba(56, 56, 56, 0.81);
+    margin-top: 13px;
+    margin-left: 11vw;
+    width: 100px;
+
+  }
+
+  .paymentSection .cod:hover{
+    background-color:black;
+  
+  }
+
 
   .paymentSection h1{
     margin-top: 20px;
@@ -2715,7 +2757,61 @@ margin-top: 10vh;
 
   }
 
+  .CheckoutSection{
+    background-color: rgba(95, 95, 95, 0.198);
+    padding: 20px;
+    height: 40vh;
+    width: 50vw;
+    margin: 10vh auto;
+    border-radius: 14px;
+    position: relative;
+    left: 320px;
+    top: 53px;
+    justify-content: center;
+    justify-items: left;
+  }
 
+  .CheckoutSection h1,  .CheckoutSection h2{
+    background-color: transparent;
+    font-family: 'Montserrat';
+    margin-left: 12vw;
+    font-weight: bolder;
+
+  }
+
+  .CheckoutSection h2{
+    font-size: 20px;
+    position: relative;
+    right: 10px;
+    margin-top: 10px;
+  }
+
+  .CheckoutSection p{
+    background-color: transparent;
+    font-family: 'Anuphan';
+    width: 20vw;
+    position: relative;
+    left: 14vw;
+    top: 3vh;
+  }
+
+  .CheckoutSection button{
+    padding: 10px;
+    font-size: 19px;
+    background-color:#3f00b4;
+    position: relative;
+    top: 10vh;
+    left: 17vw;
+    border-radius: 8px;
+  }
+
+  .checkoutImg{
+   position: absolute;
+   width: 20vw;
+   height: 20vw;
+   top: 30vh;
+   left: 10vw;
+  }
 
   .tracingBox{
     /* border: 2px solid red; */
@@ -3367,15 +3463,15 @@ display: none;
 }
 
 .accountContainer > h2{
+  z-index: 0;
+
   position: fixed;
-  top: 10vh;
-  left: 43vw;
+  top:10vh;
+  left: 43vw; 
 
   font-size: 32px;
   font-family: "Poppins";
  
-
-  
 }
 .accountContainer section{
   /* background-color: rgb(228, 228, 228); */
@@ -3507,7 +3603,8 @@ height: 78vh;
   
 }
 .profileOrderCont{
-  display: none;
+  /* display: none; */
+  
 }
 
 .profileOrderCont h3,.profileReviewCont h3
@@ -3517,6 +3614,7 @@ height: 78vh;
   width: 63vw;
   margin-bottom: 20px; 
 }
+
 
 .profileOrder img{
   height: 110px;
@@ -4430,9 +4528,11 @@ width: 25px;
 }
 
 .loaderParent{
-  background-color: rgb(255, 255, 255);
-  width: 100vw;
+   background-color: rgb(255, 255, 255);
+/* background-color: red;  */
+  width: 100vw; 
   height:100vh;
+
 
 }
 .loader {

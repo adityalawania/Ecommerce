@@ -52,9 +52,13 @@ const userSlice = createSlice({
                     state[0].wish.splice(i,1);
                 }
             })
+        },
+
+        clearUserCart(state,action){
+            state[0].cart=[]
         }
     }
 })
 
 export default  userSlice.reducer;
-export const {addUser,updateUser, removeUser,addUserCart,removeUserCart,addUserWish,removeUserWish,updateUserId,addUserOrder} = userSlice.actions;
+export const {addUser,updateUser, removeUser,addUserCart,removeUserCart,clearUserCart,addUserWish,removeUserWish,updateUserId,addUserOrder} = userSlice.actions;

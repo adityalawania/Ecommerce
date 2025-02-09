@@ -1,112 +1,195 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 import TracingNavbar from './tracingNavbar'
-import Link from 'next/link'
-import store from '../store'
-import Order from '@/models/Order'
 import { useRouter } from 'next/router'
-import { toast } from 'react-toastify'
-import { ToastContainer } from 'react-toastify';
-import { orderIn } from '../store/slices/orderSlice'
-import { addUserOrder } from '../store/slices/userSlice'
+import { toast, ToastContainer } from 'react-toastify'
+import store from '../store'
+import { addUserOrder, clearUserCart } from '../store/slices/userSlice'
 import Loading from './loading'
-
+import Script from 'next/script'
+import { useDispatch } from 'react-redux'
+import { orderOut } from '@/store/slices/orderSlice'
 
 function Payment() {
+  const router = useRouter();
+  const [loader, setLoader] = useState(true);
+  const [processing, setProcessing] = useState(false);
+  const [razorpayLoaded, setRazorpayLoaded] = useState(false);
+  const[netAmount,setNetAmount]=useState(0);
 
-  const router=useRouter();
-  const [loader,setLoader] = useState(true);
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    setTimeout(() => setLoader(false), 2000);
+    
+    let len = store.getState().finalPersistedReducer.order[0].length;
+    let pr =store.getState().finalPersistedReducer.order[0][len-1].total
+    setNetAmount(pr);
+  }, []);
+
+  const backend = async() =>{
+    confirmOrder()
+    const response = await fetch('/api/updateUser', {
+      method: 'PATCH',
+      body: JSON.stringify({
+        'type': 'clearCart',
+        'email': `${store.getState().finalPersistedReducer.user[0].email}`,
+      }),
+
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    dispatch(orderOut());
+    dispatch(clearUserCart());
   
 
-const confirmOrder=async()=>{
-  let myorder=store.getState().finalPersistedReducer.order[0];
-  
-  let myaddress=store.getState().finalPersistedReducer.address[0];
-
-  useEffect(()=>{
     setTimeout(() => {
-      setLoader(false)
-      
+      router.push({
+        pathname:'/checkout',
+        query:{
+          slug:router.query.slug
+        }
+      })
     }, 2000);
-  },[])
 
-  const response=await fetch('/api/addOrder',{
-    method:'POST',
-    body:JSON.stringify({
-      'userId':`${store.getState().finalPersistedReducer.user[0]._id}`,
-      'name':myaddress.name,
-      'country':myaddress.country,
-      'state':myaddress.state,
-      'city':myaddress.city,
-      'address':myaddress.address,
-      'apartment':myaddress.apartment,
-      'postal':myaddress.pin,
-      'email':myaddress.email,
-      'phone':myaddress.phone,
-      'products':myorder.slice(0,myorder.length-1),
-      'details':myorder.slice(myorder.length-1,myorder.length),
-      'payment':'postpaid'
+  }
 
+  const AMOUNT = netAmount;
 
-    }),
+  const handlePayment = async () => {
+    if (!razorpayLoaded) {
+      alert("Razorpay SDK not loaded. Please try again.");
+      router.reload()
+      return;
+    }
 
-    headers:{
-      'Content-Type':  'application/json',
-     },
-  })
+    setProcessing(true);
+    try {
+      const response = await fetch("/api/createOrder", { method: "POST" , body:JSON.stringify(netAmount)});
+      const data = await response.json();
+      console.log("Order Data:", data);
 
-  try{
-   
-  const userOrder=await fetch('/api/updateUser',{
-   
-    method:'PATCH',
-    body:JSON.stringify({
-      'type':'addOrder',
-      'email':`${store.getState().finalPersistedReducer.user[0].email}`,
-      'content':myorder.slice(0,myorder.length-1)
-    }),
+      // Ensure order ID is correctly fetched
+      if (!data.orderId) {
+        throw new Error("Invalid order response");
+      }
 
-    headers:{
-      'Content-Type':  'application/json',
-     },
-  })
+      const options = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+        amount: AMOUNT * 100,
+        currency: "INR",
+        name: "Try-it Store",
+        description: "In Testing Mode",
+        order_id: data.orderId, // Correct key
+        handler: function (response) {
+          console.log("Payment Successful", response);
+          toast.success("Payment Successful!");
+          backend();
+        },
+        prefill: {
+          email: "adityalawania899@gmail.com",
+          contact: "82******60"
+        },
+        theme: {
+          color: "#3399cc"
+        },
+      };
 
-addUserOrder((myorder.slice(0,myorder.length-1)))
-}
-catch(err)
-{
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (err) {
+      console.error("Payment Failed", err.message);
+      toast.error("Payment Failed. Please try again.");
+    } finally {
+      setProcessing(false);
+    }
+  };
 
-  toast.error(`Can't Order... Please try again`,{
-    autoClose:1500
-  })
-}
-  toast.success('Thanks of Order',{
-    autoClose:1200
-  })
+  const confirmOrder = async () => {
+    let myorder = store.getState().finalPersistedReducer.order[0];
+    let myaddress = store.getState().finalPersistedReducer.address[0];
 
-  router.push('/checkout')
-}
+    try {
+      await fetch('/api/addOrder', {
+        method: 'POST',
+        body: JSON.stringify({
+          'userId': store.getState().finalPersistedReducer.user[0]._id,
+          'name': myaddress.name,
+          'country': myaddress.country,
+          'state': myaddress.state,
+          'city': myaddress.city,
+          'address': myaddress.address,
+          'apartment': myaddress.apartment,
+          'postal': myaddress.pin,
+          'email': myaddress.email,
+          'phone': myaddress.phone,
+          'products': myorder.slice(0, myorder.length - 1),
+          'details': myorder.slice(myorder.length - 1, myorder.length),
+          'payment': 'postpaid'
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-if(loader)
-  return(
-   <Loading/>
-  )
- 
-  else
+      await fetch('/api/updateUser', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          'type': 'addOrder',
+          'email': store.getState().finalPersistedReducer.user[0].email,
+          'content': myorder.slice(0, myorder.length - 1),
+          'delivery': myorder[myorder.length - 1].delivery
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      addUserOrder(myorder.slice(0, myorder.length - 1));
+      toast.success('Thanks for your order!', { autoClose: 1200 });
+      router.push({
+        pathname:'/checkout',
+        query:{
+          slug:router.query.slug
+        }
+      });
+    } catch (err) {
+      toast.error("Can't place order. Please try again.", { autoClose: 1500 });
+    }
+  };
+
+  if (loader) return <Loading />;
+
   return (
     <>
-<TracingNavbar></TracingNavbar>
-     <ToastContainer className={styles.paymentToast}></ToastContainer>
-    <div className={styles.paymentSection}>
-    <h2>Thanks for Ordering ...!</h2>
-    <h3>We dont have payment gateways for now...
-        So COD Zindabad...!
-    </h3>
-    </div>
-    <br></br>
-    <button onClick={confirmOrder}>Checkout</button>
+      {/* Ensure script is loaded before usage */}
+      <Script 
+        src="https://checkout.razorpay.com/v1/checkout.js"
+        strategy="lazyOnload"
+        onLoad={() => setRazorpayLoaded(true)}
+      />
+      
+      <TracingNavbar id={3} />
+      <ToastContainer className={styles.paymentToast} />
+      
+      <div className={styles.paymentSection}>
+       
+        <p>Amount to Pay: ₹{AMOUNT}</p>
+        <button className={styles.payNow} onClick={handlePayment} disabled={processing}>
+          {processing ? "Processing..." : "PAY NOW"}
+        </button>
+        <hr/>
+        <button className={styles.cod} onClick={backend}>
+          COD
+        </button>
+      </div>
+      
+      <br />
+   
     </>
-  )
+  );
 }
 
-export default Payment
+export default Payment;

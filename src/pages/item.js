@@ -35,6 +35,8 @@ function Item({ ele }) {
 
   const [activeSize, setActiveSize] = useState()
   const [reviewBool, setreviewBool] = useState(false)
+  const [addedToCart, setIsAddedToCart] = useState(false)
+
   
   const [activeImg, setActiveImg] = useState(ele.img[0])
 
@@ -56,9 +58,13 @@ function Item({ ele }) {
         setLoader(false)
         
       }, 2000);
+
+     
   }, [])
 
   useEffect(() => {
+
+    
     const handleRouteError = (err, url) => {
       console.error("Route change failed:", err);
       alert("Failed to load the page. Please try again.");
@@ -244,10 +250,10 @@ function Item({ ele }) {
     let flag = true;
     let cartObj;
 
+    // setIsAdded(true);
     if (store.getState().finalPersistedReducer.status[0] != 'active') {
       router.push('./login')
     }
-
 
     else if (!activeSize && ele.size.length > 0) {
       toast.error('Please Select Size', {
@@ -678,7 +684,7 @@ function Item({ ele }) {
 
 export async function getServerSideProps(context) {
 
-  let ele = await Product.findById(context.query.slug)
+  let ele = await Product.findById(context.query.slug);
 
   return {
     props: { ele: JSON.parse(JSON.stringify(ele)) }, // will be passed to the page component as props

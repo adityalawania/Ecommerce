@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '../styles/Home.module.css'
 import Navbar from './Navbar'
 import countries from '../datas/country'
-import { useState, useRef,useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import User from '@/models/User'
 import { useRouter } from 'next/router'
 import userSlice from '../store/slices/userSlice'
@@ -21,7 +21,7 @@ import Loading from './loading'
 
 function Profile({ userData }) {
 
-  const [loader,setLoader] = useState(true)
+  const [loader, setLoader] = useState(true)
 
   const pictureRef = useRef()
   const countryRef = useRef()
@@ -39,12 +39,12 @@ function Profile({ userData }) {
   const router = useRouter()
   const dispatch = useDispatch();
 
-  useEffect(()=>{
+  useEffect(() => {
     setTimeout(() => {
       setLoader(false)
-      
+
     }, 2000);
-  },[])
+  }, [])
 
   let myUser = []
 
@@ -61,9 +61,9 @@ function Profile({ userData }) {
 
   let cc = "+91"
   countries.map((cont) => {
-    if (myUser.country == cont.name){
+    if (myUser.country == cont.name) {
       cc = cont.code;
-   
+
 
     }
   })
@@ -264,7 +264,7 @@ function Profile({ userData }) {
         emailRef.current.style.display = "block"
       }
 
-      
+
       else {
         try {
           const response = await fetch('/api/updateUser', {
@@ -735,7 +735,7 @@ function Profile({ userData }) {
         }
 
         catch (err) {
-  
+
         }
 
 
@@ -755,7 +755,7 @@ function Profile({ userData }) {
 
   const newImg = async (e) => {
     e.preventDefault();
- 
+
 
     const file = e.target.files[0];
 
@@ -783,7 +783,7 @@ function Profile({ userData }) {
     }
 
     catch (err) {
- 
+
     }
 
 
@@ -795,16 +795,16 @@ function Profile({ userData }) {
   }
 
   const updateDetails = async (e) => {
-  
+
     e.preventDefault();
     var phoneFormat = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/
-    
-    if(phone.match(phoneFormat)){
+
+    if (phone.match(phoneFormat)) {
 
     }
-    else{
+    else {
 
-      if(phone.length==0)
+      if (phone.length == 0)
         toast.error('Please enter Phone Number', {
           autoClose: 1200
         })
@@ -814,35 +814,35 @@ function Profile({ userData }) {
           autoClose: 1200
         })
 
-        return;
+      return;
     }
 
-    if(fname.length==0 || lname.length==0){
-      toast.error(`Names Field can't be empty `,{
-        autoClose:1200
+    if (fname.length == 0 || lname.length == 0) {
+      toast.error(`Names Field can't be empty `, {
+        autoClose: 1200
       })
       return;
     }
 
-    if(country==''){
-      toast.error(`Please choose one country `,{
-        autoClose:1200
+    if (country == '') {
+      toast.error(`Please choose one country `, {
+        autoClose: 1200
       })
       return;
     }
-    
+
     try {
-  
+
       const response = await fetch('/api/updateUser', {
         method: 'PATCH',
         body: JSON.stringify({
           'type': 'updatePersonalDetails',
-          'country':country,
+          'country': country,
           'email': userEmail,
-          'fname':fname,
-          'lname':lname,
-          'gender':gender,
-          'fphone':phone
+          'fname': fname,
+          'lname': lname,
+          'gender': gender,
+          'fphone': phone
         }),
 
         headers: {
@@ -852,128 +852,128 @@ function Profile({ userData }) {
 
       router.reload();
 
-      toast.success('Profile Updated',{
-        autoClose:1200
+      toast.success('Profile Updated', {
+        autoClose: 1200
       })
 
     }
     catch (err) {
-   
+
     }
   }
 
 
-  if(loader)
-    return(
-     <Loading/>
+  if (loader)
+    return (
+      <Loading />
     )
-   
+
   else
-  return (
+    return (
 
-    <div className={styles.accountContainer}>
-      <Head>
-        <title>Account</title>
-      </Head>
-      <Navbar search={false}></Navbar>
-      <ToastContainer className={styles.toastContainer} limit={2} />
-      <h2>My Account</h2>
-
-
-      <section className={styles.accountSideBar}>
-        <h3>Welcome {myUser.fname}</h3>
-        <ul ref={profileNavRef}>
-          <li onClick={() => profileNav('0')}><img src='user.png' className={styles.ProfileNavIcons} />  Profile         <img src='next.png' className={styles.profileNext} height={20} width={20} /></li>
-          <li onClick={() => profileNav('1')}><img src='shopping-bag.png' className={styles.ProfileNavIcons} />  Orders          <img src='next.png' className={styles.profileNext} height={20} width={20} /></li>
-          <li onClick={() => profileNav('2')}><img src='location.png' className={styles.ProfileNavIcons} />  Address         <img src='next.png' className={styles.profileNext} height={20} width={20} /></li>
-          <li onClick={() => profileNav('3')}><img src='review.png' className={styles.ProfileNavIcons} />  Reviews         <img src='next.png' className={styles.profileNext} height={20} width={20} /></li>
-          <li onClick={() => profileNav('4')}><img src='unlock.png' className={styles.ProfileNavIcons} />  Change Password <img src='next.png' className={styles.profileNext} height={20} width={20} /></li>
-          <button onClick={() => logoutFunc()}>Logout</button>
-        </ul>
-      </section>
-      <section ref={sectionRef}>
-        <div className={styles.mainProfileCont}>
-          <h3>Profile</h3>
-          <aside>
-
-            <div>
-              <img src='male.png' className={styles.noProfileImg} />
-
-            </div>
+      <div className={styles.accountContainer}>
+        <Head>
+          <title>Account</title>
+        </Head>
+        <Navbar search={false}></Navbar>
+        <ToastContainer className={styles.toastContainer} limit={2} />
+        <h2>My Account</h2>
 
 
+        <section className={styles.accountSideBar}>
+          <h3>Welcome {myUser.fname}</h3>
+          <ul ref={profileNavRef}>
+            <li onClick={() => profileNav('0')}><img src='user.png' className={styles.ProfileNavIcons} />  Profile         <img src='next.png' className={styles.profileNext} height={20} width={20} /></li>
+            <li onClick={() => profileNav('1')}><img src='shopping-bag.png' className={styles.ProfileNavIcons} />  Orders          <img src='next.png' className={styles.profileNext} height={20} width={20} /></li>
+            <li onClick={() => profileNav('2')}><img src='location.png' className={styles.ProfileNavIcons} />  Address         <img src='next.png' className={styles.profileNext} height={20} width={20} /></li>
+            <li onClick={() => profileNav('3')}><img src='review.png' className={styles.ProfileNavIcons} />  Reviews         <img src='next.png' className={styles.profileNext} height={20} width={20} /></li>
+            <li onClick={() => profileNav('4')}><img src='unlock.png' className={styles.ProfileNavIcons} />  Change Password <img src='next.png' className={styles.profileNext} height={20} width={20} /></li>
+            <button onClick={() => logoutFunc()}>Logout</button>
+          </ul>
+        </section>
+        <section ref={sectionRef}>
+          <div className={styles.mainProfileCont}>
+            <h3>Profile</h3>
+            <aside>
 
-            <form onSubmit={(e) => updateDetails(e)} method='post' >
+              <div>
+                <img src='male.png' className={styles.noProfileImg} />
 
-              <input type="text" placeholder='First Name' name='fname' value={fname} onChange={(e) => profileDetailFunc(e, "fname")} />
-              <input type="text" placeholder='Last Name' name='lname' value={lname} onChange={(e) => profileDetailFunc(e, "lname")} />
-              <select id="gender" value={gender} name='gender' onChange={(e)=>setGender(e.target.value)}>
-                <option defaultValue={myUser.gender}>Select Gender</option>
-
-                <option value="Male" ref={countryRef}>Male</option>
-                <option value="Female" ref={countryRef}>Female</option>
-                <option value="Others" ref={countryRef}>Others</option>
+              </div>
 
 
-              </select>
-              <input type="text" placeholder='Email' name='email' value={userEmail} />
-              <li onClick={(e) => changeEmailPhone(e, "email")}>CHANGE</li>
-              <span>{countryCode}</span> <input type="text" placeholder='Phone' name='phone' value={phone} onChange={(e) => profileDetailFunc(e, "phone")} />
+
+              <form onSubmit={(e) => updateDetails(e)} method='post' >
+
+                <input type="text" placeholder='First Name' name='fname' value={fname} onChange={(e) => profileDetailFunc(e, "fname")} />
+                <input type="text" placeholder='Last Name' name='lname' value={lname} onChange={(e) => profileDetailFunc(e, "lname")} />
+                <select id="gender" value={gender} name='gender' onChange={(e) => setGender(e.target.value)}>
+                  <option defaultValue={myUser.gender}>Select Gender</option>
+
+                  <option value="Male" ref={countryRef}>Male</option>
+                  <option value="Female" ref={countryRef}>Female</option>
+                  <option value="Others" ref={countryRef}>Others</option>
 
 
-              <select id="nations" defaultValue={myUser.country} name='country' onChange={(e) => changecountry(e)}>
-                
-                <option value=''>{country.length>0 ? country : defCountry}</option>
-                {countries.map((c, i) => {
-                  return (
-                    <option value={c.name} ref={countryRef} key={i}>{c.name}</option>
-                  )
-                })}
-              </select>
+                </select>
+                <input type="text" placeholder='Email' name='email' value={userEmail} />
+                <li onClick={(e) => changeEmailPhone(e, "email")}>CHANGE</li>
+                <span>{countryCode}</span> <input type="text" placeholder='Phone' name='phone' value={phone} onChange={(e) => profileDetailFunc(e, "phone")} />
 
-              <button>Save</button>
-              <hr />
+
+                <select id="nations" defaultValue={myUser.country} name='country' onChange={(e) => changecountry(e)}>
+
+                  <option value=''>{country.length > 0 ? country : defCountry}</option>
+                  {countries.map((c, i) => {
+                    return (
+                      <option value={c.name} ref={countryRef} key={i}>{c.name}</option>
+                    )
+                  })}
+                </select>
+
+                <button>Save</button>
+                <hr />
+              </form>
+
+
+
+
+              <div>
+                <button className={styles.glow} onClick={exploreCoupen}>Coupons</button>
+                <article ref={coupenRef}>
+                  <span>HelloTry-it</span>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur labore illum laboriosam blanditiis obcaecati cum officiis repellendus. Omnis, corrupti atque quia quas possimus ut </p>
+                </article>
+
+
+              </div>
+            </aside>
+            <form className={`${styles.loginContainer} ${styles.OTPform} ${styles.profileOTPCont}`} ref={OtpRef} onSubmit={(e) => verifyOtp(e)} >
+              <h2> Change Email Address</h2>
+              <div className={` ${styles.OTP}`} id='myForm' >
+
+                <h2>Enter 6-digit OTP</h2>
+                <p>OTP has been send to {newEmail}</p>
+                <input type="tel" placeholder='______' required value={otp ? otp : ""} onChange={(e) => toggleOtp(e)} />
+                <button>Submit</button>
+                <p onClick={() => sendOTP()}>Resend OTP</p>
+              </div>
+            </form>
+
+            <form ref={emailRef}>
+              <h2> Change Email Address</h2>
+              <div className={styles.forgotContainer} id='myForm'>
+                <h2>Enter your new Email</h2>
+                <input type="text" placeholder='Email' required onChange={(e) => emailRef.current.childNodes[1].childNodes[2].style.display = "none"} />
+                <p>This email is already in use, try another</p>
+                <button onClick={(e) => verifyEmail(e)}>Send OTP</button>
+
+
+              </div>
             </form>
 
 
-
-
-            <div>
-              <button className={styles.glow} onClick={exploreCoupen}>Coupons</button>
-              <article ref={coupenRef}>
-                <span>HelloTry-it</span>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur labore illum laboriosam blanditiis obcaecati cum officiis repellendus. Omnis, corrupti atque quia quas possimus ut </p>
-              </article>
-
-
-            </div>
-          </aside>
-          <form className={`${styles.loginContainer} ${styles.OTPform} ${styles.profileOTPCont}`} ref={OtpRef} onSubmit={(e) => verifyOtp(e)} >
-            <h2> Change Email Address</h2>
-            <div className={` ${styles.OTP}`} id='myForm' >
-
-              <h2>Enter 6-digit OTP</h2>
-              <p>OTP has been send to {newEmail}</p>
-              <input type="tel" placeholder='______' required value={otp ? otp : ""} onChange={(e) => toggleOtp(e)} />
-              <button>Submit</button>
-              <p onClick={() => sendOTP()}>Resend OTP</p>
-            </div>
-          </form>
-
-          <form ref={emailRef}>
-            <h2> Change Email Address</h2>
-            <div className={styles.forgotContainer} id='myForm'>
-              <h2>Enter your new Email</h2>
-              <input type="text" placeholder='Email' required onChange={(e) => emailRef.current.childNodes[1].childNodes[2].style.display = "none"} />
-              <p>This email is already in use, try another</p>
-              <button onClick={(e) => verifyEmail(e)}>Send OTP</button>
-
-
-            </div>
-          </form>
-
-
-        </div>
+          </div>
 
 
 
@@ -984,203 +984,228 @@ function Profile({ userData }) {
 
 
 
-        <div className={styles.profileOrderCont}>
-          <h3>Orders</h3>
-          {/* ****************     MAP 2   ************************ */}
-          {myUser.orders.map((order, i) => {
-            let status = order.status.charAt(0).toUpperCase() + order.status.slice(1);
-            return (
-              <aside className={styles.profileOrder} key={i}>
-                <div className={styles.OrderDetail}>
-                  <img src={order.img} />
-                  <ul>
-                    <li>{order.title}</li>
-                    <li>{order.brand}</li>
-                  </ul>
-                  <ul>
-                    <li>{order.size}</li>
-                    <p style={{ "backgroundColor": `${order.color}` }} ></p>
-                  </ul>
-                  <ul>
-                    <li>Rs. {order.price}</li>
-                    {status == 'Pending' ?
+          <div className={styles.profileOrderCont}>
+            <h3>Orders</h3>
+            {/* ****************     MAP 2   ************************ */}
+            {myUser.orders.length == 0 ?
+              <div style={{ position: 'absolute', top: '30vh', left: '15vw', fontFamily: 'Poppins' }}>
+                <h2 style={{ fontSize: '29px' }}>Haww... You haven't Ordered Anything !</h2>
+                <p style={{ fontSize: '24px' }}>Grab insane deals on your first Order !!</p></div> :
+             
+              myUser.orders.toReversed().map((order, i) => {
 
-                      <li style={{ "color": `orange` }}>{status}</li> : <></>
+                let status = order.status.charAt(0).toUpperCase() + order.status.slice(1);
+                return (
+                  <aside className={styles.profileOrder} key={i}>
+                    <div className={styles.OrderDetail}>
+                      <img src={order.img} onClick={() => {
+                        {
+                          router.push({
+                            pathname: '/item',
+                            query: {
+                              d: JSON.stringify(order.brand, "/", order.title),
+                              slug: order.id
+                            }
+                          })
+                        }
+                      }} />
+                      <ul>
+                        <li>{order.title}</li>
+                        <li>{order.brand}</li>
+                      </ul>
+                      <ul>
+                        <li>{order.size}</li>
+                        <p style={{ "backgroundColor": `${order.color}` }} ></p>
+                      </ul>
+                      <ul>
+                        <li>Rs. {order.price}</li>
+                        {status == 'Pending' ?
+
+                          <li style={{ "color": `orange` }}>{status}</li> : <></>
+                        }
+                        {
+                          status == 'Canceled' ?
+                            <li style={{ "color": `red` }}>{status}</li> : <></>
+                        }
+                        {status == 'Delivered' ?
+
+                          <li style={{ "color": `rgb(96, 33, 242)` }}>{status}</li> : <></>
+                        }
+                      </ul>
+                      <ul>
+                        <li>Shipping Date:</li>
+                        <li>{order.delivery}</li>
+                      </ul>
+                      <ul>
+                        <li>Order Id:</li>
+                        <li>{order.id}</li>
+                      </ul>
+                    </div>
+                    {
+                      status == 'Pending' ?
+                        <button style={{ "backgroundColor": 'red' }} onClick={() => cancelOrder(order.id)}>Cancel Order</button> : <></>
                     }
                     {
-                      status == 'Canceled' ?
-                        <li style={{ "color": `red` }}>{status}</li> : <></>
+                      status == 'Delivered' ?
+                        <button style={{ "backgroundColor": 'purple' }} >Rate Product</button> : <></>
                     }
-                    {status == 'Delivered' ?
-
-                      <li style={{ "color": `rgb(96, 33, 242)` }}>{status}</li> : <></>
-                    }
-                  </ul>
-                  <ul>
-                    <li>Shipping Date:</li>
-                    <li></li>
-                  </ul>
-                  <ul>
-                    <li>Order Id:</li>
-                    <li>{order.id}</li>
-                  </ul>
-                </div>
-                {
-                  status == 'Pending' ?
-                    <button style={{ "backgroundColor": 'red' }} onClick={() => cancelOrder(order.id)}>Cancel Order</button> : <></>
-                }
-                {
-                  status == 'Delivered' ?
-                    <button style={{ "backgroundColor": 'purple' }} >Rate Product</button> : <></>
-                }
-
-              </aside>
-
-            )
-          })}
-
-
-        </div>
-
-        <div className={styles.profileAddCont} ref={addressRef}>
-          <h3>Address</h3>
-
-          {myUser.alladdress.map((curr, i) => {
-            if (curr == myUser.address) {
-              return (
-                <aside className={styles.profileAdd} style={{ "border": "3px solid rgb(148, 33, 242)", "height": "110px" }} onClick={(e) => selectAddress(e, i)}>
-
-
-                  <img src='home.png' height={20} width={20} />
-                  <select onChange={(e) => setaddType(e, i)}>
-                    <option selected value="Home">Home</option>
-                    <option value="Work">Work</option>
-                  </select>
-
-                  <p style={{ "color": 'rgb(148, 33, 242)', "fontWeight": "600" }}>{curr}</p>
-                  <div>
-                    <img src='delete.png' height={20} width={20} onClick={() => deleteAdd(i, curr)} />
-                  </div>
-                </aside>
-              )
-            }
-            else {
-              return (
-                <aside className={styles.profileAdd} onClick={(e) => selectAddress(e, i)}>
-
-                  <img src='home.png' height={20} width={20} />
-                  <select onChange={(e) => setaddType(e, i)}>
-                    <option selected value="Home">Home</option>
-                    <option value="Work">Work</option>
-                  </select>
-                  <p>{curr}</p>
-                  <div>
-                    <img src='delete.png' height={20} width={20} onClick={() => deleteAdd(i, curr)} />
-                  </div>
-                </aside>
-              )
-            }
-
-          })}
-
-
-          <div className={styles.addAddress} >
-            <img src='plus.png' height={15} width={15} />
-            <input type='text' placeholder='Add Address' ref={newAddRef} />
-            <button onClick={(e) => addAddress(e)}>Add</button>
-          </div>
-        </div>
-
-
-        {/* ******************************* Reviews ********************************* */}
-        <div className={styles.profileReviewCont} ref={reviewRef}>
-          <h3>Reviews</h3>
-          {/* ****************     MAP 2   ************************ */}
-          <div>
-            {myUser.reviews.map((item, i) => {
-
-              let arr = [1, 2, 3, 4, 5];
-              let ratePoints = item.rating;
-
-              if (item.review)
-                return (
-                  <aside className={styles.profileReview}>
-
-                    <img src='delete.png' onClick={(e) => removeReview(e, i)} />
-                    <div>
-                      <img src={item.img} />
-                      <h5>{item.title}</h5>
-                      <h5>|</h5>
-                      <h5>{item.brand}</h5>
-                    </div>
-
-
-                    <p>Posted on {item.date}</p>
-                    <div className={styles.starContainer}>
-
-                      {arr.map(() => {
-                        ratePoints--;
-                        if (ratePoints > -1)
-                          return (
-                            <img src="starFill.png" alt="" height={16} width={16} />
-                          )
-
-                        else
-                          return (
-                            <img src="starBlank.png" alt="" height={14.6} width={14.6} />
-                          )
-
-
-                      })}
-                      {/*           
-              <img src="starFill.png" alt="" height={16} width={16} />
-              <img src="starFill.png" alt="" height={16} width={16} />
-              <img src="starBlank.png" alt="" height={14.6} width={14.6} /> */}
-                    </div>
-
-                    <div>
-                      <p>{item.review}</p>
-                    </div>
 
                   </aside>
 
                 )
-            })}
+              })}
+
 
           </div>
-        </div>
+
+          <div className={styles.profileAddCont} ref={addressRef}>
+            <h3>Address</h3>
+
+            {myUser.alladdress.length == 0 ?
+              <aside style={{ position: 'absolute', top: '25vh', left: '14vw', fontFamily: 'Poppins' }}>
+                <h2 style={{ fontSize: '29px' }}>Your Privacy is Our Priority !</h2>
+                <p style={{ fontSize: '23px' }}>Add some addresses so we can reach you anytime you want !!</p></aside> :
+              myUser.alladdress.map((curr, i) => {
+                if (curr == myUser.address) {
+                  return (
+                    <aside className={styles.profileAdd} style={{ "border": "3px solid rgb(148, 33, 242)", "height": "110px" }} onClick={(e) => selectAddress(e, i)}>
 
 
+                      <img src='home.png' height={20} width={20} />
+                      <select onChange={(e) => setaddType(e, i)}>
+                        <option selected value="Home">Home</option>
+                        <option value="Work">Work</option>
+                      </select>
 
-        <div className={styles.profilePassCont} >
-          <h3>Change Password</h3>
-          <form ref={passRef}>
-            <div>
-              <input type="password" placeholder='Old Password' />
-              <img src='view.png' onClick={() => passEye('hide', 0)} />
-              <img src='hide.png' onClick={() => passEye('show', 0)} />
+                      <p style={{ "color": 'rgb(148, 33, 242)', "fontWeight": "600" }}>{curr}</p>
+                      <div>
+                        <img src='delete.png' height={20} width={20} onClick={() => deleteAdd(i, curr)} />
+                      </div>
+                    </aside>
+                  )
+                }
+                else {
+                  return (
+                    <aside className={styles.profileAdd} onClick={(e) => selectAddress(e, i)}>
+
+                      <img src='home.png' height={20} width={20} />
+                      <select onChange={(e) => setaddType(e, i)}>
+                        <option selected value="Home">Home</option>
+                        <option value="Work">Work</option>
+                      </select>
+                      <p>{curr}</p>
+                      <div>
+                        <img src='delete.png' height={20} width={20} onClick={() => deleteAdd(i, curr)} />
+                      </div>
+                    </aside>
+                  )
+                }
+
+              })}
+
+
+            <div className={styles.addAddress} >
+              <img src='plus.png' height={15} width={15} />
+              <input type='text' placeholder='Add Address' ref={newAddRef} />
+              <button onClick={(e) => addAddress(e)}>Add</button>
             </div>
+          </div>
 
+
+          {/* ******************************* Reviews ********************************* */}
+          <div className={styles.profileReviewCont} ref={reviewRef}>
+            <h3>Reviews</h3>
+            {/* ****************     MAP 2   ************************ */}
             <div>
-              <input type="password" placeholder='New Password' />
-              <img src='view.png' onClick={() => passEye('hide', 1)} />
-              <img src='hide.png' onClick={() => passEye('show', 1)} />
-            </div>
+              {
+                myUser.reviews.length == 0 ?
+                  <div style={{ position: 'absolute', top: '30vh', left: '15vw', fontFamily: 'Poppins' }}>
+                    <h2 style={{ fontSize: '29px' }}>Your feedback is your Supreme Favour !</h2>
+                    <p style={{ fontSize: '24px' }}>Order and review some products !!</p></div> :
+                  myUser.reviews.map((item, i) => {
 
-            <div>
-              <input type="password" placeholder='Confirm New Password' />
-              <img src='view.png' onClick={() => passEye('hide', 2)} />
-              <img src='hide.png' onClick={() => passEye('show', 2)} />
-            </div>
-            <p>By saving you will be redirected to login page and login with new password</p>
-            <button onClick={(e) => verifyPassword(e)}>Save</button>
-          </form>
-          <p onClick={() => router.push('/forgetpass')}>Forgot Password? Try using Email</p>
-        </div>
-      </section>
-    </div>
+                    let arr = [1, 2, 3, 4, 5];
+                    let ratePoints = item.rating;
 
-  )
+                    if (item.review)
+                      return (
+                        <aside className={styles.profileReview}>
+
+                          <img src='delete.png' onClick={(e) => removeReview(e, i)} />
+                          <div>
+                            <img src={item.img} />
+                            <h5>{item.title}</h5>
+                            <h5>|</h5>
+                            <h5>{item.brand}</h5>
+                          </div>
+
+
+                          <p>Posted on {item.date}</p>
+                          <div className={styles.starContainer}>
+
+                            {arr.map(() => {
+                              ratePoints--;
+                              if (ratePoints > -1)
+                                return (
+                                  <img src="starFill.png" alt="" height={16} width={16} />
+                                )
+
+                              else
+                                return (
+                                  <img src="starBlank.png" alt="" height={14.6} width={14.6} />
+                                )
+
+
+                            })}
+                            {/*           
+              <img src="starFill.png" alt="" height={16} width={16} />
+              <img src="starFill.png" alt="" height={16} width={16} />
+              <img src="starBlank.png" alt="" height={14.6} width={14.6} /> */}
+                          </div>
+
+                          <div>
+                            <p>{item.review}</p>
+                          </div>
+
+                        </aside>
+
+                      )
+                  })}
+
+            </div>
+          </div>
+
+
+
+          <div className={styles.profilePassCont} >
+            <h3>Change Password</h3>
+            <form ref={passRef}>
+              <div>
+                <input type="password" placeholder='Old Password' />
+                <img src='view.png' onClick={() => passEye('hide', 0)} />
+                <img src='hide.png' onClick={() => passEye('show', 0)} />
+              </div>
+
+              <div>
+                <input type="password" placeholder='New Password' />
+                <img src='view.png' onClick={() => passEye('hide', 1)} />
+                <img src='hide.png' onClick={() => passEye('show', 1)} />
+              </div>
+
+              <div>
+                <input type="password" placeholder='Confirm New Password' />
+                <img src='view.png' onClick={() => passEye('hide', 2)} />
+                <img src='hide.png' onClick={() => passEye('show', 2)} />
+              </div>
+              <p>By saving you will be redirected to login page and login with new password</p>
+              <button onClick={(e) => verifyPassword(e)}>Save</button>
+            </form>
+            <p onClick={() => router.push('/forgetpass')}>Forgot Password? Try using Email</p>
+          </div>
+        </section>
+      </div>
+
+    )
 }
 export async function getServerSideProps(context) {
 

@@ -47,11 +47,14 @@ if(loader)
   return (
     <>
     {/* <ToastContainer/> */}
-    <TracingNavbar/>
-      <div className={styles.paymentSection}>
+    <TracingNavbar id={4}/>
+      <img src={'/logo.png'} className={styles.checkoutImg}/>
+      <div className={styles.CheckoutSection}>
 
-      <h1>Your Order will be delivered within 5 days </h1>
-      <h2>You can track your order by mobile and email notifications..!</h2>
+      <h1>Thankyou for Shopping !</h1>
+      <h2>Your Order will be delivered within 6 days </h2>
+      <p>We hope you like the experience ! For feedback please contact our team at adityalawania899@gmail.com</p>
+      <button onClick={()=>router.push('/')}>Contiue Shopping</button>
       </div>
     </>
   )
