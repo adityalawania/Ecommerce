@@ -12,7 +12,8 @@ const notifySlice = createSlice({
         {
             
             return []
-        }
+        },
+      
     }
 })
 

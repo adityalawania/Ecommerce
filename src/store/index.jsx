@@ -29,6 +29,8 @@ import searchSlice from "./slices/searchSlice";
 import notifySlice from "./slices/notifySlice";
 import orderSlice from "./slices/orderSlice";
 import addressSlice from "./slices/addressStore";
+import pinSlice from './slices/pinSlice'
+
 
 
 const persistConf ={
@@ -46,7 +48,9 @@ const reducer=combineReducers({
     search:searchSlice,
     // notify:notifySlice,
     order:orderSlice,
-    address:addressSlice
+    pin:pinSlice,
+    address:addressSlice,
+    
 })
 
 const finalPersistedReducer= persistReducer(persistConf,reducer)

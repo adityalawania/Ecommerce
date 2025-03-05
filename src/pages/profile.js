@@ -18,6 +18,7 @@ import Head from 'next/head'
 import { headers } from '../../next.config'
 import UserData from '@/models/UserData'
 import Loading from './loading'
+import { clearPin, setPin } from '@/store/slices/pinSlice'
 
 function Profile({ userData }) {
 
@@ -231,6 +232,7 @@ function Profile({ userData }) {
       }
     }
 
+  
     setRandomCode(something)
 
     const response = await fetch('/api/emailSender', {
@@ -246,6 +248,9 @@ function Profile({ userData }) {
       },
     })
 
+
+    dispatch(clearPin());
+    dispatch(setPin(something))
     console.log("done")
 
     return;
@@ -862,6 +867,21 @@ function Profile({ userData }) {
     }
   }
 
+  
+
+  const forgetPass = () =>{
+  
+    sendOTP(myUser.email);
+    router.push({
+      pathname:'/otp',
+      
+      query:{
+        slug:userEmail,
+        existed:true
+      }
+    })
+  }
+
 
   if (loader)
     return (
@@ -948,7 +968,7 @@ function Profile({ userData }) {
 
               </div>
             </aside>
-            <form className={`${styles.loginContainer} ${styles.OTPform} ${styles.profileOTPCont}`} ref={OtpRef} onSubmit={(e) => verifyOtp(e)} >
+            {/* <form className={`${styles.loginContainer} ${styles.OTPform} ${styles.profileOTPCont}`} ref={OtpRef} onSubmit={(e) => verifyOtp(e)} >
               <h2> Change Email Address</h2>
               <div className={` ${styles.OTP}`} id='myForm' >
 
@@ -958,7 +978,7 @@ function Profile({ userData }) {
                 <button>Submit</button>
                 <p onClick={() => sendOTP()}>Resend OTP</p>
               </div>
-            </form>
+            </form> */}
 
             <form ref={emailRef}>
               <h2> Change Email Address</h2>
@@ -988,9 +1008,10 @@ function Profile({ userData }) {
             <h3>Orders</h3>
             {/* ****************     MAP 2   ************************ */}
             {myUser.orders.length == 0 ?
-              <div style={{ position: 'absolute', top: '30vh', left: '15vw', fontFamily: 'Poppins' }}>
-                <h2 style={{ fontSize: '29px' }}>Haww... You haven't Ordered Anything !</h2>
-                <p style={{ fontSize: '24px' }}>Grab insane deals on your first Order !!</p></div> :
+                            <div style={{ position: 'relative', top: '30vh', left: '15vw', fontFamily: 'Poppins'}}>
+                            <h2 style={{ fontSize: '29px' }}>Haww... You haven't Ordered Anything !</h2>
+                            <p style={{ fontSize: '24px' }}>Grab insane deals on your first Order !!</p></div> :
+            
              
               myUser.orders.toReversed().map((order, i) => {
 
@@ -1200,7 +1221,7 @@ function Profile({ userData }) {
               <p>By saving you will be redirected to login page and login with new password</p>
               <button onClick={(e) => verifyPassword(e)}>Save</button>
             </form>
-            <p onClick={() => router.push('/forgetpass')}>Forgot Password? Try using Email</p>
+            <p onClick={() =>forgetPass()}>Forgot Password? Try using Email</p>
           </div>
         </section>
       </div>

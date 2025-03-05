@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import store from "..";
+
 const brandSlice = createSlice({
     name:"brands",
     initialState:[],

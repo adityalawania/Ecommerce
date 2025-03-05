@@ -276,6 +276,8 @@ if(loader)
  
   else
   return (
+    <>
+    <img src='/logo.png' style={{width:'25vw',height:'25vw',position:'absolute',top:'20vh',left:'30vh',zIndex:'10'}}/>
     <section className={styles.LoginSignupCont}>
       <Head>
         <title>Login</title>
@@ -283,27 +285,26 @@ if(loader)
       <ToastContainer className={styles.toastContainer}
         limit={2} id="1" />
       <form >
-        <div className={`${styles.loginContainer} ${styles.mainLogin}`} id='myForm' ref={loginContRef}>
+        <div className={`${styles.loginContainer} ${styles.MainLoginCont} ${styles.mainLogin}`} id='myForm' ref={loginContRef}>
           <h2>Login</h2>
           <input type="text" placeholder='Email' required />
           <input type="password" placeholder='Password' required ref={passRef} />
-          <section ref={showRef} ><AiOutlineEyeInvisible className={styles.passShow} onClick={(e) => togglePassword(e, "show")} /></section>
-          <section ref={hideRef}> <AiOutlineEye className={styles.passHide} onClick={(e) => togglePassword(e, "hide")} /></section>
+          <section ref={showRef} ><AiOutlineEyeInvisible className={styles.passShowLogin} onClick={(e) => togglePassword(e, "show")} /></section>
+          <section ref={hideRef}> <AiOutlineEye className={styles.passHideLogin} onClick={(e) => togglePassword(e, "hide")} /></section>
 
           <button onClick={(e) => loginAction(e)}>Login</button>
-          <p onClick={fogetPass}>Forgot Password ?</p>
-          <hr />
-          <p>Or Login With</p>
+          <p className={styles.forgotPassBtn} onClick={fogetPass}>Forgot Password ?</p>
+        
           <div className={styles.oauthCont}>
             <div onClick={()=>signUP('google')}>
+              <span>Login with Google</span>
               <img src='icons8-google-logo-96.png'
                 height={26} width={26} />
-              <span>Google</span>
             </div>
             <div onClick={()=>signUP('github')}>
+              <span>Login with Github</span>
               <img src='icons8-github-96.png'
                 height={27} width={27}/>
-              <span>Github</span>
             </div>
       
           </div>
@@ -313,6 +314,7 @@ if(loader)
 
 
     </section>
+    </>
   )
 }
 

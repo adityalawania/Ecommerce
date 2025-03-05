@@ -392,7 +392,7 @@ function Cart({ allUser }) {
 
     if (loader) return (<Loading />)
 
-    else
+    else 
         return (
 
             <>
@@ -400,7 +400,7 @@ function Cart({ allUser }) {
                 <Head>
                     <title>Cart</title>
                 </Head>
-                <div>
+                <div >
 
                     <ToastContainer className={styles.toastContainer}
                         limit={5} />

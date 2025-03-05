@@ -208,13 +208,13 @@ function Item({ ele }) {
       if (k.innerHTML == e.target.innerHTML) {
         setActiveSize(k.innerHTML)
 
-        k.style.border = "1px solid rgb(95, 17, 183)"
-        k.style.color = "rgb(95, 17, 183)"
+        k.style.border = "1px solid rgb(96, 33, 242)"
+        k.style.color = "rgb(96, 33, 242)"
 
 
 
-        e.target.style.border = "2px solid rgb(95, 17, 183)"
-        e.target.style.color = "rgb(95, 17, 183)"
+        e.target.style.border = "2px solid rgb(96, 33, 242)"
+        e.target.style.color = "rgb(96, 33, 242)"
 
 
       }
@@ -246,12 +246,13 @@ function Item({ ele }) {
   }
 
   const AddCart = async () => {
-
+    let thisUser = store.getState().finalPersistedReducer.user;
+    
     let flag = true;
     let cartObj;
 
     // setIsAdded(true);
-    if (store.getState().finalPersistedReducer.status[0] != 'active') {
+    if (store.getState().finalPersistedReducer.status[0] != 'active' || thisUser.length==0) {
       router.push('./login')
     }
 

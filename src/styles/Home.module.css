@@ -43,16 +43,16 @@
 }
 
 .active {
-  color: rgb(148, 55, 255);
+  color: rgb(96, 33, 242);
   padding-bottom: 13px;
   margin-top: 17px;
-  border-bottom: 5px solid rgb(148, 55, 255);
+  border-bottom: 5px solid rgb(96, 33, 242);
   transition: 0.5s ease;
   border-radius: 2px;
 }
 
 .navbar li:hover {
-  color: rgb(148, 55, 255);
+  color: rgb(96, 33, 242);
   transition: 0.2s ease;
 }
 
@@ -71,11 +71,11 @@
 }
 
 .searchBar:focus {
-  outline: 2px solid rgb(148, 55, 255);
+  outline: 2px solid rgb(96, 33, 242);
 }
 
 .searchbutton {
-  background-color: rgb(95, 17, 183);
+  background-color: rgb(96, 33, 242);
   color: white;
   position: relative;
   right: 34vw;
@@ -100,7 +100,7 @@
   border: none;
   font-size: 14px;
   border-radius: 5px;
-  background-color: rgb(95, 17, 183);
+  background-color: rgb(96, 33, 242);
   color: white;
 }
 
@@ -124,7 +124,7 @@
 }
 
 .navIcons > li:hover {
-  color: rgb(148, 55, 255);
+  color: rgb(96, 33, 242);
   transition: 0.2s ease;
 
   cursor: pointer;
@@ -144,6 +144,10 @@
 
 #logo {
   margin-left: 20px;
+  margin-top: 3px;
+  padding: 0px;
+  width: 60px;
+  height: 53px;
 }
 
 .Card {
@@ -525,12 +529,12 @@
 }
 .field button{
   color: #fff;
-  background-color: #8d4fff;
+  background-color: rgb(96, 33, 242);
   transition: all 0.3s ease;
   cursor: pointer;
 }
 .field button:hover{
-  background-color: #aa86ee;
+  background-color: rgb(115, 60, 243);
 }
 .form-link{
   text-align: center;
@@ -601,7 +605,7 @@ img.google-img{
 
 #radio{
   height:17px;
-  accent-color: purple;
+  accent-color: rgb(96, 33, 242);
   position: relative;
   right: 11.5vw;
 }
@@ -654,8 +658,8 @@ border-bottom: 1px solid black;
 }
 
 .userDetails input:focus{
-  color: rgb(113, 45, 192);
-border-bottom: 1px solid rgb(149, 63, 230);
+  color: rgb(96, 33, 242);
+border-bottom: 1px solid rgb(96, 33, 242);
 
 }
 
@@ -667,12 +671,12 @@ border-bottom: 1px solid rgb(149, 63, 230);
   margin: auto;
   margin-top: 8px;
 padding: 5px;
-background-color:  rgb(147, 67, 239);
+background-color:  rgb(96, 33, 242);
 font-size: 16px;
 }
 
 .userDetails button:hover{
-background-color:  rgb(96, 30, 172);
+background-color:  rgb(96, 33, 242)
 
 }
 
@@ -934,7 +938,7 @@ background-color:  rgb(96, 30, 172);
 }
 
 .ratingDiv button{
-  background-color: rgb(96, 33, 242)s;
+  background-color: rgb(96, 33, 242);
 }
 
 .wish button{
@@ -943,7 +947,7 @@ background-color:  rgb(96, 30, 172);
   height: 30px;
   width: 85px;
   left: 80vw;
-background-color:  rgb(96, 30, 172);
+background-color:  rgb(96, 33, 242);
 border: none;
 border-radius: 4px;
 padding: 5px;
@@ -1200,7 +1204,7 @@ font-family: Poppins;
 }
 
 .reviewInput button{
-  background-color: rgb(95, 17, 183);
+  background-color: rgb(96, 33, 242);
   color: white;
   position: relative;
   left: 21vw;
@@ -1542,7 +1546,7 @@ border-radius: 50%;
  
  .reviewEmojiTag p:hover{
   cursor: pointer;
-  color: rgb(140, 72, 217);
+  color: rgb(96, 33, 242);
   font-weight: 600;
  }
 
@@ -1682,7 +1686,7 @@ margin-left: 20px;
 
 .btnCont button:nth-of-type(1)
 {
-  background-color: rgb(109, 33, 195);
+  background-color: rgb(96, 33, 242);
   color: white;
   border: none;
   width: 15vw;
@@ -1692,7 +1696,7 @@ margin-left: 20px;
 }
 
 .btnCont button:nth-of-type(1):hover{
-  background-color: rgb(140, 72, 217);
+  background-color: rgb(96, 33, 242);
 
   cursor: pointer;
 transition: 0.2s ease-in-out;
@@ -1700,13 +1704,13 @@ transition: 0.2s ease-in-out;
 
 .btnCont button:nth-of-type(1):active{
   background-color: white;
-  color: rgb(140, 72, 217);
+  color: rgb(96, 33, 242);
   transition: 0.1s;
 }
 
 .btnCont button:nth-of-type(2)
 {
-  color:rgb(109, 33, 195) ;
+  color:rgb(96, 33, 242) ;
 
   border:1.6px solid rgb(168, 168, 168);
 font-weight: 600;
@@ -1733,7 +1737,7 @@ border:1.6px solid rgb(109, 33, 195) ;
   
 }
 .btnCont button:nth-of-type(3):hover{
-  border-color:rgb(103, 23, 196) ;
+  border-color:rgb(96, 33, 242) ;
   transition: 0.2s ease;
 }
 
@@ -1943,13 +1947,13 @@ font-size: 22px;
   padding: 7px;
   border-radius: 5px;
   margin-left: 70px;
-  background-color: rgb(109, 33, 195);
+  background-color: rgb(96, 33, 242);
 }
 
 
 
 .filterHead button:hover{
-  background-color: rgb(137, 59, 227);
+  background-color: rgb(96, 33, 242);
   transition: 0.2s ease;
   cursor: pointer;
 }
@@ -1968,7 +1972,7 @@ font-size: 22px;
 .filter p{
  margin-left: 25px;
  font-family: 'Anuphan';
- color: #632fc3;
+ color: rgb(96, 33, 242);
 }
 .filter p:hover{
   cursor: pointer;
@@ -2023,14 +2027,14 @@ left: 2px;
 
 .filter input:checked{
   /* border: none; */
-  accent-color: #8d4fff;
-  background-color: #8d4fff;
+  accent-color: rgb(96, 33, 242);
+  background-color: rgb(96, 33, 242);
   
 }
 
 .filter input[type=range] 
 {
-  accent-color: rgb(109, 33, 195);
+  accent-color: rgb(96, 33, 242);
   
   width: 200px;
   position: relative;
@@ -2069,7 +2073,7 @@ left: 2px;
   position: relative;
   padding: 8px;
   color: white;
-  background-color: rgb(109, 33, 195);
+  background-color: rgb(96, 33, 242);
   bottom: 45px;
   left: 155px;
   border: none;
@@ -2221,8 +2225,8 @@ padding-top: 20px;
 
 .allBrandContainer input:checked{
   /* border: none; */
-  accent-color: #8d4fff;
-  background-color: #8d4fff;
+  accent-color: rgb(96, 33, 242);
+  background-color: rgb(96, 33, 242);
   
 }
 
@@ -2499,7 +2503,7 @@ margin-left: 14vw;
     font-weight: bold;
     color: rgb(174, 174, 174);
     position: fixed;
-    top: 20vh;
+    bottom: 34vh;
    
   }
 
@@ -2654,7 +2658,7 @@ margin-left: 14vw;
   } */
 
   .CheckoutCont button{
-    background-color: rgb(117, 40, 204);
+    background-color: rgb(96, 33, 242);
     padding:10px;
     font-size: 15px;
     width: 10vw;
@@ -2741,18 +2745,18 @@ margin-top: 10vh;
 
   .paymentSection h1{
     margin-top: 20px;
-    background-color: #5911de;
+    background-color: rgb(96, 33, 242);
     color: rgb(219, 219, 219);
 
   }
   .paymentSection h2{
-    background-color: #5911de;
+    background-color: rgb(96, 33, 242);
     color: rgb(218, 218, 218);
 
   }
 
   .paymentSection h3{
-    background-color: #5911de;
+    background-color: rgb(96, 33, 242);
     color: rgb(228, 228, 228);
 
   }
@@ -2798,7 +2802,7 @@ margin-top: 10vh;
   .CheckoutSection button{
     padding: 10px;
     font-size: 19px;
-    background-color:#3f00b4;
+    background-color:rgb(96, 33, 242);
     position: relative;
     top: 10vh;
     left: 17vw;
@@ -2921,47 +2925,94 @@ margin-top: 10vh;
 }
 
 .LoginSignupCont{
-  background-color:  rgb(117, 40, 204); 
-
+ 
+ 
+ 
 
   overflow: hidden;
-  height: 110vh;
+  height: 100vh;
   margin-bottom: 100px;
   padding-top: 30px;
+  
+  position: absolute;
+  width: 100vw;
+  
   
 
 }
 
 .LoginSignupCont form{
 
-  background-color:  rgb(117, 40, 204);
+  /* background-color:  rgb(96, 33, 242); */
  
   
 }
 
-
-
+.MainLoginCont:nth-child(7){
+  background-color: green;
+}
 
 .loginContainer,.SignupContainer
 {
 
   width: 30vw;
-  min-height: 80vh;
-  margin: auto;
+  min-height: 70vh;
+   margin: auto;
   padding: 35px;
   margin-top: 10vh;
+  position: relative;
+  left: 23vw;
+  border: 2px solid grey;
+}
+
+.loginContainer{
+  bottom: 5vh;
+  display: flex;
+   flex-direction: column;
+   align-items: center;
+
+
+   
+/* height: 74vh; */
 }
 
 .SignupContainer{
   height: 150vh;
+position: relative;
+top:-69px;
+max-height: 91vh;
+padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+ 
+  /* justify-content: space-around; */
+  align-items: center;
+}
+
+
+
+
+.SignupContainer h2{
+  
+  margin-bottom: 20px;
   
 }
 
+.SignupContainer button{
+  position: relative;
+  bottom: 20px;
+}
+
+.SignupContainer p{
+  margin-right: 70px;
+}
+
+
 .loginContainer h2,.SignupContainer h2{
   font-family: 'Montserrat';
+  margin-bottom: 20px;
 
-
-    margin-left: 152px;
+    /* margin-left: 152px; */
 
 }
 
@@ -2971,12 +3022,12 @@ margin-top: 10vh;
 .loginContainer input,.SignupContainer  input,.forgotContainer input{
   display: block;
   border: none;
-  margin-top: 10px;
+
   margin-bottom: 10px;
   height: 40px;
   width: 20vw;
 padding: 8px;
-margin-left: 40px;
+/* margin-left: 40px; */
 font-size: 17px;
 background-color: rgb(248, 248, 248);
 
@@ -2986,6 +3037,34 @@ background-color: rgb(248, 248, 248);
 
 }
 
+.SignupContainer  input{
+  position: relative;
+  bottom: 10px;
+
+}
+
+.passHideLogin{
+  position: absolute;
+  top:145px;
+
+  right: 50px;
+  width: 20px;
+  height: 20px;
+}
+
+.passShowLogin{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top:145px;
+  right: 50px;
+}
+
+.forgotPassBtn{
+  background-color: red;
+  position: relative;
+  right: 100px;
+}
 .SignupContainer select{
   width: 100px;
 height: 35px;
@@ -3001,6 +3080,10 @@ height: 35px;
   color: rgb(115, 115, 115);
   font-weight: bold;
   border: none;
+  position: relative;
+  bottom: 20px;
+  right: 123px;
+  margin-top: 10px;
   
 }
 
@@ -3020,25 +3103,31 @@ height: 35px;
 .oauthCont div{
   border: 1px solid rgb(206, 199, 199);
   position: relative;
-  top: 34px;
+  top: 44px;
   margin-top: 5px;
+  width: 300px;
   height: 40px;
-  padding: 25px 0px;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
   /* overflow: hidden; */
 }
 
 .oauthCont div img{
-  position: relative;
-  bottom: 71px;
+  
   background-color: transparent;
+  position: relative;
+  bottom: 10px;
 }
 
 .oauthCont div span{
-  position: relative;
-  bottom: 78px;
+ 
   font-family: 'Anuphan';
-  left: 150px;
+  /* left: 150px; */
   font-size: 17px;
+  position: relative;
+  bottom: 10px;
   background-color: transparent;
 
 }
@@ -3049,6 +3138,15 @@ height: 35px;
   transition: 0.3s;
 }
 
+.loginContainer p:nth-last-of-type(1){
+
+  position: relative;
+  margin-top: 60px;
+  margin-right: 120px;
+  width: 240px;
+
+ 
+}
 .loginContainer section:hover{
   cursor: pointer;
 
@@ -3059,25 +3157,10 @@ height: 35px;
   display: none;
 }
 
-.passShow{
-  position: relative;
-  bottom: 40px;
-  left: 320px;
-  background-color: rgb(248, 248, 248);
-  z-index: 2;
-  /* display: none; */
-}
 
 
 
-.passHide{
-  position: relative;
-  bottom: 40px;
-  left: 320px;
-  background-color: rgb(248, 248, 248);
 
-
-}
 
 
 .loginContainer input:focus,.SignupContainer input:focus,.forgotContainer input:focus{
@@ -3091,11 +3174,11 @@ height: 35px;
   transition: 0.3s ease;
 }
 .loginContainer button,.SignupContainer button,.forgotContainer button{
-  background-color: rgb(117, 40, 204);
+  background-color: rgb(96, 33, 242);
   padding:12px;
   font-size: 15px;
   width: 20vw;
-  margin-left: 40px;
+  /* margin-left: 40px; */
   margin-bottom: 2px;
   margin-top: 10px;
 }
@@ -3107,7 +3190,7 @@ height: 35px;
 {
   color: #606060;
   font-family: "Anuphan";
-  margin-left: 160px;
+  margin-right: 260px;
   font-size: 15px;
 position: relative;
 bottom: 8px;
@@ -3187,6 +3270,8 @@ background-color: transparent;
     padding: 10px;
   }
 
+  
+
   .LoginSignupCont {
     height: auto;
     padding: 10px;
@@ -3261,11 +3346,11 @@ background-color: transparent;
 /*********************************************************************** 5 UDPATE **************************************************************************************/
 .mainLogin p:nth-of-type(1):hover{
   cursor: pointer;
-  color: rgb(166, 88, 255);
+  color: rgb(96, 33, 242);
 }
 .loginContainer p:nth-of-type(1) span:hover{
   cursor: pointer;
-  color: rgb(166, 88, 255);
+  color: rgb(96, 33, 242);
 
 }
 .loginContainer p:nth-of-type(2){
@@ -3280,12 +3365,14 @@ background-color: transparent;
 }
 
 .SignupContainer p:nth-of-type(1){
-  position: absolute;
-  bottom: 20px;
+  position: relative;
+  bottom: 42px;
   color: #606060;
   font-family: "Anuphan";
   margin-left: 150px;
   font-size: 16px;
+  width: 200px;
+
 }
 
 .loginContainer p:nth-of-type(3),.SignupContainer p:nth-of-type(2){
@@ -3305,34 +3392,46 @@ background-color: transparent;
 
 .loginContainer p span:hover,.SignupContainer p span:hover{
   cursor: pointer;
-  color: rgb(117, 40, 204);
+  color: rgb(96, 33, 242);
 }
 
 .loginContainer img{
-  margin-top: 60px;
-position: relative;
-left: 140px;
-margin-left: 5px;
+
 }
 
 .loginContainer img:hover{
   cursor: pointer;
 }
 
+.MainforgotContainer{
+  overflow: hidden;
+  max-height: 60vh;
+}
+
+.MainforgotContainer img{
+ 
+}
 .forgotContainer{
+ 
+ position: absolute;
   width: 30vw;
-  min-height: 35vh;
+  height: 30vh;
   margin: auto;
   padding: 35px;
-  margin-top: 20vh;
+  margin-top: 29vh;
   margin-bottom: 100vh;
+  border: 2px solid grey;
+  position: relative;
+  left: 36vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
 }
 .forgotContainer h2{
   font-family: 'Montserrat';
-
-
-  margin-left: 45px;
-  margin-bottom: 40px;
+  
+ margin-bottom: 20px;
   /* margin: auto; */
 
 }
@@ -3343,13 +3442,13 @@ margin-left: 5px;
   top: 20px;
   color: #727272;
   font-family: "Anuphan";
-  margin-left: 100px;
+  
   display: none;
 }
 
 .forgotContainer p span:hover{
   cursor: pointer;
-  color: rgb(117, 40, 204);
+  color: rgb(96, 33, 242);
   text-decoration: underline;
   
 }
@@ -3363,11 +3462,7 @@ margin-left: 5px;
   bottom: 105px;
 }
 
-.SignupContainer h2{
-  position: relative;
-  right: 50px;
 
-}
 
 .SignupContainer p:nth-of-type(1)
 {
@@ -3388,72 +3483,224 @@ margin-left: 5px;
 
 
 .OTP{
-  height: 10px;
+  height: 50vh;
 
-  position: relative;
-  bottom: 100px;
-  right: 40px;
-  /* display: none; */
-}
-
-.OTP p:nth-of-type(1){
- color: rgb(81, 81, 81);
- margin-bottom: 45px;
- position: relative;
- right: 121px;
- top: 44px;
- font-size: 13px;
- background-color: white;
-}
-.OTP p:nth-of-type(2){
-  color:rgb(117, 40, 204);
   position: absolute;
-  top: 320px;
- right: 18.5vw;
-width: 100px;
+  top: 22vh;
+  margin-bottom: 100px;
+  right: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  /* background-color: red; */
+  border: 2px solid grey;
+  width: 30vw;
+  padding: 30px;
 }
 
 .OTP h2{
-    position: relative;
-    right: 65px;
+  font-family: 'Montserrat';
 }
+
+
+.OTP p:nth-of-type(1){
+ color: rgb(81, 81, 81);
+ /* margin-bottom: 45px;
+ position: relative;
+ right: 121px;
+ top: 44px; */
+ font-size: 16px;
+ font-family: 'Anuphan';
+ background-color: white;
+}
+.OTP p:nth-of-type(2){
+  color:rgb(96, 33, 242);
+  font-family: 'Anuphan';
+  /* position: absolute;
+  top: 320px;
+ right: 18.5vw; */
+ position: relative;
+right: 90px;
+width: 100px;
+font-size: 16px;
+}
+
+
+.OtpTimer{
+  font-size: 16px;
+  font-family: 'Anuphan';
+  position: relative;
+  
+  right: 20px;
+  bottom:39px;
+}
+
+.OTP p:nth-of-type(2):hover{
+  cursor: pointer;
+}
+
+
 
 .OTP input{
-  padding: 40px;
-  letter-spacing: 1.5rem;
- padding-left:65px ;
+  padding: 20px 25px;
+  padding-right: 0px;
+
+  letter-spacing: 1.9rem;
+
  position: relative;;
  top: 10px;
+ width: 17vw;
+ font-size: 18px;
+ outline: none;
+ /* border: none; */
+ border: 2px solid grey;
+ border-radius: 8px;
 }
 
-.OTP button{
-
-  margin-top: 40px;
+.OTP input:focus{
+  border: 2px solid rgb(96, 33, 242);
+  border-radius: 8px;
 }
 
-.finalSignup{
+.OTP button:nth-of-type(1){
 
-position: relative;
-bottom: 110px;
-right: 38px;
-display: none;
-
-}
-
-.finalSignup h2{
+  background-color: rgb(96, 33, 242);
   position: relative;
-  right:60px;
-  margin-bottom: 20px;
+  bottom: 40px;
+  padding: 8px;
+  width: 90px;
+  font-size: 16px;
+  border-radius: 6px;
+  /* background-color: rgb(96, 33, 242); */
 }
 
-.finalSignup p{
+.setPassForm{
+  /* background-color: red; */
+  width: 30vw;
+  min-height: 36vh;
+   margin: auto;
+  padding: 35px;
+  margin-top: 5vh;
   position: relative;
-  right: 60px;
-  top: 50px;
- 
+  left: 23vw;
+  top: 20vh;
+  border: 2px solid grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.setPassForm h2{
+  font-family: 'Montserrat';
+
+}
+.setPassForm input{
+  display: block;
+  border: none;
+  outline: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 40px;
+  width: 20vw;
+padding: 8px;
+margin-left: 40px;
+font-size: 17px;
+background-color: rgb(248, 248, 248);
+
+}
+
+.setPassForm input:focus{
+ border: 2px solid;
+  border-color: rgb(96, 33, 242);
+border-radius: 4px;
+}
+
+.passShow{
+  position: absolute;
+  bottom: 181px;
+  left: 450px;
+  background-color: rgb(255, 255, 255);
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+  /* display: none; */
 }
 
 
+.passHide{
+  position: absolute;
+  bottom: 181px;
+  left: 450px;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(255, 255, 255);
+
+
+}
+
+.passHide:hover , .passShow:hover{
+  cursor: pointer;
+}
+
+.passLevelBox{
+  /* background-color: red; */
+  width: 345px;
+  position: relative;
+  left: 23px;
+  height: 5px;
+  display: flex;
+  justify-content: space-between;
+  bottom: 7px;
+}
+
+.passLevelBox span{
+  background-color: rgb(154, 154, 154);
+  height: 5px;
+  width: 307px;
+  margin-right: 4px;
+  
+}
+
+.weak span:nth-of-type(1){
+  background-color: red;
+}
+
+.good span:nth-of-type(1){
+  background-color: orange;
+}
+
+.good span:nth-of-type(2){
+
+  background-color: orange;
+}
+
+.strong span:nth-of-type(1){
+
+  background-color: green;
+}
+.strong span:nth-of-type(2){
+
+  background-color: green;
+}
+
+.strong span:nth-of-type(3){
+
+  background-color: green;
+}
+.setPassForm button{
+  background-color: rgb(96, 33, 242);
+  position: relative;
+  top: 10px;
+  padding: 8px;
+  width: 90px;
+  font-size: 16px;
+  border-radius: 6px;
+}
+
+.setPassForm p{
+  position: relative;
+  right: 20px;
+}
 
 .accountContainer
 {
@@ -3603,7 +3850,8 @@ height: 78vh;
   
 }
 .profileOrderCont{
-  /* display: none; */
+  display: none;
+  
   
 }
 
@@ -3613,6 +3861,8 @@ height: 78vh;
   position: fixed;
   width: 63vw;
   margin-bottom: 20px; 
+
+  
 }
 
 
@@ -4529,26 +4779,25 @@ width: 25px;
 
 .loaderParent{
    background-color: rgb(255, 255, 255);
-/* background-color: red;  */
+  z-index: 20;
   width: 100vw; 
   height:100vh;
-
+position: fixed;
+top: 0px;
 
 }
 .loader {
   border: 4px solid #f4f4f4;
-  border-radius: 50%;
+  border-radius: 40%;
   z-index: 10;
-  border-top: 4px solid rgb(96, 30, 172);
-  width: 40px;
-  height: 40px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 1s linear infinite;
+  border: 4px solid rgb(96, 30, 172);
+  width: 65px;
+  height: 65px;
+  -webkit-animation: spin 2s linear infinite; 
+  animation: spin 2s linear infinite;
   position: absolute;
   top: 42%;
   left: 48%;
-
-  /* display: none; */
   z-index: 3;
   
 }
@@ -4556,11 +4805,11 @@ width: 25px;
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); }
-}
+} 
 
-@keyframes spin {
+ @keyframes spin {
   0% { transform: rotate(0deg); }
 
-  100% { transform: rotate(360deg); }
+  100% { transform: rotate(720deg); }
 
-}
+} 

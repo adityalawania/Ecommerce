@@ -128,7 +128,6 @@ else if(store.getState().finalPersistedReducer.status[0]=='active')
   }, 2000);
 
 
- console.log("navIcon")
 
   if(icon=='user')
 {
@@ -360,7 +359,7 @@ const isCategory=(x)=>{
     <>
     <div className={styles.navContainer} >
     <ToastContainer className={styles.toastContainer} />
-      <Link  href={'/'}><Image id={styles.logo} src={'/30b2d015e904407aae937a4794ae064b.png'} width={80} height={55} alt='Image unavailable'></Image></Link>
+      <Link  href={'/'}><Image id={styles.logo} src={'/logo.png'} width={80} height={55} alt='Image unavailable'></Image></Link>
       
       <ul ref={active} className={styles.navbar}>
         <li className={router.pathname =='/kids' ? styles.active : ""} onClick={()=>navIcon('kids')}>Kids</li>
